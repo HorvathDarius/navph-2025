@@ -5,9 +5,35 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: a712da20ee3c2ee4f8fffd3c6b135f9a
+  - enabled: 1
+    path: Assets/Scenes/CrossyRoadsScene.unity
+    guid: fbc0cc0580f3d1e4982d39335a05b150
+  - enabled: 1
+    path: Assets/Scenes/NivyChaseScene.unity
+    guid: c927cd8d5eb74684da95d73923328def
+  - enabled: 1
+    path: Assets/Scenes/YemeMazeScene.unity
+    guid: fde69291e71a2b74385244588b043efa
+  - enabled: 1
+    path: Assets/Scenes/FoodCatcherScene.unity
+    guid: d38c2dc6ad0c9af40851bba94cc16ddc
+  - enabled: 1
+    path: Assets/Scenes/FinalBossFightScene.unity
+    guid: 7b3146470d9eac34f87ae0de256acc35
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: 3313b12fb30a14849958b6820dda5d0a
+  - enabled: 1
+    path: Assets/Scenes/LeaderboardScene.unity
+    guid: ab43b08ac967cac48af7df03a6cbb100
+  - enabled: 1
+    path: Assets/Scenes/SettingsScene.unity
+    guid: 3599ba69caab1ad479dc7027835f35e7
+  m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
