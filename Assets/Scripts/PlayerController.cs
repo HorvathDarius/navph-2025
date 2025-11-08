@@ -9,10 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputAction moveAction;
     [SerializeField] InputAction interactAction;
     [SerializeField] InputAction jumpAction;
-    
+
     public int maxPlayerHealth = 100;
     public int currentPlayerHealth;
-    private List<GameObject> inventoryItems = new List<GameObject>();
+    public List<Item> inventoryItems = new List<Item>();
     private Rigidbody2D rb2d;
     private Vector2 moveDirection;
     private InteractiveObject nearbyObject;
@@ -22,16 +22,21 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        // Initialize player health and health bar
         currentPlayerHealth = maxPlayerHealth;
         healthBar.setMaxHealth(maxPlayerHealth);
 
+        // Assign input actions
         moveAction = InputSystem.actions.FindAction("Move");
         interactAction = InputSystem.actions.FindAction("Interact");
         jumpAction = InputSystem.actions.FindAction("Jump");
+
+        // Initialize Rigidbody2D
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
+    // Enable and disable input actions 
     private void OnEnable()
     {
         if (moveAction != null)
@@ -54,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Handle movement input
         Vector2 input = moveAction.ReadValue<Vector2>();
         float horizontalInput = input.x;
         float verticalInput = input.y;
@@ -63,33 +69,34 @@ public class PlayerController : MonoBehaviour
         RotatePlayer(horizontalInput, verticalInput);
 
 
+        // Handle interaction input
         if (interactAction.WasPressedThisFrame())
         {
             Debug.Log("Interact action triggered in PlayerController");
+            // TEST - print out inventory contents
             foreach (var item in inventoryItems)
             {
                 Debug.Log("Inventory contains: " + item.name);
             }
+
+            // Interact with nearby object if available
+            if (nearbyObject != null)
+            {
+                Debug.Log("Interact action triggered in PlayerController");
+                nearbyObject.pickUpItem(this);
+            }
         }
 
+        // Handle jump input (for testing damage)
         if (jumpAction.WasPressedThisFrame())
         {
             Debug.Log("- 10 damage to player health");
             TakeDamage(10);
         }
 
-        if (nearbyObject != null && interactAction.WasPressedThisFrame())
-        {
-            Debug.Log("Interact action triggered in PlayerController");
-            nearbyObject.pickUpItem(this);
-        }
     }
 
-    // void FixedUpdate()
-    // {
-    //     rb2d.linearVelocity = moveDirection * moveSpeed;
-    // }
-
+    // Rotate player to face movement direction
     void RotatePlayer(float x, float y)
     {
         if (x == 0 && y == 0) return;
@@ -108,6 +115,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
     }
 
+    // Set and clear nearby interactive object
     public void SetNearbyObject(InteractiveObject obj)
     {
         nearbyObject = obj;
@@ -118,13 +126,15 @@ public class PlayerController : MonoBehaviour
         nearbyObject = null;
     }
 
-    public void AddItemToInvetory(GameObject item)
+    // Add item to player inventory
+    public void AddItemToInvetory(Item item)
     {
-        Debug.Log("Adding to inventory: " + item.name);
+        Debug.Log("Adding to inventory: " + item.itemName);
         inventoryItems.Add(item);
-        Debug.Log("Item added to inventory: " + item.name);
+        Debug.Log("Item added to inventory: " + item.itemName);
     }
 
+    // Handle player taking damage
     public void TakeDamage(int damage)
     {
         currentPlayerHealth -= damage;
