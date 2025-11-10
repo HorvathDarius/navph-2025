@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa17ac22615ce4e5f8e187f2f250bb7e, type: 3}
   m_Name: PhoneItem
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: 
+  itemName: Phone
   itemIcon: {fileID: 0}
