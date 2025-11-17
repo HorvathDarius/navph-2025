@@ -19,9 +19,9 @@ public class FoodFall : MonoBehaviour
         if (collision.CompareTag("Bowl"))
         {
             if (isGood)
-                GameManager.Instance.AddGoodFood();
+                FoodCatcherManager.Instance.AddGoodFood();
             else
-                GameManager.Instance.AddBadFood();
+                FoodCatcherManager.Instance.AddBadFood();
 
             Destroy(gameObject);
         }

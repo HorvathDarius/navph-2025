@@ -1,11 +1,12 @@
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class FoodCatcherManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static FoodCatcherManager Instance;
 
     [SerializeField] private TextMeshProUGUI winText;
+    [SerializeField] private GameObject bubble;
 
     private int goodFoodCount = 0;
     private int badFoodCount = 0;
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        bubble.gameObject.SetActive(false);
+        winText.gameObject.SetActive(false);
+        
         if (Instance == null)
             Instance = this;
         else
@@ -54,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         if (winText != null)
         {
+            bubble.gameObject.SetActive(true);
             winText.gameObject.SetActive(true);
             winText.text = "12,90 poplosím!";
         }
