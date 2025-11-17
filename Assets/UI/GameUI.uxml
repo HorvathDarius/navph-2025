@@ -1,0 +1,90 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/GameUI.uss?fileID=7433441132597879392&amp;guid=50e38150df2ead2408a0a825ef96e1b0&amp;type=3#GameUI" />
+    <ui:VisualElement name="GameUI" style="width: 100%; height: 100%; position: absolute;">
+        <ui:VisualElement name="HUD" class="hud-container" style="width: 100%; height: 100%; position: absolute; pointer-events: none; display: flex;">
+            <ui:VisualElement name="TopBar" class="top-bar" style="flex-direction: row; justify-content: space-between; padding: 20px; width: 100%; height: 100px;">
+                <ui:VisualElement name="HealthSection" style="flex-direction: row; align-items: center; min-width: 300px;">
+                    <ui:VisualElement name="PlayerIcon" class="player-icon" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; margin-right: 15px;" />
+                    <ui:VisualElement name="HealthBarContainer" style="flex-direction: column; justify-content: center;">
+                        <ui:Label text="HEALTH" name="HealthTitle" class="ui-label-small" style="margin-bottom: 5px; color: white; -unity-font-style: bold;" />
+                        <ui:VisualElement name="HealthBarBackground" style="width: 200px; height: 30px; background-color: rgba(0, 0, 0, 0.5); border-radius: 5px; border-width: 2px; border-color: white;">
+                            <ui:VisualElement name="HealthBarFill" style="width: 100%; height: 100%; background-color: rgb(76, 175, 80); border-radius: 5px;" />
+                        </ui:VisualElement>
+                        <ui:Label text="Health: 100/100" name="HealthLabel" class="ui-label" style="margin-top: 5px; color: white; font-size: 14px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="TimerSection" style="align-items: center; justify-content: center; min-width: 200px;">
+                    <ui:Label text="TIME" class="ui-label-small" style="color: white; -unity-font-style: bold; margin-bottom: 5px;" />
+                    <ui:Label text="15:00" name="TimerLabel" class="ui-label-large" style="font-size: 36px; color: rgb(255, 235, 59); -unity-font-style: bold;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ScoreSection" style="align-items: flex-end; justify-content: center; min-width: 200px;">
+                    <ui:Label text="SCORE" class="ui-label-small" style="color: white; -unity-font-style: bold; margin-bottom: 5px;" />
+                    <ui:Label text="0" name="ScoreLabel" class="ui-label-large" style="font-size: 36px; color: rgb(255, 193, 7); -unity-font-style: bold;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ItemSelector" class="item-selector" style="position: absolute; bottom: 40px; left: 50%; translate: -50% 0; flex-direction: row; padding: 15px; background-color: rgba(0, 0, 0, 0.7); border-radius: 10px; border-width: 2px; border-color: white; display: none;">
+                <ui:Label text="ITEMS:" style="color: white; margin-right: 15px; align-self: center; -unity-font-style: bold;" />
+                <ui:VisualElement name="ItemSlot1" class="item-slot" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; margin-right: 10px; border-width: 2px; border-color: white;" />
+                <ui:VisualElement name="ItemSlot2" class="item-slot" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; margin-right: 10px; border-width: 2px; border-color: white;" />
+                <ui:VisualElement name="ItemSlot3" class="item-slot" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; border-width: 2px; border-color: white;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="PausePanel" class="overlay-panel" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; display: none;">
+            <ui:VisualElement name="PauseContent" class="panel-content" style="width: 500px; padding: 40px; background-color: rgb(33, 33, 33); border-radius: 15px; border-width: 3px; border-color: white; align-items: center;">
+                <ui:Label text="PAUZA" class="panel-title" style="font-size: 48px; color: white; -unity-font-style: bold; margin-bottom: 30px;" />
+                <ui:Button text="Pokračovať" name="ResumeButton" class="menu-button" style="width: 300px; height: 60px; margin-bottom: 15px; font-size: 24px; background-color: rgb(76, 175, 80); color: white; border-radius: 10px;" />
+                <ui:Button text="Nastavenia" name="SettingsButton" class="menu-button" style="width: 300px; height: 60px; margin-bottom: 15px; font-size: 24px; background-color: rgb(33, 150, 243); color: white; border-radius: 10px;" />
+                <ui:Button text="Hlavné menu" name="MainMenuButton" class="menu-button" style="width: 300px; height: 60px; font-size: 24px; background-color: rgb(244, 67, 54); color: white; border-radius: 10px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="GameOverPanel" enabled="true" class="overlay-panel" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; display: none;">
+            <ui:VisualElement name="GameOverContent" class="panel-content" style="width: 600px; padding: 50px; background-color: rgb(33, 33, 33); border-radius: 15px; border-width: 4px; border-color: rgb(244, 67, 54); align-items: center;">
+                <ui:Label text="GAME OVER" class="panel-title" style="font-size: 56px; color: rgb(244, 67, 54); -unity-font-style: bold; margin-bottom: 20px;" />
+                <ui:Label text="Nezomrel si&#10;Nabudúce si daj od práce voľno" name="GameOverMessage" class="panel-message" style="font-size: 20px; color: white; text-align: center; white-space: normal; margin-bottom: 30px;" />
+                <ui:VisualElement name="StatsContainer" style="width: 100%; margin-bottom: 30px; padding: 20px; background-color: rgba(0, 0, 0, 0.5); border-radius: 10px;">
+                    <ui:Label text="Finálne skóre: 0" name="FinalScoreLabel" style="font-size: 24px; color: rgb(255, 193, 7); margin-bottom: 10px; -unity-font-style: bold;" />
+                    <ui:Label text="Dosiahnutý level: 1" name="LevelReachedLabel" style="font-size: 20px; color: white;" />
+                </ui:VisualElement>
+                <ui:Button text="Skúsiť znova" name="RetryButton" class="menu-button" style="width: 350px; height: 70px; margin-bottom: 15px; font-size: 26px; background-color: rgb(76, 175, 80); color: white; border-radius: 10px;" />
+                <ui:Button text="Hlavné menu" name="MainMenuButtonGO" class="menu-button" style="width: 350px; height: 70px; font-size: 26px; background-color: rgb(33, 150, 243); color: white; border-radius: 10px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="VictoryPanel" class="overlay-panel" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; display: none;">
+            <ui:VisualElement name="VictoryContent" class="panel-content" style="width: 700px; padding: 50px; background-color: rgb(33, 33, 33); border-radius: 15px; border-width: 4px; border-color: rgb(76, 175, 80); align-items: center;">
+                <ui:Label text="VÍŤAZSTVO!" class="panel-title" style="font-size: 56px; color: rgb(76, 175, 80); -unity-font-style: bold; margin-bottom: 20px;" />
+                <ui:Label text="Podarilo sa ti prežiť obedovú pauzu!&#10;&#10;Zajtra to isté..." name="VictoryMessage" class="panel-message" style="font-size: 22px; color: white; text-align: center; white-space: normal; margin-bottom: 30px;" />
+                <ui:VisualElement name="VictoryStatsContainer" style="width: 100%; margin-bottom: 30px; padding: 25px; background-color: rgba(76, 175, 80, 0.2); border-radius: 10px; border-width: 2px; border-color: rgb(76, 175, 80);">
+                    <ui:Label text="Finálne skóre: 1500" name="VictoryScoreLabel" style="font-size: 28px; color: rgb(255, 193, 7); margin-bottom: 15px; -unity-font-style: bold;" />
+                    <ui:Label text="Zostávajúci čas: 05:23" name="RemainingTimeLabel" style="font-size: 22px; color: rgb(255, 235, 59); margin-bottom: 10px;" />
+                    <ui:Label text="Zostávajúce zdravie: 65 HP" name="RemainingHealthLabel" style="font-size: 22px; color: rgb(76, 175, 80);" />
+                </ui:VisualElement>
+                <ui:Button text="Leaderboard" name="LeaderboardButton" class="menu-button" style="width: 400px; height: 70px; margin-bottom: 15px; font-size: 26px; background-color: rgb(255, 193, 7); color: black; border-radius: 10px;" />
+                <ui:Button text="Hlavné menu" name="MainMenuButtonVictory" class="menu-button" style="width: 400px; height: 70px; font-size: 26px; background-color: rgb(33, 150, 243); color: white; border-radius: 10px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="TransitionPanel" class="overlay-panel" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; display: none;">
+            <ui:VisualElement style="align-items: center;">
+                <ui:Label text="Poďme cez cestu..." name="TransitionMessage" class="transition-message" style="font-size: 42px; color: white; -unity-font-style: bold; text-align: center; white-space: normal;" />
+                <ui:VisualElement name="LoadingIndicator" style="width: 200px; height: 8px; background-color: rgba(255, 255, 255, 0.3); margin-top: 30px; border-radius: 5px;">
+                    <ui:VisualElement name="LoadingBar" style="width: 0%; height: 100%; background-color: white; border-radius: 5px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="TutorialOverlay" class="tutorial-overlay" style="width: 100%; height: 100%; position: absolute; justify-content: flex-end; padding-bottom: 100px; align-items: center; display: none;">
+            <ui:VisualElement name="TutorialBox" style="width: 600px; padding: 30px; background-color: rgba(0, 0, 0, 0.85); border-radius: 15px; border-width: 3px; border-color: rgb(255, 235, 59);">
+                <ui:Label text="TUTORIAL" name="TutorialTitle" style="font-size: 24px; color: rgb(255, 235, 59); -unity-font-style: bold; margin-bottom: 15px;" />
+                <ui:Label text="Použi WASD na pohyb.&#10;Stlač E na interakciu s objektmi." name="TutorialText" class="tutorial-text" style="font-size: 20px; color: white; white-space: normal;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="BowlPositionIndicator" style="position: absolute; bottom: 150px; left: 50%; translate: -50% 0; display: none;">
+            <ui:Label text="← A     D →" style="font-size: 28px; color: white; -unity-font-style: bold; text-align: center;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="MazeFOVOverlay" style="width: 100%; height: 100%; position: absolute; background-image: url(&apos;Assets/UI/Textures/vignette.png&apos;); display: none;" />
+        <ui:VisualElement name="BossHealthBar" style="position: absolute; top: 150px; left: 50%; translate: -50% 0; width: 600px; display: none;">
+            <ui:Label text="BEZDOMOVEC" style="font-size: 20px; color: rgb(244, 67, 54); -unity-font-style: bold; margin-bottom: 5px; text-align: center;" />
+            <ui:VisualElement name="BossHealthBackground" style="width: 100%; height: 40px; background-color: rgba(0, 0, 0, 0.7); border-radius: 5px; border-width: 2px; border-color: rgb(244, 67, 54);">
+                <ui:VisualElement name="BossHealthFill" style="width: 100%; height: 100%; background-color: rgb(244, 67, 54); border-radius: 5px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

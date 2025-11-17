@@ -1019,6 +1019,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "GameControlls",
+            "id": "b27b6ad1-78da-4797-ad0e-46bc23c31735",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "4e270deb-8e6c-4901-ad6f-9bb1d22de1f5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "afb8781e-dca2-44b8-849d-9c8148303404",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
