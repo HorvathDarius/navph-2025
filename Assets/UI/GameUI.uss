@@ -1,0 +1,80 @@
+/* ==================== GLOBAL STYLES ==================== */
+.hud-container {
+
+}
+
+.ui-label {
+    color: white;
+    font-size: 18px;
+    -unity-text-align: middle-left;
+}
+
+.ui-label-small {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+.ui-label-large {
+    color: white;
+    font-size: 36px;
+    -unity-font-style: bold;
+}
+
+/* ==================== PANELS ==================== */
+.overlay-panel {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+.panel-content {
+
+}
+
+.panel-title {
+    -unity-text-align: middle-center;
+}
+
+.panel-message {
+    -unity-text-align: middle-center;
+}
+
+/* ==================== BUTTONS ==================== */
+.menu-button {
+    -unity-font-style: bold;
+    scale: 1 1; /* Musí mať definovanú štartovú hodnotu */
+    transition-property: scale;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+}
+
+.menu-button:hover {
+    scale: 1.05 1.05;
+}
+
+.menu-button:active {
+    scale: 0.95 0.95;
+}
+
+/* ==================== ITEM SLOTS ==================== */
+.item-slot {
+    border-color: white;
+    transition-property: border-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+}
+
+.item-slot:hover {
+    border-color: rgb(255, 193, 7);
+}
+
+/* ==================== TUTORIAL ==================== */
+.tutorial-overlay {
+
+}
+
+.tutorial-text {
+    line-height: 28px;
+}
