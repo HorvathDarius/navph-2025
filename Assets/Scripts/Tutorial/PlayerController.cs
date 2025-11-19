@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,19 +11,23 @@ public class PlayerController : MonoBehaviour
 
     public int maxPlayerHealth = 100;
     public int currentPlayerHealth;
-    public List<Item> inventoryItems = new List<Item>();
+    public List<Item> inventoryItems = new();
     private Rigidbody2D rb2d;
     private Vector2 moveDirection;
     private InteractiveObject nearbyObject;
 
-    public HealthBar healthBar;
+    private Animator m_Animator;
+    private bool m_IsMoving;
 
+    private void Awake()
+    {
+        m_Animator = GetComponent<Animator>();
+    }
 
     void Start()
     {
         // Initialize player health and health bar
         currentPlayerHealth = maxPlayerHealth;
-        healthBar.setMaxHealth(maxPlayerHealth);
 
         // Assign input actions
         moveAction = InputSystem.actions.FindAction("Move");
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
         {
             moveAction.Enable();
         }
+
         interactAction.Enable();
         jumpAction.Enable();
     }
@@ -53,6 +57,7 @@ public class PlayerController : MonoBehaviour
         {
             moveAction.Disable();
         }
+
         interactAction.Disable();
         jumpAction.Disable();
     }
@@ -66,8 +71,16 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector2(horizontalInput, verticalInput);
         rb2d.linearVelocity = moveDirection * moveSpeed;
-        RotatePlayer(horizontalInput, verticalInput);
 
+        // Aktuálny pohyb
+        bool isMoving = moveDirection.magnitude > 0.01f;
+        m_Animator.SetBool("Moving", isMoving);
+
+        // Smerovanie (Facing East/West)
+        if (horizontalInput > 0)
+            m_Animator.SetBool("FacingEast", true);
+        else if (horizontalInput < 0)
+            m_Animator.SetBool("FacingEast", false);
 
         // Handle interaction input
         if (interactAction.WasPressedThisFrame())
@@ -93,26 +106,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("- 10 damage to player health");
             TakeDamage(10);
         }
-
-    }
-
-    // Rotate player to face movement direction
-    void RotatePlayer(float x, float y)
-    {
-        if (x == 0 && y == 0) return;
-
-        float angle = 0f;
-
-        if (x == 1)
-        {
-            angle = 0f;
-        }
-        else if (x == -1)
-        {
-            angle = 180f;
-        }
-
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
     }
 
     // Set and clear nearby interactive object
@@ -138,6 +131,5 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentPlayerHealth -= damage;
-        healthBar.setHealth(currentPlayerHealth);
     }
 }
