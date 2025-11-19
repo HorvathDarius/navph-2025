@@ -1179,9 +1179,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2142038185580808467, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3938907
+      objectReference: {fileID: 0}
+    - target: {fileID: 2142038185580808467, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
+      propertyPath: m_Size.y
+      value: 0.42890006
+      objectReference: {fileID: 0}
+    - target: {fileID: 2142038185580808467, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.013024562
+      objectReference: {fileID: 0}
+    - target: {fileID: 2142038185580808467, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.9355749
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264528382178971405, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5130931487310878027, guid: 1fb6d67b94e8b3340a738ea003bd6fff, type: 3}
+    - target: {fileID: 7264528382178971405, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7561667825130330300, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
       propertyPath: m_Name
       value: MainCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561667825130330300, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1916,6 +1944,30 @@ PrefabInstance:
     - target: {fileID: 585123832902807304, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
       propertyPath: m_Name
       value: ITManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 585123832902807304, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118755295854028002, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.97530985
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118755295854028002, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.37889272
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118755295854028002, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0022777251
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118755295854028002, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.941273
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613641166507461319, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8985671756141337290, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
       propertyPath: m_LocalPosition.x
