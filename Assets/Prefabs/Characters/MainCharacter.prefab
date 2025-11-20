@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 3
+  sprintSpeed: 6
   moveAction:
     m_Name: Move
     m_Type: 0
@@ -152,6 +153,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 48fb85c3-b2c1-485b-9e1a-9fb5eaeb194f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  runningAction:
+    m_Name: Running
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 58888658-2e9b-4f03-9296-3ff377c401b1
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

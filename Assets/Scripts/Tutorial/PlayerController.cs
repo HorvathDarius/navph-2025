@@ -4,10 +4,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float sprintSpeed = 6f;
     [SerializeField] InputAction moveAction;
     [SerializeField] InputAction interactAction;
     [SerializeField] InputAction jumpAction;
+    [SerializeField] InputAction runningAction;
 
     public int maxPlayerHealth = 100;
     public int currentPlayerHealth;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator m_Animator;
     private bool m_IsMoving;
+    private bool m_IsRunning;
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         interactAction = InputSystem.actions.FindAction("Interact");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        runningAction = InputSystem.actions.FindAction("Sprint");
 
         // Initialize Rigidbody2D
         rb2d = GetComponent<Rigidbody2D>();
@@ -70,17 +74,41 @@ public class PlayerController : MonoBehaviour
         float verticalInput = input.y;
 
         moveDirection = new Vector2(horizontalInput, verticalInput);
-        rb2d.linearVelocity = moveDirection * moveSpeed;
 
         // Aktuálny pohyb
         bool isMoving = moveDirection.magnitude > 0.01f;
         m_Animator.SetBool("Moving", isMoving);
 
         // Smerovanie (Facing East/West)
-        if (horizontalInput > 0)
-            m_Animator.SetBool("FacingEast", true);
-        else if (horizontalInput < 0)
-            m_Animator.SetBool("FacingEast", false);
+        switch (horizontalInput)
+        {
+            case > 0:
+                m_Animator.SetBool("FacingEast", true);
+                break;
+            case < 0:
+                m_Animator.SetBool("FacingEast", false);
+                break;
+        }
+
+        if (runningAction.IsPressed())
+        {
+            m_Animator.SetBool("Running", true);
+            m_IsRunning = true;
+        }
+        else
+        {
+            m_Animator.SetBool("Running", false);
+            m_IsRunning = false;
+        }
+        
+        if (m_IsRunning)
+        {
+            rb2d.linearVelocity = moveDirection * sprintSpeed;
+        }
+        else
+        {
+            rb2d.linearVelocity = moveDirection * moveSpeed;
+        }
 
         // Handle interaction input
         if (interactAction.WasPressedThisFrame())
