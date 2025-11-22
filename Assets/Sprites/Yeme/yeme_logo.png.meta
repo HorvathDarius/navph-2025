@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: 743158a88acfe4e48a4d5943d0f378c1
+guid: 44355441e5fd9574a8fd317288dc5cc9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8269947037416694409
-    second: it_manager_breathing_idle_0
+      213: -1160598471735309061
+    second: generated-image (12)_0
   - first:
-      213: 1477320412409389748
-    second: it_manager_breathing_idle_1
+      213: -6954201433333291810
+    second: generated-image (12)_1
   - first:
-      213: 844887079079212340
-    second: it_manager_breathing_idle_2
+      213: 9607551891558790
+    second: generated-image (12)_2
   - first:
-      213: 8287963035821934949
-    second: it_manager_breathing_idle_3
+      213: -3109618587929974417
+    second: generated-image (12)_3
+  - first:
+      213: -1139730111035163431
+    second: generated-image (12)_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,13 +58,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 121, y: 194, z: 125, w: 228}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -109,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: it_manager_breathing_idle_0
+      name: generated-image (12)_0
       rect:
         serializedVersion: 2
-        x: 124
-        y: 51
-        width: 82
-        height: 217
+        x: 167
+        y: 279
+        width: 146
+        height: 514
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +127,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9822484b301c4c270800000000000000
-      internalID: 8269947037416694409
+      spriteID: bfc0b5dc6d9b4efe0800000000000000
+      internalID: -1160598471735309061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: it_manager_breathing_idle_1
+      name: generated-image (12)_1
       rect:
         serializedVersion: 2
-        x: 444
-        y: 51
-        width: 85
-        height: 220
+        x: 259
+        y: 405
+        width: 230
+        height: 614
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b26811861f708410800000000000000
-      internalID: 1477320412409389748
+      spriteID: ed428ad24a6bd7f90800000000000000
+      internalID: -6954201433333291810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: it_manager_breathing_idle_2
+      name: generated-image (12)_2
       rect:
         serializedVersion: 2
-        x: 764
-        y: 51
-        width: 82
-        height: 222
+        x: 511
+        y: 405
+        width: 215
+        height: 606
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 43575df6254a9bb00800000000000000
-      internalID: 844887079079212340
+      spriteID: 68158ad7402222000800000000000000
+      internalID: 9607551891558790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: it_manager_breathing_idle_3
+      name: generated-image (12)_3
       rect:
         serializedVersion: 2
-        x: 1084
-        y: 54
-        width: 82
-        height: 217
+        x: 751
+        y: 400
+        width: 271
+        height: 603
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +193,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5690cb53872c40370800000000000000
-      internalID: 8287963035821934949
+      spriteID: f696b77ae5a68d4d0800000000000000
+      internalID: -3109618587929974417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: generated-image (12)_4
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 32
+        width: 811
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dcbee7a08dde20f0800000000000000
+      internalID: -1139730111035163431
       vertices: []
       indices: 
       edges: []
@@ -200,8 +225,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 159718b27f7d97b48b89b8631ad922c1
-    internalID: 0
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -210,10 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      it_manager_breathing_idle_0: 8269947037416694409
-      it_manager_breathing_idle_1: 1477320412409389748
-      it_manager_breathing_idle_2: 844887079079212340
-      it_manager_breathing_idle_3: 8287963035821934949
+      generated-image (12)_0: -1160598471735309061
+      generated-image (12)_1: -6954201433333291810
+      generated-image (12)_2: 9607551891558790
+      generated-image (12)_3: -3109618587929974417
+      generated-image (12)_4: -1139730111035163431
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -1571364761318340641}
   - component: {fileID: 2142038185580808467}
   - component: {fileID: -7209107569903586965}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,15 +148,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  jumpAction:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 48fb85c3-b2c1-485b-9e1a-9fb5eaeb194f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   runningAction:
     m_Name: Running
     m_Type: 0
@@ -166,8 +157,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  maxPlayerHealth: 100
-  currentPlayerHealth: 0
   inventoryItems: []
 --- !u!70 &2142038185580808467
 CapsuleCollider2D:

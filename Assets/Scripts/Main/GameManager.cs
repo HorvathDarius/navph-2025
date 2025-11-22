@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     // UI References
     private UIDocument m_UIDocument;
     private Label m_HealthLabel;
+    private VisualElement m_HealthBarFill;
     private Label m_ScoreLabel;
     private Label m_TimerLabel;
     private VisualElement m_ItemSelector;
@@ -263,7 +264,12 @@ public class GameManager : MonoBehaviour
     
     public void AddScore(int amount)
     {
-        m_Score += amount;
+        var newScore = m_Score + amount;
+        if (newScore < 0)
+        {
+            newScore = 0;
+        }
+        m_Score = newScore;
         UpdateScoreUI();
     }
     
@@ -309,6 +315,7 @@ public class GameManager : MonoBehaviour
         // HUD Elements
         m_HUD = root.Q<VisualElement>("HUD");
         m_HealthLabel = root.Q<Label>("HealthLabel");
+        m_HealthBarFill = root.Q<VisualElement>("HealthBarFill");
         m_ScoreLabel = root.Q<Label>("ScoreLabel");
         m_TimerLabel = root.Q<Label>("TimerLabel");
         m_ItemSelector = root.Q<VisualElement>("ItemSelector");
@@ -380,7 +387,26 @@ public class GameManager : MonoBehaviour
     {
         if (m_HealthLabel != null)
         {
-            m_HealthLabel.text = $"Health: {m_Health}/{startingHealth}";
+            m_HealthLabel.text = $"{m_Health}/{startingHealth}";
+        }
+
+        if (m_HealthBarFill != null)
+        {
+            float healthRatio = (float)m_Health / startingHealth;
+            m_HealthBarFill.style.width = new StyleLength(Length.Percent(healthRatio * 100));
+
+            if (healthRatio > 0.5f)
+            {
+                m_HealthBarFill.style.backgroundColor = new StyleColor(Color.green);
+            }
+            else if (healthRatio > 0.25f)
+            {
+                m_HealthBarFill.style.backgroundColor = new StyleColor(Color.yellow);
+            }
+            else
+            {
+                m_HealthBarFill.style.backgroundColor = new StyleColor(Color.red);
+            }
         }
     }
     
@@ -388,7 +414,7 @@ public class GameManager : MonoBehaviour
     {
         if (m_ScoreLabel != null)
         {
-            m_ScoreLabel.text = $"Score: {m_Score}";
+            m_ScoreLabel.text = $"{m_Score}";
         }
     }
     
@@ -396,7 +422,7 @@ public class GameManager : MonoBehaviour
     {
         if (m_TimerLabel != null)
         {
-            m_TimerLabel.text = $"Time: {FormatTime(m_TimeRemaining)}";
+            m_TimerLabel.text = $"{FormatTime(m_TimeRemaining)}";
         }
     }
     
@@ -437,4 +463,5 @@ public class GameManager : MonoBehaviour
     public float TimeRemaining => m_TimeRemaining;
     public bool IsGameActive => m_IsGameActive;
     public bool IsPaused => m_IsPaused;
+    public UIDocument GameUI => m_UIDocument;
 }

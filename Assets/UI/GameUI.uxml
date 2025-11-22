@@ -13,7 +13,7 @@
                         <ui:Label text="Health: 100/100" name="HealthLabel" class="ui-label" style="margin-top: 5px; color: white; font-size: 14px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="TimerSection" style="align-items: center; justify-content: center; min-width: 200px;">
+                <ui:VisualElement name="TimerSection" style="align-items: center; justify-content: center; min-width: 200px; flex-basis: 0%; position: absolute; right: 0; left: 0; top: 0;">
                     <ui:Label text="TIME" class="ui-label-small" style="color: white; -unity-font-style: bold; margin-bottom: 5px;" />
                     <ui:Label text="15:00" name="TimerLabel" class="ui-label-large" style="font-size: 36px; color: rgb(255, 235, 59); -unity-font-style: bold;" />
                 </ui:VisualElement>

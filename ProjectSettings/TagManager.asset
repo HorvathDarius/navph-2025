@@ -40,11 +40,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Background
     uniqueID: 2518695249
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Walls
+    uniqueID: 2496837311
+    locked: 0
+  - name: Shelves
+    uniqueID: 542922047
+    locked: 0
+  - name: Item
+    uniqueID: 38715549
     locked: 0
   m_RenderingLayers:
   - Default

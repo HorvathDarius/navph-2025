@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 743158a88acfe4e48a4d5943d0f378c1
+guid: 8d7f550bb5c980f42bf0d83931c0960b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8269947037416694409
-    second: it_manager_breathing_idle_0
-  - first:
-      213: 1477320412409389748
-    second: it_manager_breathing_idle_1
-  - first:
-      213: 844887079079212340
-    second: it_manager_breathing_idle_2
-  - first:
-      213: 8287963035821934949
-    second: it_manager_breathing_idle_3
+      213: 4087768073990812094
+    second: generated-image (11)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: it_manager_breathing_idle_0
+      name: Sidewalk
       rect:
         serializedVersion: 2
-        x: 124
-        y: 51
-        width: 82
-        height: 217
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9822484b301c4c270800000000000000
-      internalID: 8269947037416694409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: it_manager_breathing_idle_1
-      rect:
-        serializedVersion: 2
-        x: 444
-        y: 51
-        width: 85
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b26811861f708410800000000000000
-      internalID: 1477320412409389748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: it_manager_breathing_idle_2
-      rect:
-        serializedVersion: 2
-        x: 764
-        y: 51
-        width: 82
-        height: 222
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 43575df6254a9bb00800000000000000
-      internalID: 844887079079212340
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: it_manager_breathing_idle_3
-      rect:
-        serializedVersion: 2
-        x: 1084
-        y: 54
-        width: 82
-        height: 217
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5690cb53872c40370800000000000000
-      internalID: 8287963035821934949
+      spriteID: eb1b766c76baab830800000000000000
+      internalID: 4087768073990812094
       vertices: []
       indices: 
       edges: []
@@ -200,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 159718b27f7d97b48b89b8631ad922c1
+    spriteID: efeacb26a7e5cd849bb74fe98c424806
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      it_manager_breathing_idle_0: 8269947037416694409
-      it_manager_breathing_idle_1: 1477320412409389748
-      it_manager_breathing_idle_2: 844887079079212340
-      it_manager_breathing_idle_3: 8287963035821934949
+      Sidewalk: 4087768073990812094
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

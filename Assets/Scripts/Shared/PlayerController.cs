@@ -4,23 +4,27 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 3f;
+    [Header("Movement Settings")] [SerializeField]
+    private float moveSpeed = 3f;
+
     [SerializeField] private float sprintSpeed = 6f;
-    [SerializeField] InputAction moveAction;
+
+    [Header("Input")] [SerializeField] InputAction moveAction;
     [SerializeField] InputAction interactAction;
-    [SerializeField] InputAction jumpAction;
     [SerializeField] InputAction runningAction;
 
-    public int maxPlayerHealth = 100;
-    public int currentPlayerHealth;
-    public List<Item> inventoryItems = new();
+    public List<CollectibleItem> inventoryItems = new();
     private Rigidbody2D rb2d;
     private Vector2 moveDirection;
+
     private InteractiveObject nearbyObject;
+    private CheckoutTrigger nearbyCheckout;
 
     private Animator m_Animator;
     private bool m_IsMoving;
     private bool m_IsRunning;
+
+    public bool facingEast { get; private set; }
 
     private void Awake()
     {
@@ -29,41 +33,17 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        // Initialize player health and health bar
-        currentPlayerHealth = maxPlayerHealth;
-
         // Assign input actions
         moveAction = InputSystem.actions.FindAction("Move");
         interactAction = InputSystem.actions.FindAction("Interact");
-        jumpAction = InputSystem.actions.FindAction("Jump");
         runningAction = InputSystem.actions.FindAction("Sprint");
 
         // Initialize Rigidbody2D
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-    }
 
-    // Enable and disable input actions 
-    private void OnEnable()
-    {
-        if (moveAction != null)
-        {
-            moveAction.Enable();
-        }
-
-        interactAction.Enable();
-        jumpAction.Enable();
-    }
-
-    private void OnDisable()
-    {
-        if (moveAction != null)
-        {
-            moveAction.Disable();
-        }
-
-        interactAction.Disable();
-        jumpAction.Disable();
+        m_Animator.SetBool("FacingEast", true);
+        facingEast = true;
     }
 
     void Update()
@@ -84,9 +64,11 @@ public class PlayerController : MonoBehaviour
         {
             case > 0:
                 m_Animator.SetBool("FacingEast", true);
+                facingEast = true;
                 break;
             case < 0:
                 m_Animator.SetBool("FacingEast", false);
+                facingEast = false;
                 break;
         }
 
@@ -99,15 +81,6 @@ public class PlayerController : MonoBehaviour
         {
             m_Animator.SetBool("Running", false);
             m_IsRunning = false;
-        }
-        
-        if (m_IsRunning)
-        {
-            rb2d.linearVelocity = moveDirection * sprintSpeed;
-        }
-        else
-        {
-            rb2d.linearVelocity = moveDirection * moveSpeed;
         }
 
         // Handle interaction input
@@ -123,16 +96,27 @@ public class PlayerController : MonoBehaviour
             // Interact with nearby object if available
             if (nearbyObject != null)
             {
-                Debug.Log("Interact action triggered in PlayerController");
+                Debug.Log("Pickup triggered in PlayerController");
                 nearbyObject.pickUpItem(this);
             }
-        }
 
-        // Handle jump input (for testing damage)
-        if (jumpAction.WasPressedThisFrame())
+            if (nearbyCheckout != null)
+            {
+                Debug.Log("Checkout triggered in PlayerController");
+                YemeMazeManager.Instance.TryHandleCheckout(this);
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (m_IsRunning)
         {
-            Debug.Log("- 10 damage to player health");
-            TakeDamage(10);
+            rb2d.linearVelocity = moveDirection * sprintSpeed;
+        }
+        else
+        {
+            rb2d.linearVelocity = moveDirection * moveSpeed;
         }
     }
 
@@ -147,17 +131,17 @@ public class PlayerController : MonoBehaviour
         nearbyObject = null;
     }
 
+    public void SetNearbyCheckout(CheckoutTrigger checkout)
+    {
+        nearbyCheckout = checkout;
+    }
+
     // Add item to player inventory
-    public void AddItemToInvetory(Item item)
+    public void AddItemToInvetory(CollectibleItem item)
     {
         Debug.Log("Adding to inventory: " + item.itemName);
         inventoryItems.Add(item);
+        GameManager.Instance.CollectItem(item.itemName);
         Debug.Log("Item added to inventory: " + item.itemName);
-    }
-
-    // Handle player taking damage
-    public void TakeDamage(int damage)
-    {
-        currentPlayerHealth -= damage;
     }
 }

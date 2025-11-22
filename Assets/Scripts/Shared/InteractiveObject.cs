@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InteractiveObject : MonoBehaviour
 {
@@ -8,7 +6,7 @@ public class InteractiveObject : MonoBehaviour
 
     private SpriteRenderer pickupArrowSpriteRenderer;
     private PlayerController playerController;
-    public Item itemData;
+    public CollectibleItem itemData;
 
     // Initialize pickup arrow
     void Start()
@@ -34,6 +32,7 @@ public class InteractiveObject : MonoBehaviour
     {
         Debug.Log("Player exited pickup range of: " + itemData.itemName);
         pickupArrowSpriteRenderer.enabled = false;
+        playerController.ClearNearbyObject();
     }
 
     // Handle item pickup
