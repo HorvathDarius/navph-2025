@@ -4,7 +4,6 @@ using TMPro;
 public class FoodCatcherManager : MonoBehaviour
 {
     public static FoodCatcherManager Instance;
-
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private GameObject bubble;
 
@@ -29,12 +28,20 @@ public class FoodCatcherManager : MonoBehaviour
 
         goodFoodCount++;
         Debug.Log("Good food caught: " + goodFoodCount);
+        GameManager.Instance.AddScore(10);
 
-        if (goodFoodCount >= 1)
+        if (goodFoodCount > 10)
         {
-            gameOver = true;
-            ShowWinMessage();
+            // gameOver = true;
+            // ShowWinMessage();
+            GameManager.Instance.ChangeHealth(-2);
         }
+
+        // if (goodFoodCount >= 10)
+        // {
+        //     gameOver = true;
+        //     ShowWinMessage();
+        // }
     }
 
     public void AddBadFood()
@@ -42,7 +49,9 @@ public class FoodCatcherManager : MonoBehaviour
         if (gameOver) return;
 
         badFoodCount++;
+        GameManager.Instance.ChangeHealth(-5);
         Debug.Log("Bad food caught: " + badFoodCount);
+        Debug.Log("Health: " + GameManager.Instance.Health);
     }
 
     private void ClearAllFood()
