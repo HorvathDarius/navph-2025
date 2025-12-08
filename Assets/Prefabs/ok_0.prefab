@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 38715549
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 8851489139641355192, guid: e0add89e02f383f4cb0764cb3c66f4be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallWithRigidbody
   fallSpeed: 15
+  isGood: 1
 --- !u!50 &1133857265490984179
 Rigidbody2D:
   serializedVersion: 5

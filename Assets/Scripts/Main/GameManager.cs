@@ -51,11 +51,11 @@ public class GameManager : MonoBehaviour
     // Scene names podľa flowchart
     private readonly string[] SCENE_NAMES = 
     {
+        "YemeMazeScene",           // Level 3
+        "FoodCatcherScene",        // Level 4
         "TutorialScene",           // Level 0
         "CrossyRoadsScene",        // Level 1
         "NivyChaseScene",          // Level 2
-        "YemeMazeScene",           // Level 3
-        "FoodCatcherScene",        // Level 4
         "FinalBossFightScene"      // Level 5
     };
 
@@ -446,10 +446,10 @@ public class GameManager : MonoBehaviour
     {
         switch (nextLevel)
         {
-            case 1: return "Poďme cez cestu...";
-            case 2: return "Pozor, niekto ťa naháňa!";
-            case 3: return "Bludisko v tme...";
-            case 4: return "Čas na jedlo!";
+            case 3: return "Poďme cez cestu...";
+            case 4: return "Pozor, niekto ťa naháňa!";
+            case 0: return "Bludisko v tme...";
+            case 1: return "Čas na jedlo!";
             case 5: return "Finálny súboj!";
             default: return "Ďalšia úloha...";
         }
