@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -148,24 +147,19 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Item added to inventory: " + item.itemName);
     }
 
-    // Handle player taking damage
-    public void TakeDamage(int damage)
-    {
-        currentPlayerHealth -= damage;
-    }
-
     public void OnCollisionEnter2D(Collision2D collision)
     {
         obstacleType = collision.gameObject.tag;
-        if (obstacleType == "BigVehicle")
+        switch (obstacleType)
         {
-            Debug.Log("Collision detected with BIG VEHICLE");
-            GameManager.Instance.ChangeHealth(-100);
-        }
-        else
-        {
-            Debug.Log("Collision detected with SCOOTER");
-            GameManager.Instance.ChangeHealth(-50);
+            case "BigVehicle":
+                Debug.Log("Collision detected with BIG VEHICLE");
+                GameManager.Instance.ChangeHealth(-100);
+                break;
+            case "Scooter":
+                Debug.Log("Collision detected with SCOOTER");
+                GameManager.Instance.ChangeHealth(-50);
+                break;
         }
     }
 }
