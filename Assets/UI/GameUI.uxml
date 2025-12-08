@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/GameUI.uss?fileID=7433441132597879392&amp;guid=50e38150df2ead2408a0a825ef96e1b0&amp;type=3#GameUI" />
     <ui:VisualElement name="GameUI" style="width: 100%; height: 100%; position: absolute;">
-        <ui:VisualElement name="HUD" class="hud-container" style="width: 100%; height: 100%; position: absolute; pointer-events: none; display: flex;">
+        <ui:VisualElement name="HUD" class="hud-container" style="width: 100%; height: 100%; position: absolute; pointer-events: none; display: flex; top: 0; left: -2px;">
             <ui:VisualElement name="TopBar" class="top-bar" style="flex-direction: row; justify-content: space-between; padding: 20px; width: 100%; height: 100px;">
                 <ui:VisualElement name="HealthSection" style="flex-direction: row; align-items: center; min-width: 300px;">
                     <ui:VisualElement name="PlayerIcon" class="player-icon" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; margin-right: 15px;" />
