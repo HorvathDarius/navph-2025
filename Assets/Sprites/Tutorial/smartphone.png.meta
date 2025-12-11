@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 1fb6d67b94e8b3340a738ea003bd6fff
+guid: 7045e120ff969854987272e938253cbc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5130931487310878027
-    second: main_character_breathing_idle_east_0
-  - first:
-      213: -9198505719388714157
-    second: main_character_breathing_idle_east_1
-  - first:
-      213: 880194367785717339
-    second: main_character_breathing_idle_east_2
-  - first:
-      213: -9088262906186923928
-    second: main_character_breathing_idle_east_3
+      213: 5573274228025093078
+    second: generated-image (13)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,89 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: main_character_breathing_idle_east_0
+      name: smartphone
       rect:
         serializedVersion: 2
-        x: 132
-        y: 49
-        width: 59
-        height: 227
-      alignment: 9
-      pivot: {x: 0.4718721, y: 0.10522027}
+        x: 174
+        y: 82
+        width: 696
+        height: 888
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5bae7f34ff44bc8b0800000000000000
-      internalID: -5130931487310878027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main_character_breathing_idle_east_1
-      rect:
-        serializedVersion: 2
-        x: 452
-        y: 51
-        width: 57
-        height: 227
-      alignment: 9
-      pivot: {x: 0.47088408, y: 0.10522018}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 35bcf63b8c7585080800000000000000
-      internalID: -9198505719388714157
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main_character_breathing_idle_east_2
-      rect:
-        serializedVersion: 2
-        x: 769
-        y: 51
-        width: 55
-        height: 227
-      alignment: 9
-      pivot: {x: 0.46982756, y: 0.119841956}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b5eca213d14173c00800000000000000
-      internalID: 880194367785717339
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main_character_breathing_idle_east_3
-      rect:
-        serializedVersion: 2
-        x: 1092
-        y: 51
-        width: 54
-        height: 227
-      alignment: 9
-      pivot: {x: 0.46926767, y: 0.09790984}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8608e5bd90100e180800000000000000
-      internalID: -9088262906186923928
+      spriteID: 6db6645c16f385d40800000000000000
+      internalID: 5573274228025093078
       vertices: []
       indices: 
       edges: []
@@ -200,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0f37e138e9f28e74c99aac895044a0e6
+    spriteID: ea4c1c03e29539c4d934b02e56678802
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      main_character_breathing_idle_east_0: -5130931487310878027
-      main_character_breathing_idle_east_1: -9198505719388714157
-      main_character_breathing_idle_east_2: 880194367785717339
-      main_character_breathing_idle_east_3: -9088262906186923928
+      smartphone: 5573274228025093078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

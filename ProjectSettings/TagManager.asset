@@ -57,5 +57,11 @@ TagManager:
   - name: Item
     uniqueID: 38715549
     locked: 0
+  - name: GlassLayer
+    uniqueID: 2087033083
+    locked: 0
+  - name: Foreground
+    uniqueID: 2004032281
+    locked: 0
   m_RenderingLayers:
   - Default
