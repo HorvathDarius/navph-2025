@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image Nov 20, 2025, 02_37_16 PM (1)_0
+      name: ScooterSprite
       rect:
         serializedVersion: 2
         x: 123
@@ -108,7 +108,7 @@ TextureImporter:
         width: 464
         height: 974
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f87bc2130608a4a778e0498efefd4f47
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT Image Nov 20, 2025, 02_37_16 PM (1)_0: -6752550155103790581
+      ScooterSprite: -6752550155103790581
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

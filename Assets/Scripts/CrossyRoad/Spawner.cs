@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -17,7 +18,7 @@ public class Spawner : MonoBehaviour
         {
             SpawnObject();
             timer = 0f;
-            spawnInterval = Random.Range(1, 4);
+            spawnInterval = UnityEngine.Random.Range(1, 4);
         }
     }
 
@@ -27,7 +28,14 @@ public class Spawner : MonoBehaviour
         spawnedObject.GetComponent<CarMovement>().vehicleIsMovingDown = vehicleIsMovingDown;
         minSpeed = spawnedObject.GetComponent<CarMovement>().minSpeed;
         maxSpeed = spawnedObject.GetComponent<CarMovement>().maxSpeed;
-        spawnedObject.GetComponent<CarMovement>().speed = Random.Range(minSpeed, maxSpeed);
-        Instantiate(spawnedObject, transform.position, Quaternion.identity);
+        spawnedObject.GetComponent<CarMovement>().speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
+
+        GameObject spawnedObj = Instantiate(spawnedObject, transform.position, Quaternion.identity);
+
+        if (!vehicleIsMovingDown)
+        {
+            spawnedObj.GetComponent<SpriteRenderer>().sprite = spawnedObj.GetComponent<CarMovement>().vehicleSpriteBack;
+        }
+        Debug.Log("Sprite:" + spawnedObj.GetComponent<SpriteRenderer>().sprite.name);
     }
 }

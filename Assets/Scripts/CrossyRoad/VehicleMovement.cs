@@ -6,9 +6,12 @@ public class CarMovement : MonoBehaviour
 
     [SerializeField] public float minSpeed = 5f;
     [SerializeField] public float maxSpeed = 12f;
+    [SerializeField] public Sprite vehicleSprite;
+    [SerializeField] public Sprite vehicleSpriteBack;
     public bool vehicleIsMovingDown = true;
     private Rigidbody2D rb2d;
     public float speed;
+
 
     void Start()
     {
