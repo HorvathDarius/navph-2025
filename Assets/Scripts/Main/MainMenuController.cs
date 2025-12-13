@@ -10,14 +10,6 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button exitButton;
     
-    [Header("Dev Scene Selection Buttons")]
-    [SerializeField] private Button tutorialButton;
-    [SerializeField] private Button crossyButton;
-    [SerializeField] private Button chaseButton;
-    [SerializeField] private Button yemeButton;
-    [SerializeField] private Button foodButton;
-    [SerializeField] private Button bossButton;
-    
     [Header("GameManager Prefab")]
     [SerializeField] private GameObject gameManagerPrefab;
     
@@ -35,25 +27,6 @@ public class MainMenuController : MonoBehaviour
             
         if (exitButton != null)
             exitButton.onClick.AddListener(OnExit);
-        
-        // Register dev buttons for direct scene access
-        if (tutorialButton != null)
-            tutorialButton.onClick.AddListener(() => LoadSceneDirectly("TutorialScene"));
-            
-        if (crossyButton != null)
-            crossyButton.onClick.AddListener(() => LoadSceneDirectly("CrossyRoadsScene"));
-            
-        if (chaseButton != null)
-            chaseButton.onClick.AddListener(() => LoadSceneDirectly("NivyChaseScene"));
-            
-        if (yemeButton != null)
-            yemeButton.onClick.AddListener(() => LoadSceneDirectly("YemeMazeScene"));
-            
-        if (foodButton != null)
-            foodButton.onClick.AddListener(() => LoadSceneDirectly("FoodCatcherScene"));
-            
-        if (bossButton != null)
-            bossButton.onClick.AddListener(() => LoadSceneDirectly("FinalBossFightScene"));
     }
     
     private void OnDestroy()
@@ -103,16 +76,5 @@ public class MainMenuController : MonoBehaviour
         #else
             Application.Quit();
         #endif
-    }
-    
-    // ===== DEV SHORTCUTS =====
-    
-    private void LoadSceneDirectly(string sceneName)
-    {
-        Debug.Log($"Loading scene directly: {sceneName}");
-        
-        // Pre dev testing - načíta scénu priamo bez GameManager
-        Time.timeScale = 1; // Reset time scale
-        SceneManager.LoadScene(sceneName);
     }
 }
