@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -6752550155103790581, guid: 00d2f5bec4aa84fa094c59271ead9498, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -183,4 +183,4 @@ MonoBehaviour:
   vehicleSprite: {fileID: -6752550155103790581, guid: 00d2f5bec4aa84fa094c59271ead9498, type: 3}
   vehicleSpriteBack: {fileID: -5627464382591574141, guid: edfaf26ff4cf44c7090216e7bf0b8df9, type: 3}
   vehicleIsMovingDown: 0
-  speed: 4.8948236
+  speed: 3.9476142
