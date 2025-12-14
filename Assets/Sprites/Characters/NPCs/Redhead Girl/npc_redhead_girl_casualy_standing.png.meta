@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 743158a88acfe4e48a4d5943d0f378c1
+guid: 77d8a699ae3820a49a3cfd82eae497b5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8269947037416694409
-    second: it_manager_breathing_idle_0
+      213: 5379133982769014567
+    second: npc_redhead_prostitute_casualy_standing_0
   - first:
-      213: 1477320412409389748
-    second: it_manager_breathing_idle_1
+      213: 8100142428046953736
+    second: npc_redhead_prostitute_casualy_standing_1
   - first:
-      213: 844887079079212340
-    second: it_manager_breathing_idle_2
+      213: 4718993682540506717
+    second: npc_redhead_prostitute_casualy_standing_2
   - first:
-      213: 8287963035821934949
-    second: it_manager_breathing_idle_3
+      213: 3841852603581793470
+    second: npc_redhead_prostitute_casualy_standing_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,89 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: it_manager_breathing_idle_0
+      name: npc_redhead_girl_casualy_standing_0
       rect:
         serializedVersion: 2
-        x: 124
-        y: 51
-        width: 82
-        height: 217
+        x: 244
+        y: 69
+        width: 157
+        height: 482
       alignment: 9
-      pivot: {x: 0.5, y: 0.06520309}
+      pivot: {x: 0.4807465, y: 0.07668428}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9822484b301c4c270800000000000000
-      internalID: 8269947037416694409
+      spriteID: 727ed228bd586aa40800000000000000
+      internalID: 5379133982769014567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: it_manager_breathing_idle_1
+      name: npc_redhead_girl_casualy_standing_1
       rect:
         serializedVersion: 2
-        x: 444
-        y: 51
-        width: 85
-        height: 220
+        x: 864
+        y: 69
+        width: 152
+        height: 467
       alignment: 9
-      pivot: {x: 0.5, y: 0.06262658}
+      pivot: {x: 0.5497168, y: 0.06308738}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b26811861f708410800000000000000
-      internalID: 1477320412409389748
+      spriteID: 80d0fc53f9c796070800000000000000
+      internalID: 8100142428046953736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: it_manager_breathing_idle_2
+      name: npc_redhead_girl_casualy_standing_2
       rect:
         serializedVersion: 2
-        x: 764
-        y: 51
-        width: 82
-        height: 222
+        x: 1524
+        y: 69
+        width: 157
+        height: 477
       alignment: 9
-      pivot: {x: 0.51348805, y: 0.066566914}
+      pivot: {x: 0.4807471, y: 0.050066967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 43575df6254a9bb00800000000000000
-      internalID: 844887079079212340
+      spriteID: d5ea32180cb3d7140800000000000000
+      internalID: 4718993682540506717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: it_manager_breathing_idle_3
+      name: npc_redhead_girl_casualy_standing_3
       rect:
         serializedVersion: 2
-        x: 1084
-        y: 54
-        width: 82
-        height: 217
+        x: 2189
+        y: 74
+        width: 157
+        height: 467
       alignment: 9
-      pivot: {x: 0.51504445, y: 0.067942604}
+      pivot: {x: 0.48074555, y: 0.06632367}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5690cb53872c40370800000000000000
-      internalID: 8287963035821934949
+      spriteID: eb407e38690015530800000000000000
+      internalID: 3841852603581793470
       vertices: []
       indices: 
       edges: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 159718b27f7d97b48b89b8631ad922c1
+    spriteID: 40a2632188bcfb64692f23592fb7ac93
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      it_manager_breathing_idle_0: 8269947037416694409
-      it_manager_breathing_idle_1: 1477320412409389748
-      it_manager_breathing_idle_2: 844887079079212340
-      it_manager_breathing_idle_3: 8287963035821934949
+      npc_redhead_girl_casualy_standing_0: 5379133982769014567
+      npc_redhead_girl_casualy_standing_1: 8100142428046953736
+      npc_redhead_girl_casualy_standing_2: 4718993682540506717
+      npc_redhead_girl_casualy_standing_3: 3841852603581793470
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

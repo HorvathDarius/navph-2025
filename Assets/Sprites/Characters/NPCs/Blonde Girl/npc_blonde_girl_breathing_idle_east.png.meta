@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: 7da1735d0f58e6d44a6c2993d0f0a5fd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9021003607091836141
+    second: npc_blond_prostitute_breathing_idle_east_0
+  - first:
+      213: -1498289932933733215
+    second: npc_blond_prostitute_breathing_idle_east_1
+  - first:
+      213: -6512988750786615458
+    second: npc_blond_prostitute_breathing_idle_east_2
+  - first:
+      213: -8918758622676708226
+    second: npc_blond_prostitute_breathing_idle_east_3
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: npc_blonde_girl_breathing_idle_east_0
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 49
+        width: 137
+        height: 512
+      alignment: 9
+      pivot: {x: 0.5330962, y: 0.07492024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de4f93e3cfa013d70800000000000000
+      internalID: 9021003607091836141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_blonde_girl_breathing_idle_east_1
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 49
+        width: 137
+        height: 522
+      alignment: 9
+      pivot: {x: 0.48896778, y: 0.07148208}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4e0f88e31053be0800000000000000
+      internalID: -1498289932933733215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_blonde_girl_breathing_idle_east_2
+      rect:
+        serializedVersion: 2
+        x: 1534
+        y: 49
+        width: 137
+        height: 517
+      alignment: 9
+      pivot: {x: 0.5, y: 0.073184416}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e57af3b0d373d95a0800000000000000
+      internalID: -6512988750786615458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_blonde_girl_breathing_idle_east_3
+      rect:
+        serializedVersion: 2
+        x: 2179
+        y: 49
+        width: 137
+        height: 522
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09174973}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7417e949443a3480800000000000000
+      internalID: -8918758622676708226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2b31b8a3fe06964408de292556161cdb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      npc_blonde_girl_breathing_idle_east_0: 9021003607091836141
+      npc_blonde_girl_breathing_idle_east_1: -1498289932933733215
+      npc_blonde_girl_breathing_idle_east_2: -6512988750786615458
+      npc_blonde_girl_breathing_idle_east_3: -8918758622676708226
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

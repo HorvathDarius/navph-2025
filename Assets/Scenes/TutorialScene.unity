@@ -4411,6 +4411,38 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2655373968774606758, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Size.x
+      value: 1.9197723
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655373968774606758, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.73125285
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655373968774606758, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.019963948
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655373968774606758, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0000000023798878
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118755295854028002, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118755295854028002, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613641166507461319, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613641166507461319, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_Size.y
+      value: 4.37
+      objectReference: {fileID: 0}
     - target: {fileID: 6613641166507461319, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
       propertyPath: m_SortingLayer
       value: 5
@@ -4422,6 +4454,10 @@ PrefabInstance:
     - target: {fileID: 6613641166507461319, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
       propertyPath: m_SortingLayerID
       value: 2087033083
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613641166507461319, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8985671756141337290, guid: 50808dd1613c04444ae82105758ae07e, type: 3}
       propertyPath: m_LocalPosition.x
