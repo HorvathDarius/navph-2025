@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 71721f2d5bff347b69ce03def7a4f85b
+guid: 1b3a6772e2a384bc5bd29d5543083457
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2933385944086468422
-    second: ChatGPT Image Nov 22, 2025, 05_53_16 PM (1)_0
+      213: 6232365534779737959
+    second: CrossWalk3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BusSprite
+      name: CrossWalk3_0
       rect:
         serializedVersion: 2
-        x: 139
-        y: 152
-        width: 447
-        height: 838
+        x: 3
+        y: 0
+        width: 614
+        height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 647d56279fa75b820800000000000000
-      internalID: 2933385944086468422
+      spriteID: 7670fe2fe6fcd7650800000000000000
+      internalID: 6232365534779737959
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 46c7b74b1a58d490399bbe3af269079d
+    spriteID: 1fc212acc432145ef9f4da9b91bc7efa
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BusSprite: 2933385944086468422
+      CrossWalk3_0: 6232365534779737959
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
