@@ -1,46 +1,69 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
+// Script used to switch between different Cinemachine cameras
 public class CinemachineSwitcher : MonoBehaviour
 {
-
-    [SerializeField] private InputAction action;
-
     private Animator animator;
-    private bool firstCamera = true;
+    private string currentCamera = "FirstCamera";
+    private Coroutine switchCoroutine;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    private void OnEnable()
+    // Function used to switch between camers
+    public void SwitchState()
     {
-        action.Enable();
-    }
-
-    private void OnDisable()
-    {
-        action.Disable();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        action.performed += _ => SwitchState();
-    }
-
-    private void SwitchState()
-    {
-        Debug.Log("Switching Camera");
-        if (firstCamera)
+        if (switchCoroutine != null)
         {
-            animator.Play("SecondCamera");
+            StopCoroutine(switchCoroutine);
         }
-        else
+
+        // Based on current camera, decide to which one to switch
+        switch (currentCamera)
         {
-            animator.Play("FirstCamera");
+            case "FirstCamera":
+                // Switch to camera 2 after 2 second delay
+                switchCoroutine = StartCoroutine(SwitchAfterDelay(2f, "SecondCamera"));
+                break;
+            case "SecondCamera":
+                animator.Play("ThirdCamera");
+                currentCamera = "ThirdCamera";
+                break;
+            case "ThirdCamera":
+                animator.Play("FourthCamera");
+                currentCamera = "FourthCamera";
+                break;
+            case "FourthCamera":
+                // MINIGAME OVER
+                Debug.Log("MINIGAME OVER - GOING TO NEXT LEVEL");
+                break;
         }
-        firstCamera = !firstCamera;
+    }
+
+    // Helper function used to switch to camera 2 after a delay
+    private IEnumerator SwitchAfterDelay(float delay, string nextCamera)
+    {
+        // Wait X seconds
+        yield return new WaitForSeconds(delay);
+
+        // Switch to next state, reassign current camera
+        animator.Play(nextCamera);
+        currentCamera = nextCamera;
+
+        // If switched to second camera, set another switch after 7 seconds
+        if (currentCamera == "SecondCamera")
+        {
+            switchCoroutine = StartCoroutine(SwitchAfterDelay(7f));
+        }
+    }
+
+    // After camera runs for 7 seconds, switch to the next one 
+    private IEnumerator SwitchAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SwitchState();
     }
 }

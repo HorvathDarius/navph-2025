@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 
+// Script used to move vehicles
 public class CarMovement : MonoBehaviour
 {
 
@@ -8,17 +8,19 @@ public class CarMovement : MonoBehaviour
     [SerializeField] public float maxSpeed = 12f;
     [SerializeField] public Sprite vehicleSprite;
     [SerializeField] public Sprite vehicleSpriteBack;
+
     public bool vehicleIsMovingDown = true;
     private Rigidbody2D rb2d;
     public float speed;
 
-
+    // Initialize speed
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
     }
 
+    // Move vehicle in set direction, destroy if out of bounds
     void Update()
     {
         Vector2 movingDirection = vehicleIsMovingDown ? Vector2.down : Vector2.up;

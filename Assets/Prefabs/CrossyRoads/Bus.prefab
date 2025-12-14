@@ -154,7 +154,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.046708643, y: 0.035031796}
+  m_Offset: {x: -0.0371868, y: -0.0030548573}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -164,7 +164,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.6156874, y: 8.309913}
+  m_Size: {x: 3.1395998, y: 7.8909554}
   m_EdgeRadius: 0
 --- !u!114 &8496179542899159293
 MonoBehaviour:
@@ -179,8 +179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarMovement
   minSpeed: 5
-  maxSpeed: 8
+  maxSpeed: 7
   vehicleSprite: {fileID: 2933385944086468422, guid: 71721f2d5bff347b69ce03def7a4f85b, type: 3}
   vehicleSpriteBack: {fileID: 7256130123176220260, guid: f1c75707e3fa24b298054f784b5e4c55, type: 3}
-  vehicleIsMovingDown: 0
-  speed: 6.668209
+  vehicleIsMovingDown: 1
+  speed: 6.679659
