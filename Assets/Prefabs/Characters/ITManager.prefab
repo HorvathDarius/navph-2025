@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8985671756141337290}
   - component: {fileID: 6613641166507461319}
   - component: {fileID: 8273769798628474998}
-  - component: {fileID: 6118755295854028002}
+  - component: {fileID: 2655373968774606758}
   m_Layer: 3
   m_Name: ITManager
   m_TagString: Untagged
@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.49, y: 1.74, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -81,12 +81,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8269947037416694409, guid: 743158a88acfe4e48a4d5943d0f378c1, type: 3}
+  m_Sprite: {fileID: -1997758872781350087, guid: 7c8ab658444785347a4a0031c554ea55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.82, y: 2.17}
+  m_Size: {x: 1.6200001, y: 4.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -114,7 +114,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &6118755295854028002
+--- !u!70 &2655373968774606758
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,5 +149,5 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.9931048, y: 0.38019335}
+  m_Size: {x: 2.0661738, y: 0.7312517}
   m_Direction: 1

@@ -2,26 +2,23 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")] [SerializeField]
-    private float moveSpeed = 3f;
-
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float sprintSpeed = 6f;
-
-    [Header("Input")] [SerializeField] InputAction moveAction;
+    [Header("Input")][SerializeField] InputAction moveAction;
     [SerializeField] InputAction interactAction;
     [SerializeField] InputAction runningAction;
 
     public List<CollectibleItem> inventoryItems = new();
     private Rigidbody2D rb2d;
     private Vector2 moveDirection;
-
     private InteractiveObject nearbyObject;
     private String obstacleType;
     private CheckoutTrigger nearbyCheckout;
-
     private Animator m_Animator;
     private bool m_IsMoving;
     private bool m_IsRunning;
@@ -89,11 +86,6 @@ public class PlayerController : MonoBehaviour
         if (interactAction.WasPressedThisFrame())
         {
             Debug.Log("Interact action triggered in PlayerController");
-            // TEST - print out inventory contents
-            foreach (var item in inventoryItems)
-            {
-                Debug.Log("Inventory contains: " + item.name);
-            }
 
             // Interact with nearby object if available
             if (nearbyObject != null)
@@ -147,9 +139,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Item added to inventory: " + item.itemName);
     }
 
+    // Check for collisions with obstacles
     public void OnCollisionEnter2D(Collision2D collision)
     {
         obstacleType = collision.gameObject.tag;
+        // Collision handling based on obstacle type
         switch (obstacleType)
         {
             case "BigVehicle":
