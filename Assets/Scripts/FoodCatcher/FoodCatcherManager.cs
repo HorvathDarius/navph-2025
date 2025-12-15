@@ -37,11 +37,11 @@ public class FoodCatcherManager : MonoBehaviour
             GameManager.Instance.ChangeHealth(-2);
         }
 
-        // if (goodFoodCount >= 10)
-        // {
-        //     gameOver = true;
-        //     ShowWinMessage();
-        // }
+        if (goodFoodCount >= 10)
+        {
+            gameOver = true;
+            ShowWinMessage();
+        }
     }
 
     public void AddBadFood()

@@ -3,11 +3,14 @@ using System.Collections;
 
 public class FoodSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject goodFoodPrefab;
-    [SerializeField] private GameObject badFoodPrefab;
+    [Header("Prefabs")]
+    [SerializeField] private GameObject[] goodFoodPrefabs;
+    [SerializeField] private GameObject[] badFoodPrefabs;
+
+    [Header("Spawn Settings")]
     [SerializeField] private float spawnRangeX = 8f;
     [SerializeField] private float spawnY = 6f;
-    [SerializeField, Range(0f, 1f)] private float badFoodChance = 0.95f;
+    [SerializeField, Range(0f, 1f)] private float badFoodChance = 0.85f;
     [SerializeField] private float minDelay = 0.05f;
     [SerializeField] private float maxDelay = 0.2f;
 
@@ -21,8 +24,7 @@ public class FoodSpawner : MonoBehaviour
         while (true)
         {
             SpawnFood();
-            float delay = Random.Range(minDelay, maxDelay);
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
         }
     }
 
@@ -33,10 +35,23 @@ public class FoodSpawner : MonoBehaviour
             spawnY
         );
 
-        GameObject prefabToSpawn = (Random.value < badFoodChance)
-            ? badFoodPrefab
-            : goodFoodPrefab;
+        bool spawnBadFood = Random.value < badFoodChance;
 
-        Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+        GameObject prefabToSpawn = spawnBadFood
+            ? GetRandomPrefab(badFoodPrefabs)
+            : GetRandomPrefab(goodFoodPrefabs);
+
+        if (prefabToSpawn != null)
+        {
+            Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+        }
+    }
+
+    private GameObject GetRandomPrefab(GameObject[] prefabs)
+    {
+        if (prefabs == null || prefabs.Length == 0)
+            return null;
+
+        return prefabs[Random.Range(0, prefabs.Length)];
     }
 }
