@@ -2,23 +2,26 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 3f;
+    [Header("Movement Settings")] [SerializeField]
+    private float moveSpeed = 3f;
+
     [SerializeField] private float sprintSpeed = 6f;
-    [Header("Input")][SerializeField] InputAction moveAction;
+
+    [Header("Input")] [SerializeField] InputAction moveAction;
     [SerializeField] InputAction interactAction;
     [SerializeField] InputAction runningAction;
 
     public List<CollectibleItem> inventoryItems = new();
     private Rigidbody2D rb2d;
     private Vector2 moveDirection;
-    private InteractiveObject nearbyObject;
+
+    private IInteractable nearbyInteractable;
     private String obstacleType;
     private CheckoutTrigger nearbyCheckout;
+
     private Animator m_Animator;
     private bool m_IsMoving;
     private bool m_IsRunning;
@@ -87,11 +90,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Interact action triggered in PlayerController");
 
-            // Interact with nearby object if available
-            if (nearbyObject != null)
+            if (nearbyInteractable != null)
             {
-                Debug.Log("Pickup triggered in PlayerController");
-                nearbyObject.pickUpItem(this);
+                Debug.Log("Interacting with: " + nearbyInteractable.GetDebugName());
+                nearbyInteractable.Interact(this);
             }
 
             if (nearbyCheckout != null)
@@ -115,14 +117,14 @@ public class PlayerController : MonoBehaviour
     }
 
     // Set and clear nearby interactive object
-    public void SetNearbyObject(InteractiveObject obj)
+    public void SetNearbyInteractable(IInteractable interactable)
     {
-        nearbyObject = obj;
+        nearbyInteractable = interactable;
     }
 
-    public void ClearNearbyObject()
+    public void ClearNearbyInteractable()
     {
-        nearbyObject = null;
+        nearbyInteractable = null;
     }
 
     public void SetNearbyCheckout(CheckoutTrigger checkout)
@@ -139,11 +141,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Item added to inventory: " + item.itemName);
     }
 
-    // Check for collisions with obstacles
     public void OnCollisionEnter2D(Collision2D collision)
     {
         obstacleType = collision.gameObject.tag;
-        // Collision handling based on obstacle type
         switch (obstacleType)
         {
             case "BigVehicle":

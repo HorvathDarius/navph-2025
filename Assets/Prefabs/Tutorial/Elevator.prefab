@@ -430,7 +430,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7686538245563219748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c07a5ba5dedab0943bb09d682f1257dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 642b4e63155b8624dbf38acf9d15d1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorButton
   interactArrow: {fileID: 7029811604162506975}

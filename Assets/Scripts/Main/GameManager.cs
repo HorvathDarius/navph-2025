@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
     // Scene names podľa flowchart
     private readonly string[] SCENE_NAMES = 
     {
-        "FoodCatcherScene",        // Level 4
         "TutorialScene",           // Level 0
+        "FoodCatcherScene",        // Level 4
         "CrossyRoadsScene",        // Level 1
         "NivyChaseScene",          // Level 2
         "YemeMazeScene",           // Level 3

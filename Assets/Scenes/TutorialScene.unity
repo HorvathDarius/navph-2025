@@ -948,7 +948,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 571880700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022f00fa0ef20384e9c2d82d4b5a473f, type: 3}
+  m_Script: {fileID: 11500000, guid: aea23a7b64fa494498aa807de8da7cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorDoorController
   doorAnimator: {fileID: 571880706}
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 571880700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ce5266ef4ab3448a053568346b57e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 093ab84752f5eae4e972fb38b5fc636b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorExitTrigger
   elevator: {fileID: 571880709}
