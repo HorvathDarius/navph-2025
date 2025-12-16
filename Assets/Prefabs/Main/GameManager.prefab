@@ -53,6 +53,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  gameTimeLimit: 1800
+  gameTimeLimit: 900
   startingHealth: 100
   gameUIPrefab: {fileID: 6849293734840655620, guid: 7d940c22241c66041bc9c59a2ebf1a1c, type: 3}

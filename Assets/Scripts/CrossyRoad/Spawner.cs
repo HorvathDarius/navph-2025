@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
         {
             SpawnObject();
             timer = 0f;
-            spawnInterval = UnityEngine.Random.Range(1, 4);
+            spawnInterval = UnityEngine.Random.Range(2, 5);
         }
     }
 

@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputAction pauseAction;
 
     [Header("Game Settings")]
-    public float gameTimeLimit = 1800f; // 30 minút
-
+    public float gameTimeLimit = 900f; // 15 minút
     public int startingHealth = 100;
 
     [Header("UI Prefab")]
@@ -52,10 +51,10 @@ public class GameManager : MonoBehaviour
     private readonly string[] SCENE_NAMES = 
     {
         "TutorialScene",           // Level 0
-        "FoodCatcherScene",        // Level 4
         "CrossyRoadsScene",        // Level 1
         "NivyChaseScene",          // Level 2
         "YemeMazeScene",           // Level 3
+        "FoodCatcherScene",        // Level 4
         "FinalBossFightScene"      // Level 5
     };
 

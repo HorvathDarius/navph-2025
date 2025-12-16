@@ -3361,6 +3361,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8765922765623604096, guid: 571f336ff4c5e4f4faf1d1e6f3cd311f, type: 3}
     - target: {fileID: 9145020039248271455, guid: 4a2c821d52b1f49cab019676c12f815f, type: 3}
+      propertyPath: spawnInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145020039248271455, guid: 4a2c821d52b1f49cab019676c12f815f, type: 3}
       propertyPath: vehicleIsMovingDown
       value: 0
       objectReference: {fileID: 0}
@@ -4819,6 +4823,10 @@ PrefabInstance:
       propertyPath: objectToSpawn
       value: 
       objectReference: {fileID: 8765922765623604096, guid: 571f336ff4c5e4f4faf1d1e6f3cd311f, type: 3}
+    - target: {fileID: 9145020039248271455, guid: 4a2c821d52b1f49cab019676c12f815f, type: 3}
+      propertyPath: spawnInterval
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6031,6 +6039,10 @@ PrefabInstance:
       propertyPath: objectToSpawn
       value: 
       objectReference: {fileID: 8765922765623604096, guid: 571f336ff4c5e4f4faf1d1e6f3cd311f, type: 3}
+    - target: {fileID: 9145020039248271455, guid: 4a2c821d52b1f49cab019676c12f815f, type: 3}
+      propertyPath: spawnInterval
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
