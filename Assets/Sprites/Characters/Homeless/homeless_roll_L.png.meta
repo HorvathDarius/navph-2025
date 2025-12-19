@@ -1,0 +1,273 @@
+fileFormatVersion: 2
+guid: 15a4298a815716d48a9b84b0846526a5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6857807573628936511
+    second: homeless_roll_L_0
+  - first:
+      213: -8282227202579354025
+    second: homeless_roll_L_1
+  - first:
+      213: -390253814440432851
+    second: homeless_roll_L_2
+  - first:
+      213: -5125277641094679006
+    second: homeless_roll_L_3
+  - first:
+      213: 7387995510489739077
+    second: homeless_roll_L_4
+  - first:
+      213: 1481349157595700630
+    second: homeless_roll_L_5
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: homeless_roll_L_0
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 14
+        width: 207
+        height: 372
+      alignment: 9
+      pivot: {x: 0.49178597, y: 0.1434817}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f31e22c67a3db2f50800000000000000
+      internalID: 6857807573628936511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_roll_L_1
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 14
+        width: 192
+        height: 372
+      alignment: 9
+      pivot: {x: 0.52656776, y: 0.13891083}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e2e298d3e9f0d80800000000000000
+      internalID: -8282227202579354025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_roll_L_2
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 14
+        width: 192
+        height: 372
+      alignment: 9
+      pivot: {x: 0.5619914, y: 0.15262322}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2b6902393a859af0800000000000000
+      internalID: -390253814440432851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_roll_L_3
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 14
+        width: 207
+        height: 362
+      alignment: 9
+      pivot: {x: 0.51642877, y: 0.14302695}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 226bc4be32b5fd8b0800000000000000
+      internalID: -5125277641094679006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_roll_L_4
+      rect:
+        serializedVersion: 2
+        x: 2044
+        y: 14
+        width: 202
+        height: 362
+      alignment: 9
+      pivot: {x: 0.50841683, y: 0.12893595}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54febe406ce678660800000000000000
+      internalID: 7387995510489739077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_roll_L_5
+      rect:
+        serializedVersion: 2
+        x: 2534
+        y: 14
+        width: 202
+        height: 357
+      alignment: 9
+      pivot: {x: 0.5252528, y: 0.14755303}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69dd0d6d53fce8410800000000000000
+      internalID: 1481349157595700630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 284427f2c328d004c99e3879b6b28c3f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      homeless_roll_L_0: 6857807573628936511
+      homeless_roll_L_1: -8282227202579354025
+      homeless_roll_L_2: -390253814440432851
+      homeless_roll_L_3: -5125277641094679006
+      homeless_roll_L_4: 7387995510489739077
+      homeless_roll_L_5: 1481349157595700630
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

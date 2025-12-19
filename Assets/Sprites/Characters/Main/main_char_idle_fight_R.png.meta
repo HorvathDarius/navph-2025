@@ -1,0 +1,325 @@
+fileFormatVersion: 2
+guid: 1ce92024c3f22354dab9cc97230c1add
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1870982169186375818
+    second: main_char_idle_fight_R_0
+  - first:
+      213: -403059104454316645
+    second: main_char_idle_fight_R_1
+  - first:
+      213: -266035172746131868
+    second: main_char_idle_fight_R_2
+  - first:
+      213: -2979074981619579105
+    second: main_char_idle_fight_R_3
+  - first:
+      213: 5272228280812192817
+    second: main_char_idle_fight_R_4
+  - first:
+      213: 1237974964707930618
+    second: main_char_idle_fight_R_5
+  - first:
+      213: 7065683197359383383
+    second: main_char_idle_fight_R_6
+  - first:
+      213: 4353790512915738912
+    second: main_char_idle_fight_R_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: main_char_idle_fight_R_0
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 9
+        width: 207
+        height: 397
+      alignment: 9
+      pivot: {x: 0.510952, y: 0.123102866}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6776e8841afe806e0800000000000000
+      internalID: -1870982169186375818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_char_idle_fight_R_1
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 9
+        width: 207
+        height: 397
+      alignment: 9
+      pivot: {x: 0.4999997, y: 0.105971456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9d638741eb086af0800000000000000
+      internalID: -403059104454316645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_char_idle_fight_R_2
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 14
+        width: 207
+        height: 397
+      alignment: 9
+      pivot: {x: 0.52190423, y: 0.10026053}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46605be7b6ade4cf0800000000000000
+      internalID: -266035172746131868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_char_idle_fight_R_3
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 14
+        width: 202
+        height: 397
+      alignment: 9
+      pivot: {x: 0.4999994, y: 0.14023471}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f17cf49861338a6d0800000000000000
+      internalID: -2979074981619579105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_char_idle_fight_R_4
+      rect:
+        serializedVersion: 2
+        x: 2049
+        y: 9
+        width: 202
+        height: 397
+      alignment: 9
+      pivot: {x: 0.5, y: 0.123102866}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 134449c10b7ba2940800000000000000
+      internalID: 5272228280812192817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_char_idle_fight_R_5
+      rect:
+        serializedVersion: 2
+        x: 2534
+        y: 9
+        width: 202
+        height: 397
+      alignment: 9
+      pivot: {x: 0.5, y: 0.123102866}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af13e3cdbab2e2110800000000000000
+      internalID: 1237974964707930618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_char_idle_fight_R_6
+      rect:
+        serializedVersion: 2
+        x: 3004
+        y: 14
+        width: 207
+        height: 397
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1116817}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7536d02be695e0260800000000000000
+      internalID: 7065683197359383383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_char_idle_fight_R_7
+      rect:
+        serializedVersion: 2
+        x: 3479
+        y: 14
+        width: 202
+        height: 397
+      alignment: 9
+      pivot: {x: 0.48877558, y: 0.14594497}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 021fec47765cb6c30800000000000000
+      internalID: 4353790512915738912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3745e546a83ddff47b71c668ddb9cfce
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      main_char_idle_fight_R_0: -1870982169186375818
+      main_char_idle_fight_R_1: -403059104454316645
+      main_char_idle_fight_R_2: -266035172746131868
+      main_char_idle_fight_R_3: -2979074981619579105
+      main_char_idle_fight_R_4: 5272228280812192817
+      main_char_idle_fight_R_5: 1237974964707930618
+      main_char_idle_fight_R_6: 7065683197359383383
+      main_char_idle_fight_R_7: 4353790512915738912
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

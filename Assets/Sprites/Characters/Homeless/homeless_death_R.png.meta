@@ -1,0 +1,299 @@
+fileFormatVersion: 2
+guid: f096fbdc10b9ed34bb0d3f0ae305c721
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5132280354070453321
+    second: homeless_death_R_0
+  - first:
+      213: -913967114610180829
+    second: homeless_death_R_1
+  - first:
+      213: 3978420421686098886
+    second: homeless_death_R_2
+  - first:
+      213: 1987761434891228533
+    second: homeless_death_R_3
+  - first:
+      213: 8687460409403704168
+    second: homeless_death_R_4
+  - first:
+      213: 8790251932109016107
+    second: homeless_death_R_5
+  - first:
+      213: -2808604128955884734
+    second: homeless_death_R_6
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: homeless_death_R_0
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 9
+        width: 242
+        height: 347
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09982871}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b32aefb53a76c8b0800000000000000
+      internalID: -5132280354070453321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_death_R_1
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 29
+        width: 237
+        height: 327
+      alignment: 9
+      pivot: {x: 0.5334802, y: 0.11781841}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32d754d60cfe053f0800000000000000
+      internalID: -913967114610180829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_death_R_2
+      rect:
+        serializedVersion: 2
+        x: 1094
+        y: 19
+        width: 232
+        height: 312
+      alignment: 9
+      pivot: {x: 0.5171004, y: 0.13123448}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cb72c18b40363730800000000000000
+      internalID: 3978420421686098886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_death_R_3
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 29
+        width: 297
+        height: 297
+      alignment: 9
+      pivot: {x: 0.50667936, y: 0.18608065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57599e05e72f59b10800000000000000
+      internalID: 1987761434891228533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_death_R_4
+      rect:
+        serializedVersion: 2
+        x: 2029
+        y: 29
+        width: 327
+        height: 297
+      alignment: 9
+      pivot: {x: 0.5, y: 0.206118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86307c6d63f009870800000000000000
+      internalID: 8687460409403704168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_death_R_5
+      rect:
+        serializedVersion: 2
+        x: 2459
+        y: 29
+        width: 332
+        height: 247
+      alignment: 9
+      pivot: {x: 0.4641503, y: 0.24300171}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c8c8b3f8f3df970800000000000000
+      internalID: 8790251932109016107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_death_R_6
+      rect:
+        serializedVersion: 2
+        x: 2959
+        y: 29
+        width: 342
+        height: 182
+      alignment: 9
+      pivot: {x: 0.49419916, y: 0.38010603}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24b93e2ec65d509d0800000000000000
+      internalID: -2808604128955884734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1fa0890b4937ef44fb0872d5a4c33e8f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      homeless_death_R_0: -5132280354070453321
+      homeless_death_R_1: -913967114610180829
+      homeless_death_R_2: 3978420421686098886
+      homeless_death_R_3: 1987761434891228533
+      homeless_death_R_4: 8687460409403704168
+      homeless_death_R_5: 8790251932109016107
+      homeless_death_R_6: -2808604128955884734
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
