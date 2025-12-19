@@ -65,14 +65,14 @@ public class GameManager : MonoBehaviour
     private System.Collections.Generic.List<string> m_CollectedItems = new();
 
     // Scene names podľa flowchart
-    private readonly string[] SCENE_NAMES = 
+    private readonly string[] SCENE_NAMES =
     {
         "TutorialScene",           // Level 0
         "CrossyRoadsScene",        // Level 1
-        "NivyChaseScene",          // Level 2
         "YemeMazeScene",           // Level 3
         "FoodCatcherScene",        // Level 4
-        "FinalBossFightScene",     // Level 5
+        "NivyChaseScene",          // Level 2
+        "FinalBossFightScene"      // Level 5
     };
 
     private void Awake()

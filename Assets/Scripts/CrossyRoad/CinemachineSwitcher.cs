@@ -1,9 +1,11 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 // Script used to switch between different Cinemachine cameras
 public class CinemachineSwitcher : MonoBehaviour
 {
+    [SerializeField] GameObject NpcTrigger;
     private Animator animator;
     private string currentCamera = "FirstCamera";
     private Coroutine switchCoroutine;
@@ -25,7 +27,8 @@ public class CinemachineSwitcher : MonoBehaviour
         switch (currentCamera)
         {
             case "FirstCamera":
-                // Switch to camera 2 after 2 second delay
+                // Switch to camera 2 after 2 second ddelay
+                NpcTrigger.SetActive(true);
                 switchCoroutine = StartCoroutine(SwitchAfterDelay(2f, "SecondCamera"));
                 break;
             case "SecondCamera":
@@ -39,8 +42,10 @@ public class CinemachineSwitcher : MonoBehaviour
             case "FourthCamera":
                 // MINIGAME OVER
                 Debug.Log("MINIGAME OVER - GOING TO NEXT LEVEL");
+                GameManager.Instance.OnMinigameComplete();
                 break;
         }
+
     }
 
     // Helper function used to switch to camera 2 after a delay

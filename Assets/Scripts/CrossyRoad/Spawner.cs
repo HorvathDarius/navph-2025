@@ -41,5 +41,18 @@ public class Spawner : MonoBehaviour
         {
             spawnedObj.GetComponent<SpriteRenderer>().sprite = spawnedObj.GetComponent<CarMovement>().vehicleSpriteBack;
         }
+
+        // Randomly activate audio
+        AudioSource audio = spawnedObj.GetComponent<AudioSource>();
+        if (audio != null)
+        {
+            bool playSound = Random.value < 0.2f;
+            audio.enabled = playSound;
+
+            if (playSound)
+            {
+                audio.Play();
+            }
+        }
     }
 }

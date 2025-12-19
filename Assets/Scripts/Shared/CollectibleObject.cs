@@ -47,8 +47,20 @@ public class CollectibleObject : MonoBehaviour, IInteractable
     {
         if (itemData == null) return;
 
-        Debug.Log("Picking up: " + itemData.itemName);
-        playerController.AddItemToInvetory(itemData);
+        Debug.Log("Interaction: " + itemData.itemName);
+
+        // Special handling for score items
+        if (itemData.itemName == "CigaretteButt")
+        {
+            Debug.Log("Adding score 1000 for: " + itemData.itemName);
+            GameManager.Instance.AddScore(1000);
+        }
+        // Else add to inventory
+        else
+        {
+            Debug.Log("Adding to inventory: " + itemData.itemName);
+            playerController.AddItemToInvetory(itemData);
+        }
 
         if (TutorialManager.Instance != null)
         {

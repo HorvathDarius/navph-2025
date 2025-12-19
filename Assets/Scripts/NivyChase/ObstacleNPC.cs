@@ -5,8 +5,19 @@ public class VerticalFollowNPC : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float damping = 5f; // higher = faster follow
     [SerializeField] private float xSpeed = 2f;
+    private Animator animator;
 
     private float velocityY;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        animator.SetBool("WalkingEast", true);
+    }
 
     void Update()
     {
