@@ -1,11 +1,14 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class FoodCatcherManager : MonoBehaviour
 {
-    public static FoodCatcherManager Instance;
+    public static FoodCatcherManager Instance { get; private set; }
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private GameObject bubble;
+    [SerializeField] private GameObject foodSpawner;
+    [SerializeField] private TextMeshProUGUI foodCounter;
 
     private int goodFoodCount = 0;
     private int badFoodCount = 0;
@@ -15,7 +18,7 @@ public class FoodCatcherManager : MonoBehaviour
     {
         bubble.gameObject.SetActive(false);
         winText.gameObject.SetActive(false);
-        
+
         if (Instance == null)
             Instance = this;
         else
@@ -27,13 +30,12 @@ public class FoodCatcherManager : MonoBehaviour
         if (gameOver) return;
 
         goodFoodCount++;
+        foodCounter.text = string.Format("{0} / 10", goodFoodCount.ToString());
         Debug.Log("Good food caught: " + goodFoodCount);
         GameManager.Instance.AddScore(10);
 
         if (goodFoodCount > 10)
         {
-            // gameOver = true;
-            // ShowWinMessage();
             GameManager.Instance.ChangeHealth(-2);
         }
 
@@ -74,7 +76,8 @@ public class FoodCatcherManager : MonoBehaviour
 
         Debug.Log("🎉 You caught 10 good foods! Game Over!");
         ClearAllFood();
+        foodSpawner.SetActive(false);
 
-        Time.timeScale = 0f;
+        GameManager.Instance.OnMinigameComplete();
     }
 }
