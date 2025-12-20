@@ -870,6 +870,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
+--- !u!114 &94845403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1571364761318340641, guid: dd21f3602b20fff439ff472bbbb325bf, type: 3}
+  m_PrefabInstance: {fileID: 94845402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250980870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450175b34fb54473f899860c223cc357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1 &97885192
 GameObject:
   m_ObjectHideFlags: 0
@@ -5450,6 +5461,7 @@ MonoBehaviour:
   cinemachineSwitcher: {fileID: 699743396}
   quickTimeEventUI: {fileID: 2004503874}
   homelessMan: {fileID: 1088885289}
+  playerController: {fileID: 94845403}
 --- !u!1 &672183222 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6968470967461553347, guid: 5432c6a02992d4748b9598835cf56ab0, type: 3}

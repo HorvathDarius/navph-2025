@@ -8,6 +8,7 @@ public class NivyChaseManager : MonoBehaviour
     [SerializeField] private NivyChaseCinemachineSwitcher cinemachineSwitcher;
     [SerializeField] private GameObject quickTimeEventUI;
     [SerializeField] private GameObject homelessMan;
+    [SerializeField] private PlayerController playerController;
 
     private void Awake()
     {
@@ -35,6 +36,14 @@ public class NivyChaseManager : MonoBehaviour
         quickTimeEventUI.SetActive(false);
         cinemachineSwitcher.SwitchCamera();
         homelessMan.GetComponent<ChaserController>().isChasing = true;
+        homelessMan.GetComponent<Animator>().Play("homeless_roll_R");
+
+        if (GameManager.Instance.Health <= 0)
+        {
+            playerController.KillPlayer();
+            homelessMan.GetComponent<ChaserController>().isChasing = false;
+        }
+
         yield return new WaitForSeconds(1.1f);
     }
 }
