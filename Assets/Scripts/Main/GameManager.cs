@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         "NivyChaseScene",          // Level 2
         "YemeMazeScene",           // Level 3
         "FoodCatcherScene",        // Level 4
-        "FinalBossFightScene"      // Level 5
+        "FinalBossFightScene",     // Level 5
     };
 
     private void Awake()
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Load first level
-        LoadLevel(0);
+        LoadLevel(5);
     }
 
     public void LoadLevel(int levelIndex)
@@ -396,23 +396,27 @@ public class GameManager : MonoBehaviour
 
     // ===== GAME OVER & VICTORY =====
 
-    private void GameOver(string reason)
+    public IEnumerator GameOver(string reason, float delaySeconds)
     {
-        m_IsGameActive = false;
+        if (!m_IsGameActive)
+            yield break;
 
+        m_IsGameActive = false; // stop timer, ale ešte nenerfuj Time.timeScale
+
+        // počkaj na animáciu smrti hráča
+        yield return new WaitForSeconds(delaySeconds);
+
+        // po 3s zastav hru a ukáž panel
         Time.timeScale = 0;
-
         if (m_GameOverPanel != null)
-        {
             m_GameOverPanel.style.display = DisplayStyle.Flex;
-        }
 
         if (m_GameOverMessage != null)
         {
             m_GameOverMessage.text = $"GAME OVER\n\n{reason}\n\nSkóre: {m_Score}\nDosiahnutý level: {m_CurrentLevel + 1}";
         }
 
-        Debug.Log($"Game Over: {reason}");
+        Debug.Log($"Game Over (delayed): {reason}");
     }
 
     private void ShowVictoryPanel()
@@ -472,7 +476,9 @@ public class GameManager : MonoBehaviour
 
     private void TimeUp()
     {
-        GameOver("Vypršal ti čas na obedovú pauzu, dnes robíš o hodinu dlhšie!");
+        StartCoroutine(GameOver(
+            "Vypršal ti čas na obedovú pauzu, dnes robíš o hodinu dlhšie!",
+            0f));
     }
 
     // ===== PLAYER STATE =====
@@ -482,11 +488,13 @@ public class GameManager : MonoBehaviour
         m_Health = Mathf.Clamp(m_Health + amount, 0, startingHealth);
         UpdateHealthUI();
 
-        if (m_Health <= 0)
+        if (m_Health <= 0 && m_IsGameActive)
         {
-            GameOver("Zomrel si!");
+            // Spusti delayed game over – animácia pádu hráča
+            StartCoroutine(GameOver("Zomrel si!", 3f));
         }
     }
+
 
     public void AddScore(int amount)
     {

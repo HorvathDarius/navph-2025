@@ -1,0 +1,273 @@
+fileFormatVersion: 2
+guid: b4567aa671a56ff458e05733b9a95b24
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8224733844672563643
+    second: homeless_punch_R_0
+  - first:
+      213: 6046088469428637529
+    second: homeless_punch_R_1
+  - first:
+      213: 5654362310739869583
+    second: homeless_punch_R_2
+  - first:
+      213: 4822958436243597935
+    second: homeless_punch_R_3
+  - first:
+      213: 4184494028435734945
+    second: homeless_punch_R_4
+  - first:
+      213: -2454226452340025334
+    second: homeless_punch_R_5
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: homeless_punch_R_0
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 14
+        width: 272
+        height: 342
+      alignment: 9
+      pivot: {x: 0.5125023, y: 0.13209483}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 546b8201520ebdd80800000000000000
+      internalID: -8224733844672563643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_punch_R_1
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 14
+        width: 272
+        height: 342
+      alignment: 9
+      pivot: {x: 0.52500486, y: 0.122151606}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95f01eced6508e350800000000000000
+      internalID: 6046088469428637529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_punch_R_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 14
+        width: 272
+        height: 337
+      alignment: 9
+      pivot: {x: 0.5187535, y: 0.15186346}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8fb1034094587e40800000000000000
+      internalID: 5654362310739869583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_punch_R_3
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 14
+        width: 272
+        height: 347
+      alignment: 9
+      pivot: {x: 0.5125028, y: 0.16189645}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ae5c605279ee240800000000000000
+      internalID: 4822958436243597935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_punch_R_4
+      rect:
+        serializedVersion: 2
+        x: 1984
+        y: 14
+        width: 272
+        height: 357
+      alignment: 9
+      pivot: {x: 0.53125626, y: 0.15231593}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1c7a1062f421a30800000000000000
+      internalID: 4184494028435734945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_punch_R_5
+      rect:
+        serializedVersion: 2
+        x: 2459
+        y: 14
+        width: 342
+        height: 357
+      alignment: 9
+      pivot: {x: 0.50994337, y: 0.17612992}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a08d7ed6b06d0fdd0800000000000000
+      internalID: -2454226452340025334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9380627c6de942446a034b6cfd39814d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      homeless_punch_R_0: -8224733844672563643
+      homeless_punch_R_1: 6046088469428637529
+      homeless_punch_R_2: 5654362310739869583
+      homeless_punch_R_3: 4822958436243597935
+      homeless_punch_R_4: 4184494028435734945
+      homeless_punch_R_5: -2454226452340025334
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

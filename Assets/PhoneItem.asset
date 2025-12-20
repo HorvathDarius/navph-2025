@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PhoneItem
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Phone
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 5573274228025093078, guid: 7045e120ff969854987272e938253cbc, type: 3}

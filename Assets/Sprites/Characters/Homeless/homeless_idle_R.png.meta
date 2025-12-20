@@ -1,0 +1,238 @@
+fileFormatVersion: 2
+guid: 325498031c4300b4db698a0b5d4a6450
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5209610998550356257
+    second: homeless_idle_R_0
+  - first:
+      213: -472858640584512077
+    second: homeless_idle_R_1
+  - first:
+      213: 2762586509776138381
+    second: homeless_idle_R_2
+  - first:
+      213: -6476844515022694795
+    second: homeless_idle_R_3
+  - first:
+      213: -9118408000834412855
+    second: homeless_idle_R_4
+  - first:
+      213: 4387903730867574459
+    second: homeless_idle_R_5
+  - first:
+      213: 8836759356503191244
+    second: homeless_idle_R_6
+  - first:
+      213: 8898220560087742976
+    second: homeless_idle_R_7
+  - first:
+      213: -1365214127967255629
+    second: homeless_idle_R_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: homeless_idle_R_0
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 14
+        width: 152
+        height: 377
+      alignment: 9
+      pivot: {x: 0.4999999, y: 0.13016918}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57692a8ba30ad16a0800000000000000
+      internalID: -6476844515022694795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_idle_R_1
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 14
+        width: 156
+        height: 377
+      alignment: 9
+      pivot: {x: 0.49999923, y: 0.1331759}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce5f211c38e47180800000000000000
+      internalID: -9118408000834412855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_idle_R_2
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 14
+        width: 155
+        height: 391
+      alignment: 9
+      pivot: {x: 0.47074643, y: 0.108622156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cce6bf9c0d972aa70800000000000000
+      internalID: 8836759356503191244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_idle_R_3
+      rect:
+        serializedVersion: 2
+        x: 1604
+        y: 14
+        width: 152
+        height: 390
+      alignment: 9
+      pivot: {x: 0.4776258, y: 0.12215137}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b3ca2cdbf8cd0de0800000000000000
+      internalID: -1365214127967255629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1f45cc9ca417c044c9d4735d97d3ac83
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      homeless_idle_R_0: -6476844515022694795
+      homeless_idle_R_1: -9118408000834412855
+      homeless_idle_R_2: 8836759356503191244
+      homeless_idle_R_3: -1365214127967255629
+      homeless_idle_R_5: 4387903730867574459
+      homeless_idle_R_7: 8898220560087742976
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

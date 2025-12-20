@@ -72,8 +72,8 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(handDryerDuration);
 
         // 2) výjdenie zľava doprava na štartovú pozíciu
-        playerAnimator.SetBool("FacingEast", true);
-        playerAnimator.SetBool("Moving", true);
+        playerAnimator.SetFloat("DirectionX", 1f);
+        playerAnimator.SetBool("IsMoving", true);
 
         Vector3 startPos = player.transform.position;
         Vector3 finalPos = startPos + new Vector3(2f, 0f, 0f);
@@ -86,7 +86,7 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
 
-        playerAnimator.SetBool("Moving", false);
+        playerAnimator.SetBool("IsMoving", false);
 
         // 3) zvuk zavretia dverí
         if (sfxSource != null && doorCloseClip != null)
