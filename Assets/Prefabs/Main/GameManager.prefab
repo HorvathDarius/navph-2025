@@ -53,6 +53,36 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  continueAction:
+    m_Name: Continue
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: fa4d3ebd-b86b-4466-840b-de6bf2d790ff
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fd484171-bb58-4c68-965e-431e9f898685
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Continue
+      m_Flags: 0
+    m_Flags: 0
   gameTimeLimit: 900
   startingHealth: 100
   gameUIPrefab: {fileID: 6849293734840655620, guid: 7d940c22241c66041bc9c59a2ebf1a1c, type: 3}
+  lorePrefabs:
+  - {fileID: 2494198254277953678, guid: e308ece074a1ab94cbd4cbea6d510976, type: 3}
+  - {fileID: 2494198254277953678, guid: 21c80482a6716224f82d8f09af792adc, type: 3}
+  - {fileID: 2494198254277953678, guid: a5b21e00036025d4eb94246f93918c7b, type: 3}
+  - {fileID: 2494198254277953678, guid: 5584602aefcf2d64e895591f23ec9490, type: 3}
+  - {fileID: 2494198254277953678, guid: ba4a326a52f3ae34d9291b23f5654801, type: 3}
+  hintPrefabs:
+  - {fileID: 3692340349586261547, guid: b774daa5f08a4b246905c72ff669f203, type: 3}
+  - {fileID: 3692340349586261547, guid: 1a29fef6cd16a6b4d8c20ed29bda705f, type: 3}
+  - {fileID: 3692340349586261547, guid: 8690191e1def35147bed47bc09cb91a2, type: 3}
+  - {fileID: 3692340349586261547, guid: dc14004c907ac12488d73a4c3658bbf8, type: 3}
+  - {fileID: 3692340349586261547, guid: b925789f55d373043bfd0bda3d91e101, type: 3}
+  endingPrefab: {fileID: 2494198254277953678, guid: 4c351678b6620dd498c2067757474329, type: 3}
