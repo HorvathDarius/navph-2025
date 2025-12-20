@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WalletItem
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Wallet
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -5935504955088134908, guid: 29ab4b304047e6a418656bdf6637afd7, type: 3}

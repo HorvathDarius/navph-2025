@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: YemeDrink
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: YemeDrink
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 7842879776769493541, guid: 243825bf716fbc5428841ba783cf78f3, type: 3}

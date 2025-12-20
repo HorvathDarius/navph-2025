@@ -156,4 +156,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+    
+    public Vector2 GetCurrentMoveDirection() => moveDirection;
+    public bool IsRunning() => m_IsRunning;
 }

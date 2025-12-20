@@ -28,6 +28,15 @@
                 <ui:VisualElement name="ItemSlot2" class="item-slot" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; margin-right: 10px; border-width: 2px; border-color: white;" />
                 <ui:VisualElement name="ItemSlot3" class="item-slot" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; border-width: 2px; border-color: white;" />
             </ui:VisualElement>
+            <ui:VisualElement name="InventoryOverlay" class="inventory-overlay" style="position: absolute; bottom: 20px; right: 20px; width: 350px; height: 200px; background-color: rgba(0, 0, 0, 0.8); border-radius: 10px; border-width: 3px; border-color: white; display: none; flex-direction: column;">
+                <ui:Label text="INVENTÁR" class="inventory-title" style="color: white; font-size: 18px; padding: 10px; -unity-font-style: bold;" />
+                <ui:ListView name="InventoryList" class="inventory-list" style="flex-grow: 1; padding: 10px;" />
+                <ui:VisualElement name="InventoryActions" style="flex-direction: row; padding: 10px; justify-content: space-between;">
+                    <ui:Label text="Vybrané: [Názov]" name="SelectedItemLabel" style="color: yellow;" />
+                    <ui:Button text="Použiť" name="UseButton" class="inventory-button" />
+                    <ui:Button text="Hodiť" name="DropButton" class="inventory-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="PausePanel" class="overlay-panel" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; display: none;">
             <ui:VisualElement name="PauseContent" class="panel-content" style="width: 500px; padding: 40px; background-color: rgb(33, 33, 33); border-radius: 15px; border-width: 3px; border-color: white; align-items: center;">
@@ -80,8 +89,8 @@
             <ui:Label text="← A     D →" style="font-size: 28px; color: white; -unity-font-style: bold; text-align: center;" />
         </ui:VisualElement>
         <ui:VisualElement name="MazeFOVOverlay" style="width: 100%; height: 100%; position: absolute; background-image: url(&apos;Assets/UI/Textures/vignette.png&apos;); display: none;" />
-        <ui:VisualElement name="BossHealthBar" style="position: absolute; top: 150px; left: 50%; translate: -50% 0; width: 600px; display: none;">
-            <ui:Label text="BEZDOMOVEC" style="font-size: 20px; color: rgb(244, 67, 54); -unity-font-style: bold; margin-bottom: 5px; text-align: center;" />
+        <ui:VisualElement name="BossHealthBar" style="position: absolute; top: auto; left: 50%; translate: -50% 0; width: 600px; display: none; bottom: 28px;">
+            <ui:Label text="Spoluobčan bez trvalého bydliska" style="font-size: 20px; color: rgb(244, 67, 54); -unity-font-style: bold; margin-bottom: 5px; text-align: center; display: flex;" />
             <ui:VisualElement name="BossHealthBackground" style="width: 100%; height: 40px; background-color: rgba(0, 0, 0, 0.7); border-radius: 5px; border-width: 2px; border-color: rgb(244, 67, 54);">
                 <ui:VisualElement name="BossHealthFill" style="width: 100%; height: 100%; background-color: rgb(244, 67, 54); border-radius: 5px;" />
             </ui:VisualElement>
