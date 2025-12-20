@@ -61,6 +61,9 @@ public class PointerController : MonoBehaviour
         else
         {
             Debug.Log("Fail!");
+            Debug.Log("Player takes damage.");
+            GameManager.Instance.ChangeHealth(-50);
+            StartCoroutine(NivyChaseManager.Instance.ResumeGame());
         }
     }
 }

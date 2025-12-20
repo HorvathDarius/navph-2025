@@ -7,6 +7,7 @@ public class NivyChaseManager : MonoBehaviour
 
     [SerializeField] private NivyChaseCinemachineSwitcher cinemachineSwitcher;
     [SerializeField] private GameObject quickTimeEventUI;
+    [SerializeField] private GameObject homelessMan;
 
     private void Awake()
     {
@@ -29,9 +30,11 @@ public class NivyChaseManager : MonoBehaviour
 
     public IEnumerator ResumeGame()
     {
+        homelessMan.transform.position -= new Vector3(4f, 0f, 0f);
         Time.timeScale = 1f;
         quickTimeEventUI.SetActive(false);
         cinemachineSwitcher.SwitchCamera();
+        homelessMan.GetComponent<ChaserController>().isChasing = true;
         yield return new WaitForSeconds(1.1f);
     }
 }

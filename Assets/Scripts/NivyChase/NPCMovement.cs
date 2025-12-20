@@ -3,7 +3,7 @@ using UnityEngine;
 public class NPCMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2f; // Speed of the pointer movement
-
+    [SerializeField] private bool oppositeDirection = false;
     private int direction;
 
     void Start()
@@ -17,8 +17,9 @@ public class NPCMovement : MonoBehaviour
     void Update()
     {
         // Move the pointer towards the target position
+        Vector3 moveDirection = oppositeDirection ? Vector3.left : Vector3.right;
         transform.position += moveSpeed * Time.deltaTime * direction * Vector3.up;
-        transform.position += 1f * Time.deltaTime * Vector3.right;
+        transform.position += 1f * Time.deltaTime * moveDirection;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
