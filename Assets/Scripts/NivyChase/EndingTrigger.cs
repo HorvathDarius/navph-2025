@@ -6,6 +6,7 @@ public class EndingTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            NivyChaseManager.Instance.homelessMan.GetComponent<ChaserController>().isChasing = false;
             Debug.Log("Player reached the end of Nivy Chase!");
             GameManager.Instance.OnMinigameComplete();
         }

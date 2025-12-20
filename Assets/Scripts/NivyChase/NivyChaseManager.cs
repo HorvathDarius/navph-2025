@@ -7,7 +7,7 @@ public class NivyChaseManager : MonoBehaviour
 
     [SerializeField] private NivyChaseCinemachineSwitcher cinemachineSwitcher;
     [SerializeField] private GameObject quickTimeEventUI;
-    [SerializeField] private GameObject homelessMan;
+    [SerializeField] public GameObject homelessMan;
     [SerializeField] private PlayerController playerController;
 
     private void Awake()

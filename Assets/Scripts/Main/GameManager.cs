@@ -75,6 +75,18 @@ public class GameManager : MonoBehaviour
         "FinalBossFightScene"      // Level 5
     };
 
+    void OnEnable()
+    {
+        pauseAction.Enable();
+        continueAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        pauseAction.Disable();
+        continueAction.Disable();
+    }
+
     private void Awake()
     {
         // Singleton - pri druhom vytvorení GameManagera zruš starý
@@ -171,7 +183,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Load first level
-        LoadLevel(2);
+        LoadLevel(0);
     }
 
     public void LoadLevel(int levelIndex)
@@ -238,7 +250,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"LoadLevel({nextLevel}) called, waiting 0.5s");
         yield return new WaitForSeconds(0.5f);
-
         Debug.Log("=== TRANSITION COROUTINE COMPLETE ===");
     }
     private void ShowLorePrefab(int levelIndex)
