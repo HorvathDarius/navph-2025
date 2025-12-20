@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 118713445425831677}
   - component: {fileID: 438686425548671136}
   m_Layer: 5
-  m_Name: lore2
+  m_Name: lore4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -792353821855159044, guid: 7d0ec50ac54c7b24eb0d39f4e18f110b, type: 3}
+  m_Sprite: {fileID: 3094189998886023373, guid: 00088d66a1221be40af72fadd8d47787, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -103,16 +103,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4477428622229805637}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.000000001267749, y: -6.1408795e-10, z: 0.0051854006, w: 0.9999866}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8602779107414231449}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.594}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -211.61, y: 70}
+  m_AnchoredPosition: {x: -25, y: 194}
   m_SizeDelta: {x: 701.28, y: 98.6691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9114632280841715452
@@ -143,8 +143,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u010Co pozer\xE1\u0161 jak rozmo\u010Den\xFD ro\u017Eok?! D\xE1vno si
-    nedostal na frak ty \u0161paldov\xFD hrdina?!"
+  m_text: "Kone\u010Dne sa najem, tieto utorky s\xFA fakt divok\xE9. Nejak\xFA bowl
+    by po tomto v\u0161etko naozaj dobre padol."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
   m_sharedMaterial: {fileID: 7473230018274346873, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
@@ -376,16 +376,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9015863360464368157}
-  m_LocalRotation: {x: -0, y: 0.99983865, z: -0, w: -0.01796492}
+  m_LocalRotation: {x: 0.030307228, y: -0.0072482596, z: -0.0015052236, w: -0.99951327}
   m_LocalPosition: {x: 0, y: 0, z: 13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8602779107414231449}
-  m_LocalEulerAnglesHint: {x: 0, y: 182.059, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.475, y: 360.827, z: 0.148}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -235, y: 14}
+  m_AnchoredPosition: {x: -39, y: 131}
   m_SizeDelta: {x: 748.0665, y: 284.4301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5632196780126316067

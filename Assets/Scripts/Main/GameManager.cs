@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Input")]
     [SerializeField] private InputAction pauseAction;
+    [SerializeField] private InputAction continueAction; // For Space key
 
     [Header("Game Settings")]
     public float gameTimeLimit = 900f; // 15 minút
@@ -17,6 +18,12 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Prefab")]
     [SerializeField] private GameObject gameUIPrefab;
+
+    [Header("Lore & Hint Prefabs")]
+    [SerializeField] private GameObject[] lorePrefabs; 
+    [SerializeField] private GameObject[] hintPrefabs;
+    [SerializeField] private GameObject endingPrefab;
+    private GameObject CurrentEndingPrefab;
 
     // UI References
     private UIDocument m_UIDocument;
@@ -26,6 +33,8 @@ public class GameManager : MonoBehaviour
     private Label m_TimerLabel;
     private VisualElement m_ItemSelector;
     private VisualElement m_HUD;
+    private bool m_WaitingForEndingContinue = false;
+
 
     // UI Panels
     private VisualElement m_GameOverPanel;
@@ -43,6 +52,14 @@ public class GameManager : MonoBehaviour
     private float m_TimeRemaining;
     private bool m_IsGameActive = false;
     private bool m_IsPaused = false;
+
+    // Transition State
+    private GameObject m_CurrentLorePrefab;
+    private GameObject m_CurrentHintPrefab;
+    private bool m_ShowingLore = false;
+    private bool m_ShowingHint = false;
+    private bool m_WaitingForContinue = false;
+    private int m_TransitionFromLevel = -1;
 
     [Header("Collected Items")]
     private System.Collections.Generic.List<string> m_CollectedItems = new();
@@ -76,6 +93,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         pauseAction = InputSystem.actions.FindAction("Pause");
+        continueAction = InputSystem.actions.FindAction("Continue");
+        if (continueAction == null)
+        {
+            continueAction = new InputAction("Continue", binding: "<Keyboard>/space");
+            continueAction.Enable();
+        }
 
         // Vytvor UI
         CreateGameUI();
@@ -102,6 +125,24 @@ public class GameManager : MonoBehaviour
         if (pauseAction != null && pauseAction.WasPressedThisFrame() && m_IsGameActive)
         {
             TogglePause();
+        }
+
+        // Handle Space key for lore/hint transitions
+        if (m_WaitingForContinue)
+        {
+            if (continueAction != null && continueAction.WasPressedThisFrame())
+            {
+                Debug.Log("SPACE KEY DETECTED in Update!");
+                HandleTransitionContinue();
+            }
+        }
+
+        if (m_WaitingForEndingContinue)
+        {
+            if (continueAction != null && continueAction.WasPressedThisFrame())
+            {
+                HandleEndingContinue();
+            }
         }
     }
 
@@ -135,6 +176,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel(int levelIndex)
     {
+        Debug.Log($"=== LoadLevel({levelIndex}) CALLED ===");
+        
         if (levelIndex < 0 || levelIndex >= SCENE_NAMES.Length)
         {
             Debug.LogError($"Invalid level index: {levelIndex}");
@@ -142,7 +185,11 @@ public class GameManager : MonoBehaviour
         }
 
         m_CurrentLevel = levelIndex;
-        SceneManager.LoadScene(SCENE_NAMES[levelIndex]);
+        string sceneName = SCENE_NAMES[levelIndex];
+        
+        Debug.Log($"Loading scene: {sceneName}");
+        SceneManager.LoadScene(sceneName);
+        Debug.Log($"SceneManager.LoadScene({sceneName}) completed");
     }
 
     public void OnMinigameComplete()
@@ -156,18 +203,158 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // Load next level with transition
+            // Load next level with lore/hint transition
             StartCoroutine(TransitionToNextLevel());
         }
     }
 
     private IEnumerator TransitionToNextLevel()
     {
-        ShowTransitionPanel(m_CurrentLevel + 1);
-        yield return new WaitForSeconds(2f);
-        LoadLevel(m_CurrentLevel + 1);
+        int completedLevel = m_CurrentLevel;
+        int nextLevel = m_CurrentLevel + 1;
+
+        Debug.Log($"=== TRANSITION COROUTINE STARTED: Completed level {completedLevel} -> Next level {nextLevel} ===");
+        m_TransitionFromLevel = completedLevel;
+        ShowLorePrefab(completedLevel);
+        m_WaitingForContinue = true;
+        Debug.Log($"Waiting for continue... m_WaitingForContinue = {m_WaitingForContinue}");
+        
+        yield return new WaitUntil(() => {
+            bool shouldContinue = !m_WaitingForContinue;
+            if (shouldContinue)
+            {
+                Debug.Log("WaitUntil condition met - continuing coroutine!");
+            }
+            return shouldContinue;
+        });
+
+        Debug.Log($"=== COROUTINE CONTINUING - Cleaning up prefabs before loading level {nextLevel} ===");
+        HideTransitionPrefabs();
+        yield return null;
+        Debug.Log($"Loading level {nextLevel}");
+        LoadLevel(nextLevel);
+        m_TransitionFromLevel = -1;
+        
+        Debug.Log($"LoadLevel({nextLevel}) called, waiting 0.5s");
         yield return new WaitForSeconds(0.5f);
-        HideTransitionPanel();
+        
+        Debug.Log("=== TRANSITION COROUTINE COMPLETE ===");
+    }
+    private void ShowLorePrefab(int levelIndex)
+    {
+        if (lorePrefabs == null || levelIndex >= lorePrefabs.Length || lorePrefabs[levelIndex] == null)
+        {
+            Debug.LogWarning($"No lore prefab for level {levelIndex}");
+            m_WaitingForContinue = false;
+            return;
+        }
+
+        if (m_CurrentLorePrefab != null) Destroy(m_CurrentLorePrefab);
+
+        m_CurrentLorePrefab = Instantiate(lorePrefabs[levelIndex]);
+
+        Canvas canvas = m_CurrentLorePrefab.GetComponentInChildren<Canvas>();
+        if (canvas == null)
+        {
+            canvas = m_CurrentLorePrefab.AddComponent<Canvas>();
+        }
+
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.sortingOrder = 1000;
+
+        m_ShowingLore = true;
+        m_ShowingHint = false;
+        m_WaitingForContinue = true;
+
+        DontDestroyOnLoad(m_CurrentLorePrefab);
+    }
+
+    private void ShowHintPrefab(int levelIndex)
+    {
+        if (hintPrefabs == null || levelIndex >= hintPrefabs.Length || hintPrefabs[levelIndex] == null)
+        {
+            Debug.LogWarning($"No hint prefab found for level {levelIndex} - skipping to next level");
+            m_WaitingForContinue = false;
+            return;
+        }
+
+        if (m_CurrentHintPrefab != null)
+        {
+            Destroy(m_CurrentHintPrefab);
+            m_CurrentHintPrefab = null;
+        }
+
+        if (m_CurrentLorePrefab != null)
+        {
+            Destroy(m_CurrentLorePrefab);
+            m_CurrentLorePrefab = null;
+        }
+
+        m_CurrentHintPrefab = Instantiate(hintPrefabs[levelIndex]);
+
+        Canvas canvas = m_CurrentHintPrefab.GetComponentInChildren<Canvas>();
+        if (canvas == null)
+        {
+            canvas = m_CurrentHintPrefab.AddComponent<Canvas>();
+        }
+
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.sortingOrder = 1000;
+        m_ShowingLore = false;
+        m_ShowingHint = true;
+
+        DontDestroyOnLoad(m_CurrentHintPrefab);
+
+        Debug.Log($"Hint prefab displayed: {m_CurrentHintPrefab.name}");
+    }
+
+
+    private void HandleTransitionContinue()
+    {
+        Debug.Log($"HandleTransitionContinue called - ShowingLore: {m_ShowingLore}, ShowingHint: {m_ShowingHint}, TransitionFromLevel: {m_TransitionFromLevel}");
+        
+        if (m_ShowingLore)
+        {
+            Debug.Log($"Space pressed - switching from lore to hint for level {m_TransitionFromLevel}");
+            ShowHintPrefab(m_TransitionFromLevel);
+        }
+        else if (m_ShowingHint)
+        {
+            Debug.Log("Space pressed on hint - preparing to load next level");
+            Debug.Log($"Before: m_WaitingForContinue = {m_WaitingForContinue}");
+            
+            m_WaitingForContinue = false;
+            
+            Debug.Log($"After: m_WaitingForContinue = {m_WaitingForContinue}");
+        }
+        else
+        {
+            Debug.LogWarning("HandleTransitionContinue called but neither lore nor hint is showing!");
+        }
+    }
+
+    private void HideTransitionPrefabs()
+    {
+        Debug.Log("HideTransitionPrefabs called");
+        
+        if (m_CurrentLorePrefab != null)
+        {
+            Debug.Log($"Destroying lore prefab: {m_CurrentLorePrefab.name}");
+            Destroy(m_CurrentLorePrefab);
+            m_CurrentLorePrefab = null;
+        }
+
+        if (m_CurrentHintPrefab != null)
+        {
+            Debug.Log($"Destroying hint prefab: {m_CurrentHintPrefab.name}");
+            Destroy(m_CurrentHintPrefab);
+            m_CurrentHintPrefab = null;
+        }
+
+        m_ShowingLore = false;
+        m_ShowingHint = false;
+        
+        Debug.Log("All transition prefabs cleaned up");
     }
 
     // ===== PAUSE & MENU =====
@@ -190,6 +377,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         m_IsGameActive = false;
 
+        HideTransitionPrefabs();
+
         // Vyčisti UI
         if (m_UIDocument != null && m_UIDocument.gameObject != null)
         {
@@ -210,6 +399,7 @@ public class GameManager : MonoBehaviour
     private void GameOver(string reason)
     {
         m_IsGameActive = false;
+
         Time.timeScale = 0;
 
         if (m_GameOverPanel != null)
@@ -225,23 +415,60 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Game Over: {reason}");
     }
 
+    private void ShowVictoryPanel()
+    {
+        if (m_VictoryPanel != null)
+            m_VictoryPanel.style.display = DisplayStyle.Flex;
+
+        if (m_VictoryMessage != null)
+            m_VictoryMessage.text = $"VÍŤAZSTVO!\n\nPodarilo sa ti prežiť obedovú pauzu!\n\nFinálne skóre: {m_Score}\nZostávajúci čas: {FormatTime(m_TimeRemaining)}\nZostávajúce zdravie: {m_Health} HP";
+
+        Debug.Log("Victory panel displayed!");
+    }
+
+    private void HandleEndingContinue()
+    {
+        if (CurrentEndingPrefab != null)
+        {
+            Destroy(CurrentEndingPrefab);
+            CurrentEndingPrefab = null;
+        }
+
+        m_WaitingForEndingContinue = false;
+
+        ShowVictoryPanel();
+    }
+
     private void Victory()
     {
         m_IsGameActive = false;
         Time.timeScale = 0;
 
-        if (m_VictoryPanel != null)
+        // Show ending prefab first
+        if (endingPrefab != null)
         {
-            m_VictoryPanel.style.display = DisplayStyle.Flex;
-        }
+            CurrentEndingPrefab = Instantiate(endingPrefab);
 
-        if (m_VictoryMessage != null)
+            // Ensure Canvas overlay
+            Canvas canvas = CurrentEndingPrefab.GetComponentInChildren<Canvas>();
+            if (canvas == null)
+                canvas = CurrentEndingPrefab.AddComponent<Canvas>();
+
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 1000;
+
+            DontDestroyOnLoad(CurrentEndingPrefab);
+
+            m_WaitingForEndingContinue = true; // wait for space
+            Debug.Log("Ending prefab displayed, waiting for Space...");
+        }
+        else
         {
-            m_VictoryMessage.text = $"VÍŤAZSTVO!\n\nPodarilo sa ti prežiť obedovú pauzu!\n\nFinálne skóre: {m_Score}\nZostávajúci čas: {FormatTime(m_TimeRemaining)}\nZostávajúce zdravie: {m_Health} HP";
+            ShowVictoryPanel();
         }
-
-        Debug.Log("Victory!");
     }
+
+
 
     private void TimeUp()
     {
@@ -352,26 +579,6 @@ public class GameManager : MonoBehaviour
         if (m_HUD != null) m_HUD.style.display = DisplayStyle.None;
     }
 
-    private void ShowTransitionPanel(int nextLevel)
-    {
-        if (m_TransitionPanel != null)
-        {
-            m_TransitionPanel.style.display = DisplayStyle.Flex;
-            if (m_TransitionMessage != null)
-            {
-                m_TransitionMessage.text = GetTransitionMessage(nextLevel);
-            }
-        }
-    }
-
-    private void HideTransitionPanel()
-    {
-        if (m_TransitionPanel != null)
-        {
-            m_TransitionPanel.style.display = DisplayStyle.None;
-        }
-    }
-
     // ===== UI UPDATES =====
 
     private void UpdateAllUI()
@@ -439,19 +646,6 @@ public class GameManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(seconds / 60);
         int secs = Mathf.FloorToInt(seconds % 60);
         return $"{minutes:00}:{secs:00}";
-    }
-
-    private string GetTransitionMessage(int nextLevel)
-    {
-        switch (nextLevel)
-        {
-            case 1: return "Poďme cez cestu...";
-            case 2: return "Pozor, niekto ťa naháňa!";
-            case 3: return "Bludisko v tme...";
-            case 4: return "Čas na jedlo!";
-            case 5: return "Finálny súboj!";
-            default: return "Ďalšia úloha...";
-        }
     }
 
     // ===== GETTERS =====

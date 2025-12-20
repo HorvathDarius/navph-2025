@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 118713445425831677}
   - component: {fileID: 438686425548671136}
   m_Layer: 5
-  m_Name: lore2
+  m_Name: lore5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -792353821855159044, guid: 7d0ec50ac54c7b24eb0d39f4e18f110b, type: 3}
+  m_Sprite: {fileID: -7821562913398956924, guid: 9182d7f30d59cd34fa83fbda86380e7c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -112,8 +112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -211.61, y: 70}
-  m_SizeDelta: {x: 701.28, y: 98.6691}
+  m_AnchoredPosition: {x: -29.5272, y: 49.335}
+  m_SizeDelta: {x: 678.2257, y: 98.6691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9114632280841715452
 CanvasRenderer:
@@ -143,8 +143,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u010Co pozer\xE1\u0161 jak rozmo\u010Den\xFD ro\u017Eok?! D\xE1vno si
-    nedostal na frak ty \u0161paldov\xFD hrdina?!"
+  m_text: "No \u010Do ty bezlepkov\xFD bojovn\xEDk si mysl\xED\u0161, \u017Ee som
+    na teba zabudol? Si dok\xE1vi\u010Dkoval..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
   m_sharedMaterial: {fileID: 7473230018274346873, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
@@ -385,7 +385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 182.059, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -235, y: 14}
+  m_AnchoredPosition: {x: -32, y: -11}
   m_SizeDelta: {x: 748.0665, y: 284.4301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5632196780126316067
