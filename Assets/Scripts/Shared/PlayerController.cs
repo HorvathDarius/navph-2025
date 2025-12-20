@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,16 +22,19 @@ public class PlayerController : MonoBehaviour
     private IInteractable nearbyInteractable;
     private string obstacleType;
     private CheckoutTrigger nearbyCheckout;
-
     private Animator animator;
     private bool isRunning;
     private bool isMovementLocked;
+    private PlayerController controller;
+    private CapsuleCollider2D capsuleCollider;
 
     public bool FacingEast { get; private set; } = true;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        controller = GetComponent<PlayerController>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     private void Start()
@@ -172,19 +176,39 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (GameManager.Instance.Health <= 0)
+        {
+            return;
+        }
+
         obstacleType = collision.gameObject.tag;
         switch (obstacleType)
         {
             case "BigVehicle":
                 Debug.Log("Collision detected with BIG VEHICLE");
                 GameManager.Instance.ChangeHealth(-100);
+                KillPlayer();
                 break;
             case "Scooter":
                 Debug.Log("Collision detected with SCOOTER");
                 GameManager.Instance.ChangeHealth(-50);
+                KillPlayer();
                 break;
         }
+
+
     }
-    
+
+    public void KillPlayer()
+    {
+        if (GameManager.Instance.Health <= 0)
+        {
+            Debug.Log("Player health <= 0, triggering death.");
+
+            animator.SetTrigger("IsDead");
+            controller.SetMovementLocked(true);
+        }
+    }
+
     public Vector2 GetCurrentMoveDirection() => moveDirection;
 }

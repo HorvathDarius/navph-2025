@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameUIPrefab;
 
     [Header("Lore & Hint Prefabs")]
-    [SerializeField] private GameObject[] lorePrefabs; 
+    [SerializeField] private GameObject[] lorePrefabs;
     [SerializeField] private GameObject[] hintPrefabs;
     [SerializeField] private GameObject endingPrefab;
     private GameObject CurrentEndingPrefab;
@@ -65,14 +65,14 @@ public class GameManager : MonoBehaviour
     private System.Collections.Generic.List<string> m_CollectedItems = new();
 
     // Scene names podľa flowchart
-    private readonly string[] SCENE_NAMES = 
+    private readonly string[] SCENE_NAMES =
     {
         "TutorialScene",           // Level 0
         "CrossyRoadsScene",        // Level 1
         "NivyChaseScene",          // Level 2
         "YemeMazeScene",           // Level 3
         "FoodCatcherScene",        // Level 4
-        "FinalBossFightScene",     // Level 5
+        "FinalBossFightScene"      // Level 5
     };
 
     private void Awake()
@@ -171,13 +171,13 @@ public class GameManager : MonoBehaviour
         }
 
         // Load first level
-        LoadLevel(5);
+        LoadLevel(2);
     }
 
     public void LoadLevel(int levelIndex)
     {
         Debug.Log($"=== LoadLevel({levelIndex}) CALLED ===");
-        
+
         if (levelIndex < 0 || levelIndex >= SCENE_NAMES.Length)
         {
             Debug.LogError($"Invalid level index: {levelIndex}");
@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
 
         m_CurrentLevel = levelIndex;
         string sceneName = SCENE_NAMES[levelIndex];
-        
+
         Debug.Log($"Loading scene: {sceneName}");
         SceneManager.LoadScene(sceneName);
         Debug.Log($"SceneManager.LoadScene({sceneName}) completed");
@@ -218,8 +218,9 @@ public class GameManager : MonoBehaviour
         ShowLorePrefab(completedLevel);
         m_WaitingForContinue = true;
         Debug.Log($"Waiting for continue... m_WaitingForContinue = {m_WaitingForContinue}");
-        
-        yield return new WaitUntil(() => {
+
+        yield return new WaitUntil(() =>
+        {
             bool shouldContinue = !m_WaitingForContinue;
             if (shouldContinue)
             {
@@ -234,10 +235,10 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Loading level {nextLevel}");
         LoadLevel(nextLevel);
         m_TransitionFromLevel = -1;
-        
+
         Debug.Log($"LoadLevel({nextLevel}) called, waiting 0.5s");
         yield return new WaitForSeconds(0.5f);
-        
+
         Debug.Log("=== TRANSITION COROUTINE COMPLETE ===");
     }
     private void ShowLorePrefab(int levelIndex)
@@ -312,7 +313,7 @@ public class GameManager : MonoBehaviour
     private void HandleTransitionContinue()
     {
         Debug.Log($"HandleTransitionContinue called - ShowingLore: {m_ShowingLore}, ShowingHint: {m_ShowingHint}, TransitionFromLevel: {m_TransitionFromLevel}");
-        
+
         if (m_ShowingLore)
         {
             Debug.Log($"Space pressed - switching from lore to hint for level {m_TransitionFromLevel}");
@@ -322,9 +323,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Space pressed on hint - preparing to load next level");
             Debug.Log($"Before: m_WaitingForContinue = {m_WaitingForContinue}");
-            
+
             m_WaitingForContinue = false;
-            
+
             Debug.Log($"After: m_WaitingForContinue = {m_WaitingForContinue}");
         }
         else
@@ -336,7 +337,7 @@ public class GameManager : MonoBehaviour
     private void HideTransitionPrefabs()
     {
         Debug.Log("HideTransitionPrefabs called");
-        
+
         if (m_CurrentLorePrefab != null)
         {
             Debug.Log($"Destroying lore prefab: {m_CurrentLorePrefab.name}");
@@ -353,7 +354,7 @@ public class GameManager : MonoBehaviour
 
         m_ShowingLore = false;
         m_ShowingHint = false;
-        
+
         Debug.Log("All transition prefabs cleaned up");
     }
 
@@ -405,6 +406,7 @@ public class GameManager : MonoBehaviour
 
         // počkaj na animáciu smrti hráča
         yield return new WaitForSeconds(delaySeconds);
+
 
         // po 3s zastav hru a ukáž panel
         Time.timeScale = 0;

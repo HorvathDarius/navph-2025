@@ -1,9 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Script used to switch between different Cinemachine cameras
 public class CinemachineSwitcher : MonoBehaviour
 {
+    [SerializeField] GameObject NpcTrigger;
+    [SerializeField] private Image speechBubbleImage;
     private Animator animator;
     private string currentCamera = "FirstCamera";
     private Coroutine switchCoroutine;
@@ -25,7 +28,8 @@ public class CinemachineSwitcher : MonoBehaviour
         switch (currentCamera)
         {
             case "FirstCamera":
-                // Switch to camera 2 after 2 second delay
+                // Switch to camera 2 after 2 second ddelay
+                NpcTrigger.SetActive(true);
                 switchCoroutine = StartCoroutine(SwitchAfterDelay(2f, "SecondCamera"));
                 break;
             case "SecondCamera":
@@ -35,12 +39,24 @@ public class CinemachineSwitcher : MonoBehaviour
             case "ThirdCamera":
                 animator.Play("FourthCamera");
                 currentCamera = "FourthCamera";
+                StartCoroutine(DisplayDialogueAfterDelay(2f));
                 break;
             case "FourthCamera":
                 // MINIGAME OVER
                 Debug.Log("MINIGAME OVER - GOING TO NEXT LEVEL");
+                GameManager.Instance.OnMinigameComplete();
                 break;
         }
+
+    }
+
+    private IEnumerator DisplayDialogueAfterDelay(float delay)
+    {
+
+        yield return new WaitForSeconds(delay);
+        speechBubbleImage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        speechBubbleImage.gameObject.SetActive(false);
     }
 
     // Helper function used to switch to camera 2 after a delay
