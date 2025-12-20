@@ -1,15 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChaserController : MonoBehaviour
 {
     [SerializeField] private GameObject chasedPlayer;
     [SerializeField] private float chaseSpeed = 1f;
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -23,6 +17,7 @@ public class ChaserController : MonoBehaviour
         {
             Debug.Log("Chaser caught the player!");
             Debug.Log("Start quick-time event");
+            StartCoroutine(NivyChaseManager.Instance.StartQuickTimeEvent());
         }
     }
 }
