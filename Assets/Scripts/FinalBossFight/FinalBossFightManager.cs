@@ -18,7 +18,6 @@ public class FinalBossFightManager : MonoBehaviour
     [SerializeField] private int bossMaxHealth = 100;
     [SerializeField] private float bossRegenAmount = 5f;
     [SerializeField] private float bossRegenInterval = 1.0f;
-    [SerializeField] private float bossDeathDelay = 2.5f;
 
     [Header("Fight Settings")]
     [SerializeField] private float roundEndDelay = 2.5f;
@@ -136,12 +135,14 @@ public class FinalBossFightManager : MonoBehaviour
         if (fightEnded) yield break;
         fightEnded = true;
 
+        ShowBossHealthUI(false);
         boss.PlayDeath();
         player.LockInput(true);
-
-        yield return new WaitForSeconds(bossDeathDelay);
+        player.EnableCombat(false);
 
         // Skóre za porazenie bezdomovca – 15 bodov.
+        if (GameManager.Instance == null) yield break;
+        
         GameManager.Instance.AddScore(15);
         yield return new WaitForSeconds(roundEndDelay);
 
@@ -153,18 +154,9 @@ public class FinalBossFightManager : MonoBehaviour
         if (fightEnded) yield break;
         fightEnded = true;
 
-        boss.LockAI(true);
-        player.PlayDeath();
+        ShowBossHealthUI(false);
 
         yield return new WaitForSeconds(roundEndDelay);
-
-        // GameManager už rieši GameOver podľa zdravia, tu len explicitne
-        var gm = GameManager.Instance;
-        var health = gm.Health;
-        if (health <= 0)
-        {
-            // ChangeHealth už spúšťa GameOver; len pre istotu
-        }
     }
     
     public void NotifyBossReadyToFight()

@@ -26,9 +26,10 @@ public class HomelessBossAI : MonoBehaviour
     [SerializeField] private GameObject cartObject;
 
     [Header("Combat")]
-    [SerializeField] private float attackRange = 1.2f;
-    [SerializeField] private float attackCooldown = 1.0f;
+    [SerializeField] private float attackRange = 1.3f;
+    [SerializeField] private float attackCooldown = 1.5f;
     [SerializeField] private int punchDamage = 10;
+    [SerializeField] private int kickDamage = 20;
 
     private FinalBossFightManager manager;
     private Animator animator;
@@ -46,7 +47,6 @@ public class HomelessBossAI : MonoBehaviour
     public void Init(FinalBossFightManager mgr)
     {
         manager = mgr;
-        Debug.Log("[HomelessBossAI] Init");
     }
 
     private void Awake()
@@ -97,9 +97,9 @@ public class HomelessBossAI : MonoBehaviour
         rb.linearVelocity = dir * walkSpeed;
 
         float dist = Vector2.Distance(transform.position, target);
-        //Debug.Log($"[HomelessBossAI] MoveTowards {target} dist={dist}");
+        Debug.Log($"[HomelessBossAI] MoveTowards {target} dist={dist}");
 
-        if (dist <= 0.05f)
+        if (dist <= 0.85f)
         {
             rb.linearVelocity = Vector2.zero;
             SetState(nextState);
@@ -124,8 +124,6 @@ public class HomelessBossAI : MonoBehaviour
         animator.SetBool("IsMoving", false);
         animator.SetBool("InCombat", true);
 
-        SetState(BossState.SittingFightIdle);
-
         FinalBossFightManager.Instance.NotifyBossReadyToFight();
     }
     
@@ -144,20 +142,24 @@ public class HomelessBossAI : MonoBehaviour
     private void HandleFighting()
     {
         if (player == null)
-        {
-            Debug.LogWarning("[HomelessBossAI] HandleFighting - player is null.");
             return;
-        }
 
         float dist = Vector2.Distance(transform.position, player.transform.position);
         Vector2 dir = (player.transform.position - transform.position).normalized;
         SetDirection(Mathf.Sign(dir.x));
 
-        if (dist > attackRange * 0.9f)
+        if (!canAttack && currentState == BossState.Fighting)
+        {
+            // počas cooldownu po útoku stojí
+            rb.linearVelocity = Vector2.zero;
+            animator.SetBool("IsMoving", false);
+            return;
+        }
+
+        if (dist > attackRange)
         {
             rb.linearVelocity = dir * walkSpeed;
             animator.SetBool("IsMoving", true);
-            //Debug.Log($"[HomelessBossAI] Chasing player. Dist={dist}");
         }
         else
         {
@@ -165,50 +167,50 @@ public class HomelessBossAI : MonoBehaviour
             animator.SetBool("IsMoving", false);
 
             if (canAttack)
-            {
-                Debug.Log("[HomelessBossAI] In range, starting AttackRoutine.");
                 StartCoroutine(AttackRoutine());
-            }
         }
     }
 
     private IEnumerator AttackRoutine()
     {
         canAttack = false;
+        rb.linearVelocity = Vector2.zero;
+        animator.SetBool("IsMoving", false);
 
         bool useKick = Random.value > 0.75f;
-        if (useKick)
-        {
-            Debug.Log("[HomelessBossAI] AttackRoutine - Kick trigger.");
-            animator.SetTrigger("Kick");
-        }
-        else
-        {
-            Debug.Log("[HomelessBossAI] AttackRoutine - Punch trigger.");
-            animator.SetTrigger("Punch");
-        }
+        animator.SetTrigger(useKick ? "Kick" : "Punch");
 
-        yield return new WaitForSeconds(0.3f);
+        yield return null;
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        float clipLength = state.length > 0 ? state.length : 0.4f;
+
+        // čakáme na koniec animácie, až potom riešime damage
+        yield return new WaitForSeconds(clipLength);
 
         if (player != null)
         {
-            float dist = Vector2.Distance(transform.position, player.transform.position);
-            Debug.Log($"[HomelessBossAI] Attack hit check. Dist={dist}");
+            Vector2 toPlayer = player.transform.position - transform.position;
+            float dist = toPlayer.magnitude;
 
-            if (dist <= attackRange + 0.1f)
+            Vector2 forward = new Vector2(directionX, 0f); // directionX už určuje facing
+            float dot = Vector2.Dot(forward.normalized, toPlayer.normalized);
+
+            Debug.Log($"[HomelessBossAI] Attack end. useKick={useKick} dist={dist} dot={dot}");
+
+            if (dist <= attackRange + 0.1f && dot > 0f)
             {
-                Debug.Log("[HomelessBossAI] Attack HIT - dealing damage.");
-                player.TakeDamage(punchDamage);
+                int dmg = useKick ? kickDamage : punchDamage;
+                Debug.Log("[HomelessBossAI] HIT player");
+                player.TakeDamage(dmg);
             }
             else
             {
-                Debug.Log("[HomelessBossAI] Attack MISS - player out of range.");
+                Debug.Log("[HomelessBossAI] MISS player (range/facing)");
             }
         }
 
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
-        Debug.Log("[HomelessBossAI] AttackRoutine finished. canAttack=true");
     }
 
     public void StartRegeneration()
@@ -251,7 +253,7 @@ public class HomelessBossAI : MonoBehaviour
         Debug.Log("[HomelessBossAI] PlayDeath");
         SetState(BossState.Dead);
         rb.linearVelocity = Vector2.zero;
-        animator.SetBool("IsDead", true);
+        animator.SetTrigger("IsDead");
         animator.SetBool("IsMoving", false);
     }
 

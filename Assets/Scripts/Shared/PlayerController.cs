@@ -1,147 +1,176 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")] [SerializeField]
-    private float moveSpeed = 3f;
-
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float sprintSpeed = 6f;
 
-    [Header("Input")] [SerializeField] InputAction moveAction;
-    [SerializeField] InputAction interactAction;
-    [SerializeField] InputAction runningAction;
+    [Header("Input")]
+    [SerializeField] private InputAction moveAction;
+    [SerializeField] private InputAction interactAction;
+    [SerializeField] private InputAction runningAction;
+    [SerializeField] private InputAction pickUpAction;
 
     public List<CollectibleItem> inventoryItems = new();
     private Rigidbody2D rb2d;
     private Vector2 moveDirection;
 
     private IInteractable nearbyInteractable;
-    private String obstacleType;
+    private string obstacleType;
     private CheckoutTrigger nearbyCheckout;
 
-    private Animator m_Animator;
-    private bool m_IsMoving;
-    private bool m_IsRunning;
+    private Animator animator;
+    private bool isRunning;
+    private bool isMovementLocked;
 
-    public bool facingEast { get; private set; }
+    public bool FacingEast { get; private set; } = true;
 
     private void Awake()
     {
-        m_Animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
-    void Start()
+    private void Start()
     {
-        // Assign input actions
         moveAction = InputSystem.actions.FindAction("Move");
         interactAction = InputSystem.actions.FindAction("Interact");
         runningAction = InputSystem.actions.FindAction("Sprint");
+        pickUpAction = InputSystem.actions.FindAction("PickUp");
 
-        // Initialize Rigidbody2D
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        m_Animator.SetBool("FacingEast", true);
-        facingEast = true;
+        animator.SetFloat("DirectionX", 1f);
     }
 
-    void Update()
+    private void Update()
     {
-        // Handle movement input
+        HandleMovementInput();
+        HandleNonCombatActions();
+    }
+
+    private void FixedUpdate()
+    {
+        if (isMovementLocked)
+        {
+            rb2d.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        float speed = isRunning ? sprintSpeed : moveSpeed;
+        rb2d.linearVelocity = moveDirection * speed;
+    }
+
+    private void HandleMovementInput()
+    {
+        if (isMovementLocked)
+        {
+            moveDirection = Vector2.zero;
+            animator.SetBool("IsMoving", false);
+            animator.SetBool("IsRunning", false);
+            return;
+        }
+
         Vector2 input = moveAction.ReadValue<Vector2>();
-        float horizontalInput = input.x;
-        float verticalInput = input.y;
+        moveDirection = input;
 
-        moveDirection = new Vector2(horizontalInput, verticalInput);
+        bool isMoving = moveDirection.sqrMagnitude > 0.0001f;
+        animator.SetBool("IsMoving", isMoving);
 
-        // Aktuálny pohyb
-        bool isMoving = moveDirection.magnitude > 0.01f;
-        m_Animator.SetBool("Moving", isMoving);
-
-        // Smerovanie (Facing East/West)
-        switch (horizontalInput)
+        // smer len podľa horizontálu
+        if (input.x > 0.01f)
         {
-            case > 0:
-                m_Animator.SetBool("FacingEast", true);
-                facingEast = true;
-                break;
-            case < 0:
-                m_Animator.SetBool("FacingEast", false);
-                facingEast = false;
-                break;
+            animator.SetFloat("DirectionX", 1f);
+            FacingEast = true;
+        }
+        else if (input.x < -0.01f)
+        {
+            animator.SetFloat("DirectionX", -1f);
+            FacingEast = false;
         }
 
-        if (runningAction.IsPressed())
-        {
-            m_Animator.SetBool("Running", true);
-            m_IsRunning = true;
-        }
-        else
-        {
-            m_Animator.SetBool("Running", false);
-            m_IsRunning = false;
-        }
+        // beh
+        isRunning = runningAction.IsPressed();
+        animator.SetBool("IsRunning", isRunning);
+    }
 
-        // Handle interaction input
+    private void HandleNonCombatActions()
+    {
+        bool isCurrentlyMoving = animator.GetBool("IsMoving");
+
+        // Interact – iba ak stojí
         if (interactAction.WasPressedThisFrame())
         {
-            Debug.Log("Interact action triggered in PlayerController");
-
-            if (nearbyInteractable != null)
+            if (!isCurrentlyMoving)
             {
-                Debug.Log("Interacting with: " + nearbyInteractable.GetDebugName());
-                nearbyInteractable.Interact(this);
-            }
+                animator.SetTrigger("Interact");
+                Debug.Log("[PlayerController] Interact animation trigger.");
 
-            if (nearbyCheckout != null)
+                if (nearbyInteractable != null)
+                {
+                    Debug.Log("[PlayerController] Interacting with: " + nearbyInteractable.GetDebugName());
+                    nearbyInteractable.Interact(this);
+                }
+
+                if (nearbyCheckout != null)
+                {
+                    Debug.Log("[PlayerController] Checkout triggered in PlayerController");
+                    YemeMazeManager.Instance.TryHandleCheckout(this);
+                }
+            }
+            else
             {
-                Debug.Log("Checkout triggered in PlayerController");
-                YemeMazeManager.Instance.TryHandleCheckout(this);
+                Debug.Log("[PlayerController] Interact ignored, player is moving.");
+            }
+        }
+
+        // PickUp – iba ak stojí (napr. tlačidlo F)
+        if (pickUpAction != null && pickUpAction.WasPressedThisFrame())
+        {
+            if (!isCurrentlyMoving)
+            {
+                animator.SetTrigger("PickUp");
+                Debug.Log("[PlayerController] PickUp animation trigger.");
+                // samotné pridanie itemu rieši Collectible skript pri kolízii
+            }
+            else
+            {
+                Debug.Log("[PlayerController] PickUp ignored, player is moving.");
             }
         }
     }
 
-    void FixedUpdate()
+    public void SetMovementLocked(bool locked)
     {
-        if (m_IsRunning)
+        isMovementLocked = locked;
+        if (locked)
         {
-            rb2d.linearVelocity = moveDirection * sprintSpeed;
+            moveDirection = Vector2.zero;
+            animator.SetBool("IsMoving", false);
+            animator.SetBool("IsRunning", false);
         }
-        else
-        {
-            rb2d.linearVelocity = moveDirection * moveSpeed;
-        }
+
+        Debug.Log($"[PlayerController] SetMovementLocked({locked})");
     }
 
-    // Set and clear nearby interactive object
-    public void SetNearbyInteractable(IInteractable interactable)
-    {
-        nearbyInteractable = interactable;
-    }
+    // Interactions
+    public void SetNearbyInteractable(IInteractable interactable) => nearbyInteractable = interactable;
+    public void ClearNearbyInteractable() => nearbyInteractable = null;
+    public void SetNearbyCheckout(CheckoutTrigger checkout) => nearbyCheckout = checkout;
 
-    public void ClearNearbyInteractable()
-    {
-        nearbyInteractable = null;
-    }
-
-    public void SetNearbyCheckout(CheckoutTrigger checkout)
-    {
-        nearbyCheckout = checkout;
-    }
-
-    // Add item to player inventory
+    // Inventory
     public void AddItemToInvetory(CollectibleItem item)
     {
         Debug.Log("Adding to inventory: " + item.itemName);
         inventoryItems.Add(item);
+        if (GameManager.Instance == null) return;
         GameManager.Instance.CollectItem(item.itemName);
-        Debug.Log("Item added to inventory: " + item.itemName);
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         obstacleType = collision.gameObject.tag;
         switch (obstacleType)
@@ -158,5 +187,4 @@ public class PlayerController : MonoBehaviour
     }
     
     public Vector2 GetCurrentMoveDirection() => moveDirection;
-    public bool IsRunning() => m_IsRunning;
 }

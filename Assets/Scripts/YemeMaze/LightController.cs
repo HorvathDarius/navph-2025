@@ -84,7 +84,7 @@ public class LightController : MonoBehaviour
         if (playerController != null && mobileLightTransform != null)
         {
             // If facing east, rotation = 0°, else west, rotation = 180° around Y axis
-            mobileLightTransform.localEulerAngles = playerController.facingEast
+            mobileLightTransform.localEulerAngles = playerController.FacingEast
                 ? new Vector3(0, 0, -90)
                 : new Vector3(0, 0, 90);
         }

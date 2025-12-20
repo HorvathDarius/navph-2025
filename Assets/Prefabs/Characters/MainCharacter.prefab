@@ -157,6 +157,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  pickUpAction:
+    m_Name: Pick Up
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 75de8e40-bda9-4636-8c91-5f1a2998ba9e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   inventoryItems: []
 --- !u!70 &2142038185580808467
 CapsuleCollider2D:
@@ -192,8 +201,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.5931481, y: 0.42890006}
+  m_Offset: {x: 0.11159117, y: -0.028630728}
+  m_Size: {x: 2.3324492, y: 0.62931603}
   m_Direction: 1
 --- !u!50 &-7209107569903586965
 Rigidbody2D:

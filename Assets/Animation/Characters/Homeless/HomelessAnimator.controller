@@ -116,9 +116,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: InCombat
-    m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: DirectionX
     m_EventTreshold: 0
@@ -374,7 +371,7 @@ AnimatorStateMachine:
     m_Position: {x: 340, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3333521980046238317}
-    m_Position: {x: 340, y: 10, z: 0}
+    m_Position: {x: 350, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7864085674927787923}
     m_Position: {x: 30, y: -250, z: 0}
@@ -383,28 +380,28 @@ AnimatorStateMachine:
     m_Position: {x: -170, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3853241388567244568}
-    m_Position: {x: 660, y: 260, z: 0}
+    m_Position: {x: 870, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1706227938375015946}
-    m_Position: {x: 620, y: -130, z: 0}
+    m_Position: {x: 860, y: -150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8109554299389419712}
-    m_Position: {x: 880, y: -110, z: 0}
+    m_Position: {x: 1110, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8665408802194226118}
-    m_Position: {x: 720, y: 360, z: 0}
+    m_Position: {x: 920, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -533734765665633863}
-    m_Position: {x: 720, y: -230, z: 0}
+    m_Position: {x: 870, y: -250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8138844688746499620}
-    m_Position: {x: 420, y: 340, z: 0}
+    m_Position: {x: 620, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6346231863897654131}
-    m_Position: {x: 700, y: 10, z: 0}
+    m_Position: {x: 710, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1120422586254229216}
-    m_Position: {x: 710, y: 150, z: 0}
+    m_Position: {x: 690, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5239885648618762030}
     m_Position: {x: 340, y: -120, z: 0}
@@ -593,9 +590,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: InCombat
-    m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: DirectionX
     m_EventTreshold: 0
@@ -882,12 +876,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsDead
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: Punch
     m_Type: 9
     m_DefaultFloat: 0
@@ -895,6 +883,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: Kick
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: IsDead
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1130,9 +1124,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: InCombat
-    m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: DirectionX
     m_EventTreshold: 0
@@ -1192,9 +1183,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: InCombat
-    m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: DirectionX
     m_EventTreshold: 0

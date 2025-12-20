@@ -9,7 +9,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private int basicDamage = 10;
     [SerializeField] private int specialDamage = 20;
     [SerializeField] private float attackRange = 1.3f;
-    [SerializeField] private float attackCooldown = 0.5f;
+    [SerializeField] private float attackCooldown = 0.75f;
 
     [Header("Input")]
     [SerializeField] private InputAction attackAction;
@@ -34,8 +34,6 @@ public class PlayerCombat : MonoBehaviour
     {
         attackAction = InputSystem.actions.FindAction("Attack");
         specialAttackAction = InputSystem.actions.FindAction("SpecialAttack");
-
-        Debug.Log("[PlayerCombat] Start - Attack actions bound.");
     }
 
     private void Update()
@@ -43,22 +41,13 @@ public class PlayerCombat : MonoBehaviour
         if (!combatEnabled || inputLocked)
             return;
 
-        // počas útoku nemeň movement parametre – nech Animator ostane v útokovom stave
-        if (!isAttacking)
+        Vector2 moveDir = controller.GetCurrentMoveDirection();
+        if (Mathf.Abs(moveDir.x) > 0.01f)
         {
-            Vector2 moveDir = controller.GetCurrentMoveDirection();
-            bool isMoving = moveDir.sqrMagnitude > 0.0001f;
-
-            if (Mathf.Abs(moveDir.x) > 0.01f)
-                lastDirectionX = Mathf.Sign(moveDir.x);
-
+            lastDirectionX = Mathf.Sign(moveDir.x);
             animator.SetFloat("DirectionX", lastDirectionX);
-            animator.SetBool("IsMoving", isMoving);
-            animator.SetBool("IsRunning", controller.IsRunning());
-
-            //Debug.Log($"[PlayerCombat] MoveDir={moveDir}, IsMoving={isMoving}, IsRunning={controller.IsRunning()}, DirX={lastDirectionX}");
         }
-
+        
         animator.SetBool("InCombat", combatEnabled);
 
         if (attackAction != null && attackAction.WasPressedThisFrame())
@@ -73,14 +62,11 @@ public class PlayerCombat : MonoBehaviour
         combatEnabled = false;
         inputLocked = false;
         isAttacking = false;
-        lastDirectionX = 1f;
 
-        animator.SetFloat("DirectionX", lastDirectionX);
+        // animator.SetFloat("DirectionX", lastDirectionX);
         animator.SetBool("InCombat", false);
-        animator.SetBool("IsMoving", false);
-        animator.SetBool("IsRunning", false);
 
-        Debug.Log("[PlayerCombat] InitForBossFight - combat disabled, reset animator params.");
+        Debug.Log("[PlayerCombat] InitForBossFight");
     }
 
     public void EnableCombat(bool enable)
@@ -93,30 +79,22 @@ public class PlayerCombat : MonoBehaviour
     public void LockInput(bool locked)
     {
         inputLocked = locked;
-        controller.enabled = !locked;
-
-        if (locked)
-        {
-            animator.SetBool("IsMoving", false);
-            animator.SetBool("IsRunning", false);
-        }
-
+        controller.SetMovementLocked(locked);
         Debug.Log($"[PlayerCombat] LockInput({locked})");
     }
-
-    public Vector2 GetFacingDir() => new(lastDirectionX, 0f);
 
     // ===== BASIC ATTACK =====
 
     private void TryBasicAttack()
     {
-        if (!canAttack || isAttacking)
+        bool isMoving = animator.GetBool("IsMoving");
+
+        if (!canAttack || isAttacking || isMoving)
         {
-            Debug.Log($"[PlayerCombat] TryBasicAttack blocked: canAttack={canAttack}, isAttacking={isAttacking}");
+            Debug.Log($"[PlayerCombat] TryBasicAttack blocked: canAttack={canAttack}, isAttacking={isAttacking}, isMoving={isMoving}");
             return;
         }
 
-        Debug.Log("[PlayerCombat] TryBasicAttack - starting coroutine.");
         StartCoroutine(BasicAttackRoutine());
     }
 
@@ -125,51 +103,42 @@ public class PlayerCombat : MonoBehaviour
         canAttack = false;
         isAttacking = true;
 
+        controller.SetMovementLocked(true);
         animator.SetTrigger("Punch");
-        Debug.Log("[PlayerCombat] BasicAttackRoutine - Punch trigger set.");
 
-        // počkaj na „hit frame“ – tu podľa dĺžky animácie
-        yield return new WaitForSeconds(0.2f);
+        AnimatorStateInfo state;
+        float clipLength = 0.4f; // fallback
+        yield return null;
 
-        var boss = FindAnyObjectByType<HomelessBossAI>();
-        if (boss != null)
-        {
-            float dist = Vector2.Distance(transform.position, boss.transform.position);
-            Debug.Log($"[PlayerCombat] BasicAttack hit check. Dist={dist}");
+        state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.IsName("main_char_punch_R") || state.IsName("main_char_punch_L"))
+            clipLength = state.length;
 
-            if (dist <= attackRange)
-            {
-                Debug.Log("[PlayerCombat] BasicAttack HIT - applying damage.");
-                FinalBossFightManager.Instance.ApplyDamageToBoss(basicDamage);
-            }
-            else
-            {
-                Debug.Log("[PlayerCombat] BasicAttack MISS - target out of range.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("[PlayerCombat] BasicAttackRoutine - boss not found.");
-        }
+        // damage sa aplikuje na konci animácie
+        yield return new WaitForSeconds(clipLength);
 
+        DealPlayerDamageToBoss(basicDamage);
+
+        // cooldown po animácii
         yield return new WaitForSeconds(attackCooldown);
 
+        controller.SetMovementLocked(false);
         isAttacking = false;
         canAttack = true;
-        Debug.Log("[PlayerCombat] BasicAttackRoutine finished. canAttack=true, isAttacking=false");
     }
 
     // ===== SPECIAL ATTACK =====
 
     private void TrySpecialAttack()
     {
-        if (!canAttack || isAttacking)
+        bool isMoving = animator.GetBool("IsMoving");
+
+        if (!canAttack || isAttacking || isMoving)
         {
-            Debug.Log($"[PlayerCombat] TrySpecialAttack blocked: canAttack={canAttack}, isAttacking={isAttacking}");
+            Debug.Log($"[PlayerCombat] TrySpecialAttack blocked: canAttack={canAttack}, isAttacking={isAttacking}, isMoving={isMoving}");
             return;
         }
 
-        Debug.Log("[PlayerCombat] TrySpecialAttack - starting coroutine.");
         StartCoroutine(SpecialAttackRoutine());
     }
 
@@ -178,44 +147,63 @@ public class PlayerCombat : MonoBehaviour
         canAttack = false;
         isAttacking = true;
 
+        controller.SetMovementLocked(true);
         animator.SetTrigger("Throw");
-        Debug.Log("[PlayerCombat] SpecialAttackRoutine - Throw trigger set.");
 
-        yield return new WaitForSeconds(0.25f);
+        yield return null;
+        var state = animator.GetCurrentAnimatorStateInfo(0);
+        float clipLength = state.length > 0 ? state.length : 0.5f;
 
-        var boss = FindAnyObjectByType<HomelessBossAI>();
-        if (boss != null)
-        {
-            float dist = Vector2.Distance(transform.position, boss.transform.position);
-            Debug.Log($"[PlayerCombat] SpecialAttack hit check. Dist={dist}");
+        yield return new WaitForSeconds(clipLength);
 
-            if (dist <= attackRange * 1.5f)
-            {
-                Debug.Log("[PlayerCombat] SpecialAttack HIT - applying damage.");
-                FinalBossFightManager.Instance.ApplyDamageToBoss(specialDamage);
-            }
-            else
-            {
-                Debug.Log("[PlayerCombat] SpecialAttack MISS - target out of range.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("[PlayerCombat] SpecialAttackRoutine - boss not found.");
-        }
+        DealPlayerDamageToBoss(specialDamage, special: true);
 
         yield return new WaitForSeconds(attackCooldown);
 
+        controller.SetMovementLocked(false);
         isAttacking = false;
         canAttack = true;
-        Debug.Log("[PlayerCombat] SpecialAttackRoutine finished. canAttack=true, isAttacking=false");
+    }
+    
+    // ===== DAMAGE / FACING CHECK =====
+
+    private void DealPlayerDamageToBoss(int damage, bool special = false)
+    {
+        var boss = FindAnyObjectByType<HomelessBossAI>();
+        if (boss == null)
+        {
+            Debug.LogWarning("[PlayerCombat] DealPlayerDamageToBoss - boss not found.");
+            return;
+        }
+
+        Vector2 toBoss = boss.transform.position - transform.position;
+        float dist = toBoss.magnitude;
+
+        // smer dopredu podľa lastDirectionX
+        Vector2 forward = new Vector2(lastDirectionX, 0f);
+
+        // musia byť približne vpredu
+        float dot = Vector2.Dot(forward.normalized, toBoss.normalized);
+
+        Debug.Log($"[PlayerCombat] DealDamage special={special} dist={dist} dot={dot}");
+
+        if (dist <= attackRange * (special ? 1.5f : 1f) && dot > 0f)
+        {
+            Debug.Log("[PlayerCombat] HIT boss");
+            FinalBossFightManager.Instance.ApplyDamageToBoss(damage);
+        }
+        else
+        {
+            Debug.Log("[PlayerCombat] MISS boss (range/facing)");
+        }
     }
 
     // ===== DAMAGE / DEATH =====
 
     public void TakeDamage(int amount)
     {
-        Debug.Log($"[PlayerCombat] TakeDamage({amount})");
+        if (GameManager.Instance == null) return;
+
         GameManager.Instance.ChangeHealth(-amount);
 
         if (GameManager.Instance.Health <= 0)
@@ -225,16 +213,10 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    private IEnumerator PlayerDeathRoutine()
+    public IEnumerator PlayerDeathRoutine()
     {
         LockInput(true);
-        PlayDeath();
+        animator.SetTrigger("IsDead");
         yield return FinalBossFightManager.Instance.HandlePlayerDeath();
-    }
-
-    public void PlayDeath()
-    {
-        Debug.Log("[PlayerCombat] PlayDeath - Death trigger set.");
-        animator.SetTrigger("Death");
     }
 }
