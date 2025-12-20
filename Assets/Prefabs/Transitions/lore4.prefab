@@ -143,7 +143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Kone\u010Dne sa najem, tieto utorky s\xFA fakt divok\xE9. Nejak\xFA bowl
+  m_text: "Kone\u010Dne sa najem, tieto utorky s\xFA fakt divok\xE9. Nejak\xFD bowl
     by po tomto v\u0161etko naozaj dobre padol."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
