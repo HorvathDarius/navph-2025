@@ -656,16 +656,18 @@ public class GameManager : MonoBehaviour
     
     private void OnRetryButtonClicked()
     {
-        Time.timeScale = 1f;
-        m_IsGameActive = true;
+        m_Health = startingHealth;
+        UpdateHealthUI();
 
-        Scene current = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(current.name);
-        
+        m_IsGameActive = true;
+        Time.timeScale = 1f;
+
+        var scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+
         if (m_GameOverPanel != null)
             m_GameOverPanel.style.display = DisplayStyle.None;
     }
-
 
     private void HideAllPanels()
     {

@@ -158,7 +158,7 @@ public class TutorialManager : MonoBehaviour
         if (item.itemName is "Wallet" or "Phone")
         {
             firstTutorialItemPicked = true;
-            OnFirstItemPickedUp();
+            StartCoroutine(ShowHudInfoSequence());
         }
     }
 
