@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Load first level
-        LoadLevel(2);
+        LoadLevel(0);
     }
 
     public void LoadLevel(int levelIndex)

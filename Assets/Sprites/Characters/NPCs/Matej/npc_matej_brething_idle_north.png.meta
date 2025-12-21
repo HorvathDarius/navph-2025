@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 6b5df343bdeb9d241982c4e32563f92b
+guid: 7f2e7b7ee1cd1e740ada0dee775a11c0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8179747993000204658
-    second: generated-image (8)_0
+      213: 546420205493205059
+    second: npc_matej_brething_idle_north_0
+  - first:
+      213: -5836572490736563875
+    second: npc_matej_brething_idle_north_1
+  - first:
+      213: 1726281490540612925
+    second: npc_matej_brething_idle_north_2
+  - first:
+      213: -8979847020582014714
+    second: npc_matej_brething_idle_north_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: self_cash_desk_0
+      name: npc_matej_brething_idle_north_0
       rect:
         serializedVersion: 2
-        x: 184
-        y: 50
-        width: 656
-        height: 934
+        x: 209
+        y: 41
+        width: 164
+        height: 440
       alignment: 9
-      pivot: {x: 0.5, y: 0.10355176}
+      pivot: {x: 0.46682292, y: 0.070283234}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e86220dd982bb7e80800000000000000
-      internalID: -8179747993000204658
+      spriteID: 348b4862846459700800000000000000
+      internalID: 546420205493205059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_matej_brething_idle_north_1
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 41
+        width: 164
+        height: 446
+      alignment: 9
+      pivot: {x: 0.4834111, y: 0.076064035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5984df3e34500fa0800000000000000
+      internalID: -5836572490736563875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_matej_brething_idle_north_2
+      rect:
+        serializedVersion: 2
+        x: 1355
+        y: 41
+        width: 170
+        height: 446
+      alignment: 9
+      pivot: {x: 0.5, y: 0.057764456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3d41029edbf4f710800000000000000
+      internalID: 1726281490540612925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_matej_brething_idle_north_3
+      rect:
+        serializedVersion: 2
+        x: 1937
+        y: 41
+        width: 164
+        height: 446
+      alignment: 9
+      pivot: {x: 0.45852885, y: 0.06996411}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 601fbd846bc216380800000000000000
+      internalID: -8979847020582014714
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a313da8d541fc4c46a51db93d54a04eb
+    spriteID: d9ecbeed91342de4b94f417216e6dff4
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      self_cash_desk_0: -8179747993000204658
+      npc_matej_brething_idle_north_0: 546420205493205059
+      npc_matej_brething_idle_north_1: -5836572490736563875
+      npc_matej_brething_idle_north_2: 1726281490540612925
+      npc_matej_brething_idle_north_3: -8979847020582014714
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

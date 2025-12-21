@@ -94,7 +94,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!60 &7126842221396121054
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.15806785}
     oldSize: {x: 6.57, y: 6.76}
     newSize: {x: 6.57, y: 6.76}
     adaptiveTilingThreshold: 0.5
@@ -141,18 +141,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.0760646, y: -0.7202978}
-      - {x: -3.0662074, y: -0.72459614}
-      - {x: -3.2902882, y: -1.591663}
-      - {x: -3.279862, y: -2.0880013}
-      - {x: -3.099826, y: -2.2094095}
-      - {x: -3.094138, y: -3.2846856}
-      - {x: -2.9715989, y: -3.34506}
-      - {x: 2.9916081, y: -3.4019606}
-      - {x: 3.126346, y: -3.2672987}
-      - {x: 3.1113498, y: -2.1987762}
-      - {x: 3.2849998, y: -2.0636075}
-      - {x: 3.280346, y: -1.603963}
+    - - {x: 3.0426526, y: 1.5851307}
+      - {x: -3.077345, y: 1.6142448}
+      - {x: -3.312562, y: 0.6803528}
+      - {x: -3.3132732, y: 0.18401456}
+      - {x: -3.099826, y: 0.084881306}
+      - {x: -3.0925846, y: -0.97122586}
+      - {x: -2.9779449, y: -1.0504993}
+      - {x: 3.0138834, y: -1.0631208}
+      - {x: 3.104071, y: -1.0064206}
+      - {x: 3.1224873, y: 0.14006495}
+      - {x: 3.2961366, y: 0.24181986}
+      - {x: 3.313758, y: 0.7126018}
   m_UseDelaunayMesh: 0
 --- !u!61 &4081492512193986672
 BoxCollider2D:
@@ -188,10 +188,10 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -4.2618523}
+  m_Offset: {x: 0, y: -2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.15806785}
     oldSize: {x: 6.57, y: 6.76}
     newSize: {x: 6.57, y: 6.76}
     adaptiveTilingThreshold: 0.5
@@ -235,13 +235,13 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: -0.0026397705, y: -2.0611267, z: 0}
-      m_Extent: {x: 3.2876434, y: 1.3408356, z: 0}
+      m_Center: {x: -0.09539795, y: 0.27555847, z: 0}
+      m_Extent: {x: 3.2178802, y: 1.3386841, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0
     m_FlipX: 0
     m_FlipY: 0
-    m_InitialTrim: 0.1
+    m_InitialTrim: 0
   m_CastingOption: 1
   m_PreviousTrimEdge: 0
   m_PreviousEdgeProcessing: 1

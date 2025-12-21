@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 6b5df343bdeb9d241982c4e32563f92b
+guid: 0bb289877b6c99748ac7f7a38ebd399f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8179747993000204658
-    second: generated-image (8)_0
+      213: -3326604147477575706
+    second: npc_redhead_girl_breathing_idle_north_0
+  - first:
+      213: 1482214952111074555
+    second: npc_redhead_girl_breathing_idle_north_1
+  - first:
+      213: -6305330933415993722
+    second: npc_redhead_girl_breathing_idle_north_2
+  - first:
+      213: 8936760318956128043
+    second: npc_redhead_girl_breathing_idle_north_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: self_cash_desk_0
+      name: npc_redhead_girl_breathing_idle_north_0
       rect:
         serializedVersion: 2
-        x: 184
-        y: 50
-        width: 656
-        height: 934
+        x: 220
+        y: 62
+        width: 132
+        height: 447
       alignment: 9
-      pivot: {x: 0.5, y: 0.10355176}
+      pivot: {x: 0.47939, y: 0.05571088}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e86220dd982bb7e80800000000000000
-      internalID: -8179747993000204658
+      spriteID: 6e70249272785d1d0800000000000000
+      internalID: -3326604147477575706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_redhead_girl_breathing_idle_north_1
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 62
+        width: 142
+        height: 452
+      alignment: 9
+      pivot: {x: 0.48084185, y: 0.048587747}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfc6a5555a2e19410800000000000000
+      internalID: 1482214952111074555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_redhead_girl_breathing_idle_north_2
+      rect:
+        serializedVersion: 2
+        x: 1367
+        y: 67
+        width: 142
+        height: 443
+      alignment: 9
+      pivot: {x: 0.5191582, y: 0.05476963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68e15725ce6fe78a0800000000000000
+      internalID: -6305330933415993722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_redhead_girl_breathing_idle_north_3
+      rect:
+        serializedVersion: 2
+        x: 1943
+        y: 62
+        width: 137
+        height: 452
+      alignment: 9
+      pivot: {x: 0.4999991, y: 0.066644415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b27cf2e3920c50c70800000000000000
+      internalID: 8936760318956128043
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a313da8d541fc4c46a51db93d54a04eb
+    spriteID: 40f5b0071d5c6fd48a3115f2f11ccb92
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      self_cash_desk_0: -8179747993000204658
+      npc_redhead_girl_breathing_idle_north_0: -3326604147477575706
+      npc_redhead_girl_breathing_idle_north_1: 1482214952111074555
+      npc_redhead_girl_breathing_idle_north_2: -6305330933415993722
+      npc_redhead_girl_breathing_idle_north_3: 8936760318956128043
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

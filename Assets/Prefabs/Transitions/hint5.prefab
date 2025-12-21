@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "N\xC1POVEDA"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
-  m_sharedMaterial: {fileID: 7473230018274346873, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
+  m_sharedMaterial: {fileID: -172492987115859730, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -282,8 +282,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "POKRA\u010COVA\u0164 [SPACE]"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
-  m_sharedMaterial: {fileID: 7473230018274346873, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
+  m_sharedMaterial: {fileID: -172492987115859730, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -496,8 +496,8 @@ MonoBehaviour:
     pou\u017Ei\u0165 dva \xFAtoky z\xE1kladn\xFD [LMB] a ak si po\u010Das \xFAteku
     zobral nejak\xFD predmet tak aj silnej\u0161\xED \xFAtok [RMB]."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
-  m_sharedMaterial: {fileID: 7473230018274346873, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
+  m_sharedMaterial: {fileID: -172492987115859730, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

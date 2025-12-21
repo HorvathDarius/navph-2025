@@ -94,7 +94,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!60 &3489963528048753125
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.10355176}
     oldSize: {x: 6.56, y: 9.34}
     newSize: {x: 6.56, y: 9.34}
     adaptiveTilingThreshold: 0.5
@@ -141,15 +141,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.818963, y: -4.2656913}
-      - {x: 2.8354013, y: -4.2593555}
-      - {x: 2.8765595, y: -2.6417751}
-      - {x: -3.312285, y: -2.6318114}
-      - {x: -3.2970593, y: -4.256792}
-      - {x: -3.0698144, y: -4.38905}
-      - {x: -3.0758538, y: -4.7402763}
-      - {x: 2.5563529, y: -4.664555}
-      - {x: 2.5786695, y: -4.451192}
+    - - {x: 2.6734264, y: -0.7046397}
+      - {x: 2.6914847, y: -0.5737499}
+      - {x: 2.8218257, y: -0.57627076}
+      - {x: 2.838347, y: 1.0457382}
+      - {x: -3.2931788, y: 1.0365958}
+      - {x: -3.276554, y: -0.56583667}
+      - {x: -3.1660182, y: -0.566944}
+      - {x: -3.1473086, y: -0.69501954}
+      - {x: -3.0477717, y: -0.7074925}
+      - {x: -3.0376413, y: -0.95723176}
+      - {x: 2.5598083, y: -0.9645212}
+      - {x: 2.558306, y: -0.70193136}
   m_UseDelaunayMesh: 0
 --- !u!114 &5360331489734440721
 MonoBehaviour:
@@ -186,8 +189,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: -0.21786499, y: -3.6860428, z: 0}
-      m_Extent: {x: 3.0944214, y: 1.0542374, z: 0}
+      m_Center: {x: -0.22741699, y: 0.040611267, z: 0}
+      m_Extent: {x: 3.0657654, y: 1.0051346, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0
     m_FlipX: 0
@@ -238,10 +241,10 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.2384361, y: -5.939268}
+  m_Offset: {x: -0.2384361, y: -2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.10355176}
     oldSize: {x: 6.56, y: 9.34}
     newSize: {x: 6.56, y: 9.34}
     adaptiveTilingThreshold: 0.5
