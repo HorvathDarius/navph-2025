@@ -491,10 +491,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "V tejto \u010Dasti, si sa  bezd\xF4vodne stal koris\u0165ou spoluob\u010Dana
+  m_text: "V tejto \u010Dasti, si sa bezd\xF4vodne stal koris\u0165ou spoluob\u010Dana
     bez trval\xE9ho bydliska. Nedovol aby \u0165a chytil, inak ti tie esencie z mikiny
     nevyperie ani mamka. Po ceste \u0165a m\xF4\u017Eu \u010Daka\u0165 predmety,
-    ktor\xE9 ak pozbiera\u0161 [E] ti pom\xF4\u017Eu nesk\xF4r. "
+    ktor\xE9 ak pozbiera\u0161 [F] ti pom\xF4\u017Eu nesk\xF4r. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
   m_sharedMaterial: {fileID: -172492987115859730, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}

@@ -27,23 +27,40 @@ public class PlayerController : MonoBehaviour
     private bool isMovementLocked;
     private PlayerController controller;
     private CapsuleCollider2D capsuleCollider;
+    private bool isInteracting;
 
     public bool FacingEast { get; private set; } = true;
 
+    void OnEnable()
+    {
+        moveAction.Enable();
+        interactAction.Enable();
+        runningAction.Enable();
+        pickUpAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        moveAction.Disable();
+        interactAction.Disable();
+        runningAction.Disable();
+        pickUpAction.Disable();
+    }
+    
     private void Awake()
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<PlayerController>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-    }
-
-    private void Start()
-    {
+        
         moveAction = InputSystem.actions.FindAction("Move");
         interactAction = InputSystem.actions.FindAction("Interact");
         runningAction = InputSystem.actions.FindAction("Sprint");
         pickUpAction = InputSystem.actions.FindAction("PickUp");
+    }
 
+    private void Start()
+    {
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -70,7 +87,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        if (isMovementLocked)
+        // ak prebieha interakcia, hráč sa nesmie hýbať
+        if (isMovementLocked || isInteracting)
         {
             moveDirection = Vector2.zero;
             animator.SetBool("IsMoving", false);
@@ -84,7 +102,6 @@ public class PlayerController : MonoBehaviour
         bool isMoving = moveDirection.sqrMagnitude > 0.0001f;
         animator.SetBool("IsMoving", isMoving);
 
-        // smer len podľa horizontálu
         if (input.x > 0.01f)
         {
             animator.SetFloat("DirectionX", 1f);
@@ -96,7 +113,6 @@ public class PlayerController : MonoBehaviour
             FacingEast = false;
         }
 
-        // beh
         isRunning = runningAction.IsPressed();
         animator.SetBool("IsRunning", isRunning);
     }
@@ -105,25 +121,11 @@ public class PlayerController : MonoBehaviour
     {
         bool isCurrentlyMoving = animator.GetBool("IsMoving");
 
-        // Interact – iba ak stojí
-        if (interactAction.WasPressedThisFrame())
+        if (interactAction.WasPressedThisFrame() && !isInteracting)
         {
             if (!isCurrentlyMoving)
             {
-                animator.SetTrigger("Interact");
-                Debug.Log("[PlayerController] Interact animation trigger.");
-
-                if (nearbyInteractable != null)
-                {
-                    Debug.Log("[PlayerController] Interacting with: " + nearbyInteractable.GetDebugName());
-                    nearbyInteractable.Interact(this);
-                }
-
-                if (nearbyCheckout != null)
-                {
-                    Debug.Log("[PlayerController] Checkout triggered in PlayerController");
-                    YemeMazeManager.Instance.TryHandleCheckout(this);
-                }
+                StartCoroutine(PlayInteractSequence());
             }
             else
             {
@@ -131,20 +133,75 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // PickUp – iba ak stojí (napr. tlačidlo F)
-        if (pickUpAction != null && pickUpAction.WasPressedThisFrame())
+        if (pickUpAction != null && pickUpAction.WasPressedThisFrame() && !isInteracting)
         {
             if (!isCurrentlyMoving)
             {
-                animator.SetTrigger("PickUp");
-                Debug.Log("[PlayerController] PickUp animation trigger.");
-                // samotné pridanie itemu rieši Collectible skript pri kolízii
+                StartCoroutine(PlayPickUpSequence());
             }
             else
             {
                 Debug.Log("[PlayerController] PickUp ignored, player is moving.");
             }
         }
+    }
+    
+    private IEnumerator PlayInteractSequence()
+    {
+        isInteracting = true;
+        SetMovementLocked(true);
+
+        animator.SetTrigger("Interact");
+        Debug.Log("[PlayerController] Interact animation trigger.");
+
+        // zisti dlzku aktualnej interact animacie
+        yield return null; // pocka, kym Animator prepne state
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        float interactLength = state.length > 0 ? state.length : 0.5f;
+
+        // vykona gameplay logiku interakcie
+        if (nearbyInteractable != null)
+        {
+            Debug.Log("[PlayerController] Interacting with: " + nearbyInteractable.GetDebugName());
+            nearbyInteractable.Interact(this);
+        }
+
+        if (nearbyCheckout != null)
+        {
+            Debug.Log("[PlayerController] Checkout triggered in PlayerController");
+            YemeMazeManager.Instance.TryHandleCheckout(this);
+        }
+
+        yield return new WaitForSeconds(interactLength);
+
+        SetMovementLocked(false);
+        isInteracting = false;
+        Debug.Log("[PlayerController] Interact finished, movement unlocked.");
+    }
+
+    private IEnumerator PlayPickUpSequence()
+    {
+        isInteracting = true;
+        SetMovementLocked(true);
+
+        animator.SetTrigger("PickUp");
+        Debug.Log("[PlayerController] PickUp animation trigger.");
+
+        yield return null;
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        float pickUpLength = state.length > 0 ? state.length : 0.5f;
+
+        if (nearbyInteractable != null)
+        {
+            Debug.Log("[PlayerController] Interacting with: " + nearbyInteractable.GetDebugName());
+            nearbyInteractable.Interact(this);
+        }
+        
+        yield return new WaitForSeconds(pickUpLength);
+
+        SetMovementLocked(false);
+        isInteracting = false;
+        Debug.Log("[PlayerController] PickUp finished, movement unlocked.");
     }
 
     public void SetMovementLocked(bool locked)

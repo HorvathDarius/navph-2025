@@ -106,7 +106,7 @@ public class TutorialManager : MonoBehaviour
         {
             speechBubbleRoot.SetActive(true);
             speechText.text =
-                "„Beží ti obedná pauza! Máš čas sa prechádzať po chodbe [↑←↓→ / WASD]? Šprintuj na obed [SHIFT]!“";
+                "Beží ti obedná pauza! Máš čas sa prechádzať po chodbe [↑←↓→ / WASD]? Šprintuj na obed [SHIFT]!";
         }
 
         // počká malý moment a potom pustí vstup
@@ -142,7 +142,7 @@ public class TutorialManager : MonoBehaviour
         {
             speechBubbleRoot.SetActive(true);
             speechText.text =
-                "„Nezdržuj sa moc na chodbe, skoč do kanclu a zober si peňaženku [E], nechal si si ju na stole.“";
+                "Nezdržuj sa moc na chodbe, skoč do kanclu a zober si peňaženku [E], nechal si si ju na stole.";
         }
 
         currentState = TutorialState.ShowPickupHint;
@@ -169,7 +169,7 @@ public class TutorialManager : MonoBehaviour
 
         speechBubbleRoot.SetActive(true);
         speechText.text =
-            "„Všetko, čo zodvihneš, ti skončí v inventári [I] a môžno sa ti to neskôr zíde.“";
+            "Všetko, čo zodvihneš [F], ti skončí v inventári [I] a môžno sa ti to neskôr zíde.";
 
         currentState = TutorialState.ExplainHud;
         StartCoroutine(ShowHudInfoSequence());
@@ -182,7 +182,7 @@ public class TutorialManager : MonoBehaviour
         if (speechBubbleRoot != null && speechText != null)
         {
             speechText.text =
-                "„Hore vidíš svoj zdravotný stav, čas a skóre. Tu sa ti nič nestane, ale vonku ti to neviem garantovať.“";
+                "Hore vidíš svoj zdravotný stav, čas a skóre. Tu sa ti nič nestane, ale vonku ti to neviem garantovať.";
         }
 
         yield return new WaitForSeconds(delayHudInfo);
@@ -200,10 +200,12 @@ public class TutorialManager : MonoBehaviour
     {
         var move = InputSystem.actions.FindAction("Move");
         var interact = InputSystem.actions.FindAction("Interact");
+        var pickUp = InputSystem.actions.FindAction("PickUp");
         var sprint = InputSystem.actions.FindAction("Sprint");
 
         move?.Disable();
         interact?.Disable();
+        pickUp?.Disable();
         sprint?.Disable();
     }
 
@@ -211,10 +213,12 @@ public class TutorialManager : MonoBehaviour
     {
         var move = InputSystem.actions.FindAction("Move");
         var interact = InputSystem.actions.FindAction("Interact");
+        var pickUp = InputSystem.actions.FindAction("PickUp");
         var sprint = InputSystem.actions.FindAction("Sprint");
 
         move?.Enable();
         interact?.Enable();
+        pickUp?.Enable();
         sprint?.Enable();
     }
 

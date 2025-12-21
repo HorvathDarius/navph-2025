@@ -3,23 +3,23 @@
     <ui:VisualElement name="GameUI" style="width: 100%; height: 100%; position: absolute;">
         <ui:VisualElement name="HUD" class="hud-container" style="width: 100%; height: 100%; position: absolute; pointer-events: none; display: flex; top: 0; left: -2px;">
             <ui:VisualElement name="TopBar" class="top-bar" style="flex-direction: row; justify-content: space-between; padding: 20px; width: 100%; height: 100px;">
-                <ui:VisualElement name="HealthSection" style="flex-direction: row; align-items: center; min-width: 300px;">
-                    <ui:VisualElement name="PlayerIcon" class="player-icon" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; margin-right: 15px;" />
+                <ui:VisualElement name="HealthSection" style="flex-direction: row; align-items: center; min-width: 300px; height: 83px;">
+                    <ui:VisualElement name="PlayerIcon" class="player-icon" style="width: 100px; height: 100px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; margin-right: 15px; background-image: url(&quot;project://database/Assets/Sprites/Characters/Main/main_char.png?fileID=2800000&amp;guid=4fa91e68992be724a91dbe57b48c032b&amp;type=3#main_char&quot;);" />
                     <ui:VisualElement name="HealthBarContainer" style="flex-direction: column; justify-content: center;">
-                        <ui:Label text="HEALTH" name="HealthTitle" class="ui-label-small" style="margin-bottom: 5px; color: white; -unity-font-style: bold;" />
+                        <ui:Label text="HEALTH" name="HealthTitle" class="ui-label-small" style="margin-bottom: 5px; color: white; -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/BoldPixels.otf?fileID=12800000&amp;guid=ac634b585e445774fa43c9654cfd2d4a&amp;type=3#BoldPixels&quot;); font-size: 36px;" />
                         <ui:VisualElement name="HealthBarBackground" style="width: 200px; height: 30px; background-color: rgba(0, 0, 0, 0.5); border-radius: 5px; border-width: 2px; border-color: white;">
-                            <ui:VisualElement name="HealthBarFill" style="width: 100%; height: 100%; background-color: rgb(76, 175, 80); border-radius: 5px;" />
+                            <ui:VisualElement name="HealthBarFill" style="width: 100%; height: 100%; background-color: rgb(76, 175, 80); border-radius: 5px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px;" />
                         </ui:VisualElement>
-                        <ui:Label text="Health: 100/100" name="HealthLabel" class="ui-label" style="margin-top: 5px; color: white; font-size: 14px;" />
+                        <ui:Label text="Health: 100/100" name="HealthLabel" class="ui-label" style="margin-top: 5px; color: white; font-size: 22px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/BoldPixels.otf?fileID=12800000&amp;guid=ac634b585e445774fa43c9654cfd2d4a&amp;type=3#BoldPixels&quot;);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="TimerSection" style="align-items: center; justify-content: center; min-width: 200px; flex-basis: 0%; position: absolute; right: 0; left: 0; top: 0;">
-                    <ui:Label text="TIME" class="ui-label-small" style="color: white; -unity-font-style: bold; margin-bottom: 5px;" />
-                    <ui:Label text="15:00" name="TimerLabel" class="ui-label-large" style="font-size: 36px; color: rgb(255, 235, 59); -unity-font-style: bold;" />
+                    <ui:Label text="TIME" class="ui-label-small" style="color: white; -unity-font-style: bold; margin-bottom: 5px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/BoldPixels.otf?fileID=12800000&amp;guid=ac634b585e445774fa43c9654cfd2d4a&amp;type=3#BoldPixels&quot;); font-size: 36px;" />
+                    <ui:Label text="15:00" name="TimerLabel" class="ui-label-large" style="font-size: 54px; color: rgb(255, 193, 7); -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/BoldPixels.otf?fileID=12800000&amp;guid=ac634b585e445774fa43c9654cfd2d4a&amp;type=3#BoldPixels&quot;);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="ScoreSection" style="align-items: flex-end; justify-content: center; min-width: 200px;">
-                    <ui:Label text="SCORE" class="ui-label-small" style="color: white; -unity-font-style: bold; margin-bottom: 5px;" />
-                    <ui:Label text="0" name="ScoreLabel" class="ui-label-large" style="font-size: 36px; color: rgb(255, 193, 7); -unity-font-style: bold;" />
+                    <ui:Label text="SCORE" class="ui-label-small" style="color: white; -unity-font-style: bold; margin-bottom: 5px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/BoldPixels.otf?fileID=12800000&amp;guid=ac634b585e445774fa43c9654cfd2d4a&amp;type=3#BoldPixels&quot;); font-size: 36px;" />
+                    <ui:Label text="0" name="ScoreLabel" class="ui-label-large" style="font-size: 54px; color: rgb(255, 193, 7); -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/BoldPixels.otf?fileID=12800000&amp;guid=ac634b585e445774fa43c9654cfd2d4a&amp;type=3#BoldPixels&quot;);" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="ItemSelector" class="item-selector" style="position: absolute; bottom: 40px; left: 50%; translate: -50% 0; flex-direction: row; padding: 15px; background-color: rgba(0, 0, 0, 0.7); border-radius: 10px; border-width: 2px; border-color: white; display: none;">
@@ -38,18 +38,18 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="PausePanel" class="overlay-panel" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; display: none;">
-            <ui:VisualElement name="PauseContent" class="panel-content" style="width: 500px; padding: 40px; background-color: rgb(33, 33, 33); border-radius: 15px; border-width: 3px; border-color: white; align-items: center;">
-                <ui:Label text="PAUZA" class="panel-title" style="font-size: 48px; color: white; -unity-font-style: bold; margin-bottom: 30px;" />
-                <ui:Button text="Pokračovať" name="ResumeButton" class="menu-button" style="width: 300px; height: 60px; margin-bottom: 15px; font-size: 24px; background-color: rgb(76, 175, 80); color: white; border-radius: 10px;" />
-                <ui:Button text="Nastavenia" name="SettingsButton" class="menu-button" style="width: 300px; height: 60px; margin-bottom: 15px; font-size: 24px; background-color: rgb(33, 150, 243); color: white; border-radius: 10px;" />
-                <ui:Button text="Hlavné menu" name="MainMenuButton" class="menu-button" style="width: 300px; height: 60px; font-size: 24px; background-color: rgb(244, 67, 54); color: white; border-radius: 10px;" />
+        <ui:VisualElement name="PausePanel" class="overlay-panel" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; display: flex;">
+            <ui:VisualElement name="PauseContent" class="panel-content" style="width: 500px; padding: 40px; background-color: rgb(33, 33, 33); border-radius: 15px; border-width: 3px; border-color: white; align-items: center; opacity: 1; background-image: url(&quot;project://database/Assets/Transitions/transition_scene_1.png?fileID=2800000&amp;guid=fb3327dcfd372254a93fce4331a32f64&amp;type=3#transition_scene_1&quot;);">
+                <ui:Label text="PAUZA" class="panel-title" style="font-size: 64px; color: white; -unity-font-style: bold; margin-bottom: 30px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/BoldPixels.otf?fileID=12800000&amp;guid=ac634b585e445774fa43c9654cfd2d4a&amp;type=3#BoldPixels&quot;); height: 38px;" />
+                <ui:Button text="Pokračovať" name="ResumeButton" class="menu-button" style="width: 300px; height: 60px; margin-bottom: 15px; font-size: 34px; background-color: rgb(76, 175, 80); color: white; border-radius: 10px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/BoldPixels.otf?fileID=12800000&amp;guid=ac634b585e445774fa43c9654cfd2d4a&amp;type=3#BoldPixels&quot;);" />
+                <ui:Button text="Nastavenia" name="SettingsButton" class="menu-button" style="width: 300px; height: 60px; margin-bottom: 15px; font-size: 24px; background-color: rgb(33, 150, 243); color: white; border-radius: 10px; display: none;" />
+                <ui:Button text="Hlavné menu" name="MainMenuButton" class="menu-button" style="width: 300px; height: 60px; font-size: 34px; background-color: rgb(244, 67, 54); color: white; border-radius: 10px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/BoldPixels.otf?fileID=12800000&amp;guid=ac634b585e445774fa43c9654cfd2d4a&amp;type=3#BoldPixels&quot;);" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="GameOverPanel" enabled="true" class="overlay-panel" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; display: none;">
             <ui:VisualElement name="GameOverContent" class="panel-content" style="width: 600px; padding: 50px; background-color: rgb(33, 33, 33); border-radius: 15px; border-width: 4px; border-color: rgb(244, 67, 54); align-items: center;">
                 <ui:Label text="GAME OVER" class="panel-title" style="font-size: 56px; color: rgb(244, 67, 54); -unity-font-style: bold; margin-bottom: 20px;" />
-                <ui:Label text="Nezomrel si&#10;Nabudúce si daj od práce voľno" name="GameOverMessage" class="panel-message" style="font-size: 20px; color: white; text-align: center; white-space: normal; margin-bottom: 30px;" />
+                <ui:Label text="Nezomrel si, Ruzinov bol za rohom&#10;Nabudúce si daj od práce voľno" name="GameOverMessage" class="panel-message" style="font-size: 20px; color: white; text-align: center; white-space: normal; margin-bottom: 30px;" />
                 <ui:VisualElement name="StatsContainer" style="width: 100%; margin-bottom: 30px; padding: 20px; background-color: rgba(0, 0, 0, 0.5); border-radius: 10px;">
                     <ui:Label text="Finálne skóre: 0" name="FinalScoreLabel" style="font-size: 24px; color: rgb(255, 193, 7); margin-bottom: 10px; -unity-font-style: bold;" />
                     <ui:Label text="Dosiahnutý level: 1" name="LevelReachedLabel" style="font-size: 20px; color: white;" />

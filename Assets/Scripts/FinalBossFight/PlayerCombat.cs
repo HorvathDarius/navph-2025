@@ -24,14 +24,23 @@ public class PlayerCombat : MonoBehaviour
     private bool isAttacking;
     private float lastDirectionX = 1f;
 
+    void OnEnable()
+    {
+        attackAction.Enable();
+        specialAttackAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        attackAction.Disable();
+        specialAttackAction.Disable();
+    }
+    
     private void Awake()
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<PlayerController>();
-    }
-
-    private void Start()
-    {
+        
         attackAction = InputSystem.actions.FindAction("Attack");
         specialAttackAction = InputSystem.actions.FindAction("SpecialAttack");
     }
