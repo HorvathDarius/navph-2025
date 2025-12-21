@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: ffc25303b0b5dff47aee3f38ff1f3a2d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -357491603751225465
+    second: npc_redhead_prostitute_breathing_idle_south_0
+  - first:
+      213: 7979029184453968869
+    second: npc_redhead_prostitute_breathing_idle_south_1
+  - first:
+      213: -722581728018525562
+    second: npc_redhead_prostitute_breathing_idle_south_2
+  - first:
+      213: -2524395148404994277
+    second: npc_redhead_prostitute_breathing_idle_south_3
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: npc_redhead_girl_breathing_idle_south_0
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 74
+        width: 167
+        height: 492
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05764062}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 787393cc74fe90bf0800000000000000
+      internalID: -357491603751225465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_redhead_girl_breathing_idle_south_1
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 74
+        width: 162
+        height: 502
+      alignment: 9
+      pivot: {x: 0.48134133, y: 0.06344156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e38adfb4c43bbe60800000000000000
+      internalID: 7979029184453968869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_redhead_girl_breathing_idle_south_2
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 74
+        width: 162
+        height: 507
+      alignment: 9
+      pivot: {x: 0.46268114, y: 0.06476617}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 682944c2fbfd8f5f0800000000000000
+      internalID: -722581728018525562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_redhead_girl_breathing_idle_south_3
+      rect:
+        serializedVersion: 2
+        x: 2169
+        y: 74
+        width: 162
+        height: 502
+      alignment: 9
+      pivot: {x: 0.4906699, y: 0.06043108}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1fc992ccfb87fcd0800000000000000
+      internalID: -2524395148404994277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 89769d9cebe7b914495a71eb5ce9cd2f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      npc_redhead_girl_breathing_idle_south_0: -357491603751225465
+      npc_redhead_girl_breathing_idle_south_1: 7979029184453968869
+      npc_redhead_girl_breathing_idle_south_2: -722581728018525562
+      npc_redhead_girl_breathing_idle_south_3: -2524395148404994277
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,299 @@
+fileFormatVersion: 2
+guid: 1b2023fbf138c6d4282eca5fd1d255a6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4760061157400278539
+    second: homeless_kick_L_0
+  - first:
+      213: -5481215061957293114
+    second: homeless_kick_L_1
+  - first:
+      213: 4846107550341622641
+    second: homeless_kick_L_2
+  - first:
+      213: -9068352757014733399
+    second: homeless_kick_L_3
+  - first:
+      213: 5529636059388378234
+    second: homeless_kick_L_4
+  - first:
+      213: -1360514280013954802
+    second: homeless_kick_L_5
+  - first:
+      213: 5579001991737899839
+    second: homeless_kick_L_6
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: homeless_kick_L_0
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 14
+        width: 222
+        height: 332
+      alignment: 9
+      pivot: {x: 0.49999994, y: 0.15344898}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b067afb17622f0240800000000000000
+      internalID: 4760061157400278539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_kick_L_1
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 14
+        width: 267
+        height: 332
+      alignment: 9
+      pivot: {x: 0.51485944, y: 0.18332405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cbc38e11ffcee3b0800000000000000
+      internalID: -5481215061957293114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_kick_L_2
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 9
+        width: 232
+        height: 327
+      alignment: 9
+      pivot: {x: 0.5085507, y: 0.1602827}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17b63792425d04340800000000000000
+      internalID: 4846107550341622641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_kick_L_3
+      rect:
+        serializedVersion: 2
+        x: 1509
+        y: 9
+        width: 312
+        height: 347
+      alignment: 9
+      pivot: {x: 0.50635785, y: 0.16271266}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9add334b63db62280800000000000000
+      internalID: -9068352757014733399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_kick_L_4
+      rect:
+        serializedVersion: 2
+        x: 2024
+        y: 9
+        width: 282
+        height: 337
+      alignment: 9
+      pivot: {x: 0.47186235, y: 0.15859093}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7cf801e2b63dbc40800000000000000
+      internalID: 5529636059388378234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_kick_L_5
+      rect:
+        serializedVersion: 2
+        x: 2524
+        y: 9
+        width: 277
+        height: 312
+      alignment: 9
+      pivot: {x: 0.5286455, y: 0.1312344}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e010ceb787b7e1de0800000000000000
+      internalID: -1360514280013954802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: homeless_kick_L_6
+      rect:
+        serializedVersion: 2
+        x: 3019
+        y: 14
+        width: 242
+        height: 312
+      alignment: 9
+      pivot: {x: 0.5081969, y: 0.20117256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3bfbbea0c89c6d40800000000000000
+      internalID: 5579001991737899839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5d46ceaad6e8d0048bc38b7b82de1400
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      homeless_kick_L_0: 4760061157400278539
+      homeless_kick_L_1: -5481215061957293114
+      homeless_kick_L_2: 4846107550341622641
+      homeless_kick_L_3: -9068352757014733399
+      homeless_kick_L_4: 5529636059388378234
+      homeless_kick_L_5: -1360514280013954802
+      homeless_kick_L_6: 5579001991737899839
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
