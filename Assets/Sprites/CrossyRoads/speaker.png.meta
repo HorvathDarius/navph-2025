@@ -103,12 +103,12 @@ TextureImporter:
       name: speaker_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 77
+        y: 261
+        width: 883
+        height: 498
+      alignment: 9
+      pivot: {x: 0.49745852, y: 0.13949603}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 75da5b1aadee82242a6ec83a53e0c568
     internalID: 0
     vertices: []
     indices: 

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -42,7 +43,7 @@ public class FoodCatcherManager : MonoBehaviour
         if (goodFoodCount >= 10)
         {
             gameOver = true;
-            ShowWinMessage();
+            StartCoroutine(ShowWinMessage());
         }
     }
 
@@ -65,7 +66,7 @@ public class FoodCatcherManager : MonoBehaviour
         }
     }
 
-    private void ShowWinMessage()
+    private IEnumerator ShowWinMessage()
     {
         if (winText != null)
         {
@@ -78,6 +79,8 @@ public class FoodCatcherManager : MonoBehaviour
         ClearAllFood();
         foodSpawner.SetActive(false);
 
+        yield return new WaitForSeconds(2.5f);
+        
         GameManager.Instance.OnMinigameComplete();
     }
 }

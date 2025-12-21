@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -815570217393520660, guid: 13052bd04e8734293ac5a81444a9903c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.013726234, y: 0.09675419}
+  m_Offset: {x: -0.013726234, y: -0.41230452}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -138,7 +138,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.6414108, y: 6.031764}
+  m_Size: {x: 3.6414108, y: 5.7849474}
   m_EdgeRadius: 0
 --- !u!114 &1196131097990378488
 MonoBehaviour:
@@ -156,8 +156,8 @@ MonoBehaviour:
   maxSpeed: 12
   vehicleSprite: {fileID: -815570217393520660, guid: 13052bd04e8734293ac5a81444a9903c, type: 3}
   vehicleSpriteBack: {fileID: 7737587119822973736, guid: 69b8ee73937d74deb935945ff7cee5cb, type: 3}
-  vehicleIsMovingDown: 1
-  speed: 8.6594925
+  vehicleIsMovingDown: 0
+  speed: 6.9159145
 --- !u!50 &7354981093273064567
 Rigidbody2D:
   serializedVersion: 5

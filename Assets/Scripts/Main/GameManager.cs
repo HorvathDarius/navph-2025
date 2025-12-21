@@ -242,11 +242,14 @@ public class GameManager : MonoBehaviour
         });
 
         Debug.Log($"=== COROUTINE CONTINUING - Cleaning up prefabs before loading level {nextLevel} ===");
-        HideTransitionPrefabs();
-        yield return null;
+        
         Debug.Log($"Loading level {nextLevel}");
         LoadLevel(nextLevel);
         m_TransitionFromLevel = -1;
+        
+        yield return new WaitForSeconds(1f);
+        HideTransitionPrefabs();
+        yield return null;
 
         Debug.Log($"LoadLevel({nextLevel}) called, waiting 0.5s");
         yield return new WaitForSeconds(0.5f);

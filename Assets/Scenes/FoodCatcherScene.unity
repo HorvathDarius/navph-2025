@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -462,9 +462,9 @@ Transform:
   m_GameObject: {fileID: 894369047}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 460.19998, y: 229.79999, z: 0}
-  m_LocalScale: {x: 189.52798, y: 173.45999, z: 60}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 167.1, y: 97.8, z: 0}
+  m_LocalScale: {x: 77.2, y: 70.65506, z: 24.439661}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 829843146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -695,7 +695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 732.99976, y: 237.99985}
+  m_AnchoredPosition: {x: 570.8, y: 64.1}
   m_SizeDelta: {x: 971.05, y: 117.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101243546
@@ -718,7 +718,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "12,90 poplos\xEDm!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
   m_sharedMaterial: {fileID: -172492987115859730, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
@@ -745,8 +745,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54
-  m_fontSizeBase: 54
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

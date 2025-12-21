@@ -103,12 +103,12 @@ TextureImporter:
       name: bookshelf_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 591
+        width: 588
         height: 400
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4963288, y: 0.12392278}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
