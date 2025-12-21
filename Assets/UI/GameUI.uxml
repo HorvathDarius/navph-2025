@@ -4,7 +4,9 @@
         <ui:VisualElement name="HUD" class="hud-container" style="width: 100%; height: 100%; position: absolute; pointer-events: none; display: flex; top: 0; left: -2px;">
             <ui:VisualElement name="TopBar" class="top-bar" style="flex-direction: row; justify-content: space-between; padding: 20px; width: 100%; height: 100px;">
                 <ui:VisualElement name="HealthSection" style="flex-direction: row; align-items: center; min-width: 300px;">
-                    <ui:VisualElement name="PlayerIcon" class="player-icon" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; margin-right: 15px;" />
+                    <ui:VisualElement name="PlayerIcon" class="player-icon" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 5px; margin-right: 15px;">
+                        <ui:VisualElement name="PlayerProfile" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Characters/Main/profile.png?fileID=2800000&amp;guid=0826202b240554e06b79c3f90ff1acae&amp;type=3#profile&quot;);" />
+                    </ui:VisualElement>
                     <ui:VisualElement name="HealthBarContainer" style="flex-direction: column; justify-content: center;">
                         <ui:Label text="HEALTH" name="HealthTitle" class="ui-label-small" style="margin-bottom: 5px; color: white; -unity-font-style: bold;" />
                         <ui:VisualElement name="HealthBarBackground" style="width: 200px; height: 30px; background-color: rgba(0, 0, 0, 0.5); border-radius: 5px; border-width: 2px; border-color: white;">

@@ -24,6 +24,18 @@ public class PlayerCombat : MonoBehaviour
     private bool isAttacking;
     private float lastDirectionX = 1f;
 
+    void OnEnable()
+    {
+        attackAction?.Enable();
+        specialAttackAction?.Enable();
+    }
+
+    void OnDisable()
+    {
+        attackAction?.Disable();
+        specialAttackAction?.Disable();
+    }
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -47,7 +59,7 @@ public class PlayerCombat : MonoBehaviour
             lastDirectionX = Mathf.Sign(moveDir.x);
             animator.SetFloat("DirectionX", lastDirectionX);
         }
-        
+
         animator.SetBool("InCombat", combatEnabled);
 
         if (attackAction != null && attackAction.WasPressedThisFrame())
@@ -164,7 +176,7 @@ public class PlayerCombat : MonoBehaviour
         isAttacking = false;
         canAttack = true;
     }
-    
+
     // ===== DAMAGE / FACING CHECK =====
 
     private void DealPlayerDamageToBoss(int damage, bool special = false)

@@ -55,7 +55,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -91,6 +91,15 @@
                     "name": "MobileLight",
                     "type": "Button",
                     "id": "b7a57d2d-709f-4134-9935-048ff2c57605",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "6310009b-bb76-470d-9192-4b6121370860",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -491,6 +500,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MobileLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02a60bbd-4f4e-416e-afbb-20769ff5e220",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

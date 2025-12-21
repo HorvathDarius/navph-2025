@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CrutchItem
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItem
   itemName: Crutch
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -7390258706968512395, guid: d83d69cd7324545058d2aa1ff4662d68, type: 3}

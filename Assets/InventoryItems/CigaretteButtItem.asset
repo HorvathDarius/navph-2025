@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CigaretteButtItem
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: CigaretteButt
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 7062886482384110685, guid: 7788c6f1fda02477c867ea5857de2619, type: 3}

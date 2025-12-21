@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ChimneyCakeItem
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItem
   itemName: ChimneyCake
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -7409615718391740170, guid: cca533673e90642bdb1d43f31cdb8cd9, type: 3}

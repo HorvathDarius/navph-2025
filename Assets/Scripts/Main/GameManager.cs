@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     private VisualElement m_HUD;
     private bool m_WaitingForEndingContinue = false;
 
+    public delegate void OnItemChanged();
+    public OnItemChanged onItemChangedCallback;
+
 
     // UI Panels
     private VisualElement m_GameOverPanel;
@@ -62,7 +65,7 @@ public class GameManager : MonoBehaviour
     private int m_TransitionFromLevel = -1;
 
     [Header("Collected Items")]
-    private System.Collections.Generic.List<string> m_CollectedItems = new();
+    public System.Collections.Generic.List<CollectibleItem> m_CollectedItems = new();
 
     // Scene names podľa flowchart
     private readonly string[] SCENE_NAMES =
@@ -72,7 +75,7 @@ public class GameManager : MonoBehaviour
         "NivyChaseScene",          // Level 2
         "YemeMazeScene",           // Level 3
         "FoodCatcherScene",        // Level 4
-        "FinalBossFightScene"      // Level 5
+        "FinalBossFightScene",     // Level 5
     };
 
     void OnEnable()
@@ -520,17 +523,21 @@ public class GameManager : MonoBehaviour
         UpdateScoreUI();
     }
 
-    public void CollectItem(string itemName)
+    public void CollectItem(CollectibleItem item)
     {
-        if (!m_CollectedItems.Contains(itemName))
+        foreach (var collectedItem in m_CollectedItems)
         {
-            m_CollectedItems.Add(itemName);
-            Debug.Log($"Collected item: {itemName}");
-            UpdateItemSelector();
+            if (collectedItem.itemName == item.itemName)
+            {
+                Debug.Log($"Item {item.itemName} already collected, skipping.");
+                return;
+            }
         }
-    }
 
-    public bool HasItem(string itemName) => m_CollectedItems.Contains(itemName);
+
+        m_CollectedItems.Add(item);
+        Debug.Log($"Collected item: {item}");
+    }
 
     // ===== UI =====
 

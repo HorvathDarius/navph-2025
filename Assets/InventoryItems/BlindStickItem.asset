@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BlindStickItem
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItem
   itemName: BlindStick
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 6660044690560067281, guid: 4961ea4f46c47481ea21a565cbbef69e, type: 3}

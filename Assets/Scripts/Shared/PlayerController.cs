@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputAction interactAction;
     [SerializeField] private InputAction runningAction;
     [SerializeField] private InputAction pickUpAction;
+    [SerializeField] private InputAction inventoryAction;
+    [SerializeField] private GameObject inventoryUI;
 
     public List<CollectibleItem> inventoryItems = new();
     private Rigidbody2D rb2d;
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private PlayerController controller;
     private CapsuleCollider2D capsuleCollider;
 
+
     public bool FacingEast { get; private set; } = true;
 
     private void Awake()
@@ -35,14 +39,36 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         controller = GetComponent<PlayerController>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-    }
 
-    private void Start()
-    {
+
         moveAction = InputSystem.actions.FindAction("Move");
         interactAction = InputSystem.actions.FindAction("Interact");
         runningAction = InputSystem.actions.FindAction("Sprint");
         pickUpAction = InputSystem.actions.FindAction("PickUp");
+        inventoryAction = InputSystem.actions.FindAction("Inventory");
+    }
+
+    void OnEnable()
+    {
+        moveAction.Enable();
+        interactAction.Enable();
+        runningAction.Enable();
+        pickUpAction.Enable();
+        inventoryAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        moveAction.Disable();
+        interactAction.Disable();
+        runningAction.Disable();
+        pickUpAction.Disable();
+        inventoryAction.Disable();
+    }
+
+    private void Start()
+    {
+        Debug.Log("PlayerController STARTED");
 
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -52,6 +78,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("PlayerController UPDATE");
         HandleMovementInput();
         HandleNonCombatActions();
     }
@@ -70,6 +97,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovementInput()
     {
+        Debug.Log("Handling movement input");
+        Debug.Log("LOCKED MOVEMENT: " + isMovementLocked);
+        Debug.Log("ACTIONS: " + moveAction.enabled + ", " + runningAction.enabled);
         if (isMovementLocked)
         {
             moveDirection = Vector2.zero;
@@ -79,6 +109,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 input = moveAction.ReadValue<Vector2>();
+        Debug.Log("INPUT: " + input);
         moveDirection = input;
 
         bool isMoving = moveDirection.sqrMagnitude > 0.0001f;
@@ -145,6 +176,13 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("[PlayerController] PickUp ignored, player is moving.");
             }
         }
+
+        if (inventoryAction.WasPressedThisFrame())
+        {
+            Debug.Log("I WAS PRESSED");
+            InventoryManager.Instance.UpdateUI();
+            InventoryManager.Instance.ShowUI();
+        }
     }
 
     public void SetMovementLocked(bool locked)
@@ -169,9 +207,10 @@ public class PlayerController : MonoBehaviour
     public void AddItemToInvetory(CollectibleItem item)
     {
         Debug.Log("Adding to inventory: " + item.itemName);
-        inventoryItems.Add(item);
+        // inventoryItems.Add(item);
         if (GameManager.Instance == null) return;
-        GameManager.Instance.CollectItem(item.itemName);
+        GameManager.Instance.CollectItem(item);
+        GameManager.Instance.onItemChangedCallback?.Invoke();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

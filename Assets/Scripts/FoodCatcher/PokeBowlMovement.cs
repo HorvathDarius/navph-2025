@@ -33,7 +33,6 @@ public class PokeBowlMovement : MonoBehaviour
     void Update()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
-        Debug.Log("INPUT: " + input);
         moveDirection = new Vector2(input.x, 0);
     }
 

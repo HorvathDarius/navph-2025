@@ -55,7 +55,7 @@ public class FinalBossFightManager : MonoBehaviour
 
         boss.StartIntro();
     }
-    
+
     private void InitBossHealthUI()
     {
         if (GameManager.Instance == null) return;
@@ -70,7 +70,7 @@ public class FinalBossFightManager : MonoBehaviour
             UpdateBossHealthUI();
         }
     }
-    
+
     public void ShowBossHealthUI(bool show)
     {
         if (bossHealthBarRoot != null)
@@ -142,7 +142,7 @@ public class FinalBossFightManager : MonoBehaviour
 
         // Skóre za porazenie bezdomovca – 15 bodov.
         if (GameManager.Instance == null) yield break;
-        
+
         GameManager.Instance.AddScore(15);
         yield return new WaitForSeconds(roundEndDelay);
 
@@ -158,7 +158,7 @@ public class FinalBossFightManager : MonoBehaviour
 
         yield return new WaitForSeconds(roundEndDelay);
     }
-    
+
     public void NotifyBossReadyToFight()
     {
         Debug.Log("[FBFM] NotifyBossReadyToFight - scheduling fight start.");

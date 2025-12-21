@@ -113,10 +113,10 @@ public class HomelessBossAI : MonoBehaviour
     private void OnReachedCart()
     {
         Debug.Log("[HomelessBossAI] OnReachedCart - switching to wheelchair mode.");
-        
+
         if (cartObject != null)
             cartObject.SetActive(false);
-        
+
         manager.ShowBossHealthUI(true);
 
         SetDirection(-1f);
@@ -126,7 +126,7 @@ public class HomelessBossAI : MonoBehaviour
 
         FinalBossFightManager.Instance.NotifyBossReadyToFight();
     }
-    
+
     private void OnReachedMiddle()
     {
         Debug.Log("[HomelessBossAI] OnReachedMiddle - reached middle point.");

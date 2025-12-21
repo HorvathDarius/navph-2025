@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: KebabItem
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItem
   itemName: Kebab
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -3183756464830776683, guid: 0543e9a941b9b4f25ae019bbc600e80f, type: 3}

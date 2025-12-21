@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SpectrometerItem
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItem
   itemName: Spectrometer
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -7195981601157217213, guid: f724cf0faa8274d91b402d864dab3a81, type: 3}

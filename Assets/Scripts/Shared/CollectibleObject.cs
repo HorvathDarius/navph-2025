@@ -50,24 +50,32 @@ public class CollectibleObject : MonoBehaviour, IInteractable
         Debug.Log("Interaction: " + itemData.itemName);
 
         // Special handling for score items
-        if (itemData.itemName == "CigaretteButt")
+        switch (itemData.itemName)
         {
-            Debug.Log("Adding score 1000 for: " + itemData.itemName);
-            GameManager.Instance.AddScore(1000);
+            case "CigaretteButt":
+                Debug.Log("Adding score 1000 for: " + itemData.itemName);
+                GameManager.Instance.AddScore(1000);
+                break;
+            default:
+                Debug.Log("Adding score 200 for: " + itemData.itemName);
+                GameManager.Instance.AddScore(200);
+                break;
+
         }
-        // Else add to inventory
-        else
-        {
-            Debug.Log("Adding to inventory: " + itemData.itemName);
-            playerController.AddItemToInvetory(itemData);
-        }
+
+
+        Debug.Log("Destroying collectible object: " + itemData.itemName);
+        Destroy(gameObject);
+        Debug.Log("Adding to inventory: " + itemData.itemName);
+        playerController.AddItemToInvetory(itemData);
+
+
 
         if (TutorialManager.Instance != null)
         {
             TutorialManager.Instance.HandleItemPickedUp(itemData);
         }
 
-        Destroy(gameObject);
     }
 
     public string GetDebugName() => itemData != null ? itemData.itemName : name;

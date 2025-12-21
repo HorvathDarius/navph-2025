@@ -15,12 +15,6 @@ public class NivyChaseManager : MonoBehaviour
         Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public IEnumerator StartQuickTimeEvent()
     {
         cinemachineSwitcher.SwitchCamera();

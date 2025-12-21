@@ -6,7 +6,8 @@ public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance { get; private set; }
 
-    [Header("References")] [SerializeField]
+    [Header("References")]
+    [SerializeField]
     private PlayerController player;
 
     [SerializeField] private Animator playerAnimator;
@@ -14,7 +15,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private AudioClip doorCloseClip;
     [SerializeField] private AudioClip handDryerClip;
 
-    [Header("Tutorial UI")] [SerializeField]
+    [Header("Tutorial UI")]
+    [SerializeField]
     private GameObject speechBubbleRoot;
 
     [SerializeField] private TMPro.TMP_Text speechText;
@@ -220,8 +222,8 @@ public class TutorialManager : MonoBehaviour
 
     public bool HasRequiredTutorialItem(PlayerController player)
     {
-        return player.inventoryItems.Exists(i => i.itemName == "Wallet" || i.itemName == "Phone");
+        return GameManager.Instance.m_CollectedItems.Exists(i => i.itemName == "Wallet" || i.itemName == "Phone");
     }
-    
+
     public bool IsFinished => currentState == TutorialState.Finished;
 }
