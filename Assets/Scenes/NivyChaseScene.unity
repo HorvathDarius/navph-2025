@@ -10238,6 +10238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashCans
       objectReference: {fileID: 0}
+    - target: {fileID: 4768629331301176372, guid: 2c605a7cf53c14e17821d7b8fb395e06, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5791605297320562867, guid: 2c605a7cf53c14e17821d7b8fb395e06, type: 3}
       propertyPath: m_LocalPosition.x
       value: 218.85345
@@ -12514,8 +12518,8 @@ Transform:
   m_GameObject: {fileID: 1837535801}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 224.78, y: -1.03, z: 0}
-  m_LocalScale: {x: 2.9375, y: 13.462, z: 1}
+  m_LocalPosition: {x: 222.3423, y: -1.03, z: 0}
+  m_LocalScale: {x: 7.8128686, y: 13.462, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

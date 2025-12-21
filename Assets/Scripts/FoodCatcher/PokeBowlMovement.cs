@@ -11,16 +11,29 @@ public class PokeBowlMovement : MonoBehaviour
 
     [SerializeField] private InputAction moveAction;
 
-    void Start()
+    void OnEnable()
     {
-        moveAction = InputSystem.actions.FindAction("Move");
+        moveAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        moveAction.Disable();
+    }
+
+    void Awake()
+    {
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        moveAction = InputSystem.actions.FindAction("Move");
     }
+
 
     void Update()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
+        Debug.Log("INPUT: " + input);
         moveDirection = new Vector2(input.x, 0);
     }
 
