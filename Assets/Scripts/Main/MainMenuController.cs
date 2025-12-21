@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -12,6 +12,13 @@ public class MainMenuController : MonoBehaviour
     
     [Header("GameManager Prefab")]
     [SerializeField] private GameObject gameManagerPrefab;
+    
+    [Header("UI Bubbles")]
+    [SerializeField] private GameObject leaderboardBubble;
+    [SerializeField] private GameObject settingsBubble;
+    
+    [Header("Bubble Settings")]
+    [SerializeField] private float bubbleDisplayTime = 3f;
     
     private void Start()
     {
@@ -27,6 +34,8 @@ public class MainMenuController : MonoBehaviour
             
         if (exitButton != null)
             exitButton.onClick.AddListener(OnExit);
+            
+        HideAllBubbles();
     }
     
     private void OnDestroy()
@@ -40,6 +49,14 @@ public class MainMenuController : MonoBehaviour
             settingsButton.onClick.RemoveListener(OnSettings);
         if (exitButton != null)
             exitButton.onClick.RemoveListener(OnExit);
+    }
+    
+    private void HideAllBubbles()
+    {
+        if (leaderboardBubble != null)
+            leaderboardBubble.SetActive(false);
+        if (settingsBubble != null)
+            settingsBubble.SetActive(false);
     }
     
     // ===== MAIN MENU CALLBACKS =====
@@ -58,13 +75,31 @@ public class MainMenuController : MonoBehaviour
     private void OnLeaderboard()
     {
         Debug.Log("Leaderboard clicked");
-        // TODO: Implementuj leaderboard
+        ShowBubble(leaderboardBubble);
     }
     
     private void OnSettings()
     {
         Debug.Log("Settings clicked");
-        // TODO: Implementuj settings
+        ShowBubble(settingsBubble);
+    }
+    
+    private void ShowBubble(GameObject bubble)
+    {
+        if (bubble == null) return;
+        
+        HideAllBubbles();
+        
+        bubble.SetActive(true);
+        
+        StartCoroutine(HideBubbleAfterTime(bubble, bubbleDisplayTime));
+    }
+    
+    private IEnumerator HideBubbleAfterTime(GameObject bubble, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (bubble != null)
+            bubble.SetActive(false);
     }
     
     private void OnExit()

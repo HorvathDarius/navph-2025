@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Button = UnityEngine.UIElements.Button;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,15 +37,27 @@ public class GameManager : MonoBehaviour
     private VisualElement m_HUD;
     private bool m_WaitingForEndingContinue = false;
 
+    // Game Over stats
+    private Label m_FinalScoreLabel;
+    private Label m_LevelReachedLabel;
+    private Button m_RetryButton;
+    private Button m_MainMenuButtonGO;
 
+    // Victory stats
+    private Label m_VictoryScoreLabel;
+    private Label m_RemainingTimeLabel;
+    private Label m_RemainingHealthLabel;
+    private Button m_MainMenuButtonVictory;
+
+    // Pause panel buttons
+    private Button m_ResumeButton;
+    private Button m_MainMenuButtonPause;
+    
     // UI Panels
     private VisualElement m_GameOverPanel;
-    private Label m_GameOverMessage;
     private VisualElement m_VictoryPanel;
-    private Label m_VictoryMessage;
     private VisualElement m_PausePanel;
     private VisualElement m_TransitionPanel;
-    private Label m_TransitionMessage;
 
     [Header("Game State")]
     private int m_CurrentLevel = 0; // 0=Tutorial, 1-5=Minigames
@@ -440,22 +453,20 @@ public class GameManager : MonoBehaviour
         if (!m_IsGameActive)
             yield break;
 
-        m_IsGameActive = false; // stop timer, ale ešte nenerfuj Time.timeScale
+        m_IsGameActive = false;
 
-        // počkaj na animáciu smrti hráča
         yield return new WaitForSeconds(delaySeconds);
 
-
-        // po 3s zastav hru a ukáž panel
         Time.timeScale = 0;
         if (m_GameOverPanel != null)
             m_GameOverPanel.style.display = DisplayStyle.Flex;
 
-        if (m_GameOverMessage != null)
-        {
-            m_GameOverMessage.text = $"GAME OVER\n\n{reason}\n\nSkóre: {m_Score}\nDosiahnutý level: {m_CurrentLevel + 1}";
-        }
+        if (m_FinalScoreLabel != null)
+            m_FinalScoreLabel.text = $"Finálne skóre: {m_Score}";
 
+        if (m_LevelReachedLabel != null)
+            m_LevelReachedLabel.text = $"Dosiahnutý level: {m_CurrentLevel + 1}";
+        
         Debug.Log($"Game Over (delayed): {reason}");
     }
 
@@ -464,11 +475,16 @@ public class GameManager : MonoBehaviour
         if (m_VictoryPanel != null)
             m_VictoryPanel.style.display = DisplayStyle.Flex;
 
-        if (m_VictoryMessage != null)
-            m_VictoryMessage.text = $"VÍŤAZSTVO!\n\nPodarilo sa ti prežiť obedovú pauzu!\n\nFinálne skóre: {m_Score}\nZostávajúci čas: {FormatTime(m_TimeRemaining)}\nZostávajúce zdravie: {m_Health} HP";
+        if (m_VictoryScoreLabel != null)
+            m_VictoryScoreLabel.text = $"Finálne skóre: {m_Score}";
 
-        Debug.Log("Victory panel displayed!");
+        if (m_RemainingTimeLabel != null)
+            m_RemainingTimeLabel.text = $"Zostávajúci čas: {FormatTime(m_TimeRemaining)}";
+
+        if (m_RemainingHealthLabel != null)
+            m_RemainingHealthLabel.text = $"Zostávajúce zdravie: {m_Health} HP";
     }
+
 
     private void HandleEndingContinue()
     {
@@ -596,18 +612,60 @@ public class GameManager : MonoBehaviour
 
         // Panels
         m_GameOverPanel = root.Q<VisualElement>("GameOverPanel");
-        m_GameOverMessage = m_GameOverPanel?.Q<Label>("GameOverMessage");
 
         m_VictoryPanel = root.Q<VisualElement>("VictoryPanel");
-        m_VictoryMessage = m_VictoryPanel?.Q<Label>("VictoryMessage");
 
         m_PausePanel = root.Q<VisualElement>("PausePanel");
 
         m_TransitionPanel = root.Q<VisualElement>("TransitionPanel");
-        m_TransitionMessage = m_TransitionPanel?.Q<Label>("TransitionMessage");
+        
+        // Game Over panel
+        m_GameOverPanel = root.Q<VisualElement>("GameOverPanel");
+        m_FinalScoreLabel = m_GameOverPanel?.Q<Label>("FinalScoreLabel");
+        m_LevelReachedLabel = m_GameOverPanel?.Q<Label>("LevelReachedLabel");
+        m_RetryButton = m_GameOverPanel?.Q<Button>("RetryButton");
+        m_MainMenuButtonGO = m_GameOverPanel?.Q<Button>("MainMenuButtonGO");
 
+        // Victory panel
+        m_VictoryPanel = root.Q<VisualElement>("VictoryPanel");
+        m_VictoryScoreLabel = m_VictoryPanel?.Q<Label>("VictoryScoreLabel");
+        m_RemainingTimeLabel = m_VictoryPanel?.Q<Label>("RemainingTimeLabel");
+        m_RemainingHealthLabel = m_VictoryPanel?.Q<Label>("RemainingHealthLabel");
+        m_MainMenuButtonVictory = m_VictoryPanel?.Q<Button>("MainMenuButtonVictory");
+        
+        m_ResumeButton       = m_PausePanel?.Q<Button>("ResumeButton");
+        m_MainMenuButtonPause = m_PausePanel?.Q<Button>("MainMenuButton");
+        
+        if (m_RetryButton != null)
+            m_RetryButton.clicked += OnRetryButtonClicked;
+
+        if (m_MainMenuButtonGO != null)
+            m_MainMenuButtonGO.clicked += ReturnToMainMenu;
+
+        if (m_MainMenuButtonVictory != null)
+            m_MainMenuButtonVictory.clicked += ReturnToMainMenu;
+        
+        if (m_ResumeButton != null)
+            m_ResumeButton.clicked += TogglePause;
+
+        if (m_MainMenuButtonPause != null)
+            m_MainMenuButtonPause.clicked += ReturnToMainMenu;
+        
         HideAllPanels();
     }
+    
+    private void OnRetryButtonClicked()
+    {
+        Time.timeScale = 1f;
+        m_IsGameActive = true;
+
+        Scene current = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(current.name);
+        
+        if (m_GameOverPanel != null)
+            m_GameOverPanel.style.display = DisplayStyle.None;
+    }
+
 
     private void HideAllPanels()
     {
