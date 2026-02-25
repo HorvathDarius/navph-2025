@@ -22,8 +22,19 @@ public class DisclaimerScreen : MonoBehaviour
     private InputAction skipAction;
     private AudioSource audioSource;
 
+    private const string DisclaimerShownKey = "DisclaimerShown_Session";
+
     private void Start()
     {
+        if (PlayerPrefs.GetInt(DisclaimerShownKey, 0) == 1)
+        {
+            if (disclaimerCanvas != null)
+                disclaimerCanvas.SetActive(false);
+            if (mainMenuRoot != null)
+                mainMenuRoot.SetActive(true);
+            return;
+        }
+
         skipAction = new InputAction("Skip", type: InputActionType.PassThrough);
         skipAction.AddBinding("<Keyboard>/anyKey");
         skipAction.AddBinding("<Mouse>/press");
@@ -87,10 +98,19 @@ public class DisclaimerScreen : MonoBehaviour
         if (audioSource != null)
             audioSource.Stop();
 
+        PlayerPrefs.SetInt(DisclaimerShownKey, 1);
+        PlayerPrefs.Save();
+
         if (disclaimerCanvas != null)
             disclaimerCanvas.SetActive(false);
 
         if (mainMenuRoot != null)
             mainMenuRoot.SetActive(true);
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteKey(DisclaimerShownKey);
+        PlayerPrefs.Save();
     }
 }

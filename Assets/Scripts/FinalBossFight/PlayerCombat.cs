@@ -22,6 +22,7 @@ public class PlayerCombat : MonoBehaviour
     private bool combatEnabled;
     private bool inputLocked;
     private bool isAttacking;
+    private bool isDead;
     private float lastDirectionX = 1f;
 
     void OnEnable()
@@ -71,6 +72,7 @@ public class PlayerCombat : MonoBehaviour
         combatEnabled = false;
         inputLocked = false;
         isAttacking = false;
+        isDead = false;
 
         // animator.SetFloat("DirectionX", lastDirectionX);
         animator.SetBool("InCombat", false);
@@ -211,12 +213,14 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (isDead) return;
         if (GameManager.Instance == null) return;
 
         GameManager.Instance.ChangeHealth(-amount);
 
         if (GameManager.Instance.Health <= 0)
         {
+            isDead = true;
             Debug.Log("[PlayerCombat] Player died, starting death routine.");
             StartCoroutine(PlayerDeathRoutine());
         }
@@ -225,7 +229,17 @@ public class PlayerCombat : MonoBehaviour
     public IEnumerator PlayerDeathRoutine()
     {
         LockInput(true);
+        combatEnabled = false;
         animator.SetTrigger("IsDead");
+
+        // Zmraz Rigidbody aby bossa ani fyzika neposúvala mŕtveho hráča
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
         yield return FinalBossFightManager.Instance.HandlePlayerDeath();
     }
 }

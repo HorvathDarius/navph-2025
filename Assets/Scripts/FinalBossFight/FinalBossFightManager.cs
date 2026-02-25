@@ -26,6 +26,9 @@ public class FinalBossFightManager : MonoBehaviour
     private bool fightStarted;
     private bool fightEnded;
 
+    /// <summary>HP bossa ako pomer 0–1 (používa HomelessBossAI na retreat trigger)</summary>
+    public float BossHpRatio => bossMaxHealth > 0 ? (float)bossCurrentHealth / bossMaxHealth : 0f;
+
     // UI Toolkit
     private VisualElement bossHealthBarRoot;
     private VisualElement bossHealthFill;
@@ -155,6 +158,7 @@ public class FinalBossFightManager : MonoBehaviour
         fightEnded = true;
 
         ShowBossHealthUI(false);
+        boss.LockAI(true);          // zastaví bossa – nech neútočí na mŕtveho hráča
 
         yield return new WaitForSeconds(roundEndDelay);
     }

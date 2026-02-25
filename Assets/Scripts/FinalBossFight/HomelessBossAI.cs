@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(NavMeshMover2D))]
 public class HomelessBossAI : MonoBehaviour
 {
     public enum BossState
@@ -9,6 +10,7 @@ public class HomelessBossAI : MonoBehaviour
         IntroWalkBackToCart,
         SittingFightIdle,
         Fighting,
+        Retreating,
         Regenerating,
         Dead
     }
@@ -21,6 +23,7 @@ public class HomelessBossAI : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 1.5f;
+    [SerializeField] private float retreatSpeed = 2.2f;
     [SerializeField] private Transform leftPatrolPoint;
     [SerializeField] private Transform rightPatrolPoint;
     [SerializeField] private GameObject cartObject;
@@ -31,9 +34,27 @@ public class HomelessBossAI : MonoBehaviour
     [SerializeField] private int punchDamage = 10;
     [SerializeField] private int kickDamage = 20;
 
+    [Header("Retreat & Regen")]
+    [Tooltip("Prah HP (0–1) pri ktorom boss začne ustupovať a healiť sa")]
+    [SerializeField] private float retreatHpThreshold = 0.4f;
+    [Tooltip("Cooldown (s) medzi dvoma ústupmi – boss nemôže unikať donekonečna")]
+    [SerializeField] private float retreatCooldown = 15f;
+    [Tooltip("Minimálna vzdialenosť od hráča, ktorú sa boss snaží udržať pri ústupe")]
+    [SerializeField] private float retreatDistance = 4f;
+    [Tooltip("Ako dlho po trafení počas healu boss počká, kým sa vráti do Fighting (s)")]
+    [SerializeField] private float regenInterruptDelay = 1.2f;
+    [Tooltip("Linear drag Rigidbody2D počas regenerácie – zabraňuje posúvaniu")]
+    [SerializeField] private float regenLinearDrag = 20f;
+
+    [Header("NavMesh")]
+    [Tooltip("Ako často sa prepočítava cesta k hráčovi (s)")]
+    [SerializeField] private float pathRefreshInterval = 0.25f;
+
+    // --- private refs ---
     private FinalBossFightManager manager;
     private Animator animator;
     private Rigidbody2D rb;
+    private NavMeshMover2D mover;
     private PlayerCombat player;
 
     private BossState currentState;
@@ -43,6 +64,21 @@ public class HomelessBossAI : MonoBehaviour
     private HomelessLocomotionState locomotionState = HomelessLocomotionState.Walk;
 
     private Coroutine regenRoutine;
+    private Coroutine regenInterruptRoutine;
+    private float defaultLinearDrag;
+    private bool hitDuringRegen;
+
+    // --- retreat ---
+    private bool retreatOnCooldown;
+    private float retreatCooldownTimer;
+    private Vector2 retreatTargetPos;
+
+    // --- path refresh ---
+    private float pathRefreshTimer;
+
+    // ──────────────────────────────────────────────
+    //  Init
+    // ──────────────────────────────────────────────
 
     public void Init(FinalBossFightManager mgr)
     {
@@ -53,13 +89,58 @@ public class HomelessBossAI : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        mover = GetComponent<NavMeshMover2D>();
         player = FindAnyObjectByType<PlayerCombat>();
+        defaultLinearDrag = rb.linearDamping;
     }
+
+    private void Start()
+    {
+        // Počas intra používame Rigidbody, nie NavMesh
+        UseRigidbodyMovement();
+    }
+
+    // ──────────────────────────────────────────────
+    //  Movement mode switching
+    // ──────────────────────────────────────────────
+
+    /// <summary>Prepne na Rigidbody2D pohyb (intro, regen). Vypne NavMeshAgent.</summary>
+    private void UseRigidbodyMovement()
+    {
+        mover.Stop();
+        mover.SetEnabled(false);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    /// <summary>Prepne na NavMesh pohyb (fight, retreat). Vypne Rigidbody.</summary>
+    private void UseNavMeshMovement(float speed)
+    {
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        mover.SetEnabled(true);
+        mover.Speed = speed;
+        mover.StoppingDistance = 0.1f;
+    }
+
+    // ──────────────────────────────────────────────
+    //  Update
+    // ──────────────────────────────────────────────
 
     private void Update()
     {
         if (aiLocked || currentState == BossState.Dead)
             return;
+
+        // retreat cooldown odpočítavanie
+        if (retreatOnCooldown)
+        {
+            retreatCooldownTimer -= Time.deltaTime;
+            if (retreatCooldownTimer <= 0f)
+                retreatOnCooldown = false;
+        }
+
+        // Animácia smeru z NavMesh velocity
+        UpdateDirectionFromMovement();
 
         animator.SetFloat("DirectionX", directionX);
 
@@ -74,11 +155,40 @@ public class HomelessBossAI : MonoBehaviour
             case BossState.Fighting:
                 HandleFighting();
                 break;
+            case BossState.Retreating:
+                HandleRetreating();
+                break;
             case BossState.Regenerating:
                 FacePlayer();
                 break;
         }
     }
+
+    private void FixedUpdate()
+    {
+        // Aktívne brzdi počas stavov kde boss stojí – zabraňuje "kĺzaniu" po kolízii
+        if (currentState == BossState.Regenerating ||
+            currentState == BossState.SittingFightIdle ||
+            currentState == BossState.Dead)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    /// <summary>Odvodí smer animácie z NavMesh velocity (ak sa hýbe).</summary>
+    private void UpdateDirectionFromMovement()
+    {
+        if (!mover.IsReady) return;
+        Vector2 vel = mover.Velocity;
+        if (vel.sqrMagnitude > 0.01f)
+        {
+            SetDirection(Mathf.Sign(vel.x));
+        }
+    }
+
+    // ──────────────────────────────────────────────
+    //  Intro  (stále cez Rigidbody – predtým než je NavMesh aktívny)
+    // ──────────────────────────────────────────────
 
     public void StartIntro()
     {
@@ -86,7 +196,6 @@ public class HomelessBossAI : MonoBehaviour
         SetDirection(-1f);
         SetLocomotion(HomelessLocomotionState.Walk);
         animator.SetBool("IsMoving", true);
-
         Debug.Log("[HomelessBossAI] StartIntro - walking from spawn to middle.");
     }
 
@@ -97,15 +206,12 @@ public class HomelessBossAI : MonoBehaviour
         rb.linearVelocity = dir * walkSpeed;
 
         float dist = Vector2.Distance(transform.position, target);
-        Debug.Log($"[HomelessBossAI] MoveTowards {target} dist={dist}");
 
         if (dist <= 0.85f)
         {
             rb.linearVelocity = Vector2.zero;
             SetState(nextState);
-
             Debug.Log($"[HomelessBossAI] Reached {nextState}, stopping move.");
-
             onReached?.Invoke();
         }
     }
@@ -113,10 +219,10 @@ public class HomelessBossAI : MonoBehaviour
     private void OnReachedCart()
     {
         Debug.Log("[HomelessBossAI] OnReachedCart - switching to wheelchair mode.");
-        
+
         if (cartObject != null)
             cartObject.SetActive(false);
-        
+
         manager.ShowBossHealthUI(true);
 
         SetDirection(-1f);
@@ -126,55 +232,132 @@ public class HomelessBossAI : MonoBehaviour
 
         FinalBossFightManager.Instance.NotifyBossReadyToFight();
     }
-    
+
     private void OnReachedMiddle()
     {
         Debug.Log("[HomelessBossAI] OnReachedMiddle - reached middle point.");
         manager.StartCountdownToFight();
     }
 
+    // ──────────────────────────────────────────────
+    //  Fight Phase
+    // ──────────────────────────────────────────────
+
     public void StartFightPhase()
     {
-        Debug.Log("[HomelessBossAI] StartFightPhase");
+        Debug.Log("[HomelessBossAI] StartFightPhase – switching to NavMesh movement.");
+        UseNavMeshMovement(walkSpeed);
+        mover.StoppingDistance = attackRange * 0.9f;
         SetState(BossState.Fighting);
     }
 
+    // ──────────────────────────────────────────────
+    //  HandleFighting  (NavMesh chase → attack, s retreat triggrom)
+    // ──────────────────────────────────────────────
+
     private void HandleFighting()
     {
-        if (player == null)
-            return;
+        if (player == null) return;
 
-        float dist = Vector2.Distance(transform.position, player.transform.position);
-        Vector2 dir = (player.transform.position - transform.position).normalized;
-        SetDirection(Mathf.Sign(dir.x));
+        float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        if (!canAttack && currentState == BossState.Fighting)
+        // --- Trigger retreat keď je HP nízke a cooldown prešiel ---
+        if (!retreatOnCooldown && manager.BossHpRatio <= retreatHpThreshold)
         {
-            // počas cooldownu po útoku stojí
-            rb.linearVelocity = Vector2.zero;
+            TriggerRetreat();
+            return;
+        }
+
+        // --- čakáme na koniec attack cooldownu ---
+        if (!canAttack)
+        {
+            mover.Stop();
             animator.SetBool("IsMoving", false);
             return;
         }
 
-        if (dist > attackRange)
+        // --- sme v dosahu – útočíme ---
+        if (distToPlayer <= attackRange)
         {
-            rb.linearVelocity = dir * walkSpeed;
-            animator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            rb.linearVelocity = Vector2.zero;
+            mover.Stop();
             animator.SetBool("IsMoving", false);
-
+            FacePlayer();
             if (canAttack)
                 StartCoroutine(AttackRoutine());
+            return;
         }
+
+        // --- NavMesh cesta k hráčovi ---
+        pathRefreshTimer -= Time.deltaTime;
+        if (pathRefreshTimer <= 0f)
+        {
+            mover.Speed = walkSpeed;
+            mover.SetDestination(player.transform.position);
+            pathRefreshTimer = pathRefreshInterval;
+        }
+
+        // Animácia pohybu
+        bool isMoving = mover.Velocity.sqrMagnitude > 0.01f;
+        animator.SetBool("IsMoving", isMoving);
     }
+
+    // ──────────────────────────────────────────────
+    //  Retreat & Regen
+    // ──────────────────────────────────────────────
+
+    private void TriggerRetreat()
+    {
+        if (currentState == BossState.Dead) return;
+
+        retreatTargetPos = ChooseRetreatPosition();
+
+        Debug.Log($"[HomelessBossAI] TriggerRetreat -> {retreatTargetPos}");
+        SetState(BossState.Retreating);
+        mover.Speed = retreatSpeed;
+        mover.StoppingDistance = 0.5f;
+        mover.SetDestination(retreatTargetPos);
+        animator.SetBool("IsMoving", true);
+        canAttack = false;
+    }
+
+    private Vector2 ChooseRetreatPosition()
+    {
+        if (player == null) return (Vector2)transform.position + Vector2.left * retreatDistance;
+
+        // Smer preč od hráča
+        Vector2 awayDir = ((Vector2)transform.position - (Vector2)player.transform.position).normalized;
+        return (Vector2)transform.position + awayDir * retreatDistance;
+    }
+
+    private void HandleRetreating()
+    {
+        if (player == null) { StartRegeneration(); return; }
+
+        float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+        // Dosiahli sme retreat bod ALEBO sme dostatočne ďaleko od hráča
+        if (mover.HasReachedDestination || distToPlayer >= retreatDistance)
+        {
+            mover.Stop();
+            animator.SetBool("IsMoving", false);
+            Debug.Log("[HomelessBossAI] Reached retreat position, starting regen.");
+            StartRegeneration();
+            return;
+        }
+
+        // Animácia
+        bool isMoving = mover.Velocity.sqrMagnitude > 0.01f;
+        animator.SetBool("IsMoving", isMoving);
+    }
+
+    // ──────────────────────────────────────────────
+    //  Attack Routine
+    // ──────────────────────────────────────────────
 
     private IEnumerator AttackRoutine()
     {
         canAttack = false;
-        rb.linearVelocity = Vector2.zero;
+        mover.Stop();
         animator.SetBool("IsMoving", false);
 
         bool useKick = Random.value > 0.75f;
@@ -184,15 +367,13 @@ public class HomelessBossAI : MonoBehaviour
         AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         float clipLength = state.length > 0 ? state.length : 0.4f;
 
-        // čakáme na koniec animácie, až potom riešime damage
         yield return new WaitForSeconds(clipLength);
 
         if (player != null)
         {
             Vector2 toPlayer = player.transform.position - transform.position;
             float dist = toPlayer.magnitude;
-
-            Vector2 forward = new Vector2(directionX, 0f); // directionX už určuje facing
+            Vector2 forward = new Vector2(directionX, 0f);
             float dot = Vector2.Dot(forward.normalized, toPlayer.normalized);
 
             Debug.Log($"[HomelessBossAI] Attack end. useKick={useKick} dist={dist} dot={dot}");
@@ -213,6 +394,10 @@ public class HomelessBossAI : MonoBehaviour
         canAttack = true;
     }
 
+    // ──────────────────────────────────────────────
+    //  Regeneration
+    // ──────────────────────────────────────────────
+
     public void StartRegeneration()
     {
         if (regenRoutine != null || currentState == BossState.Dead)
@@ -220,7 +405,15 @@ public class HomelessBossAI : MonoBehaviour
 
         Debug.Log("[HomelessBossAI] StartRegeneration");
         SetState(BossState.Regenerating);
+        hitDuringRegen = false;
         animator.SetBool("IsMoving", false);
+
+        // Vypni NavMesh a zmraz Rigidbody – hráč ho nemôže posúvať
+        UseRigidbodyMovement();
+        rb.linearVelocity = Vector2.zero;
+        rb.linearDamping = regenLinearDrag;
+        rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+
         regenRoutine = StartCoroutine(manager.StartBossRegeneration());
     }
 
@@ -234,24 +427,60 @@ public class HomelessBossAI : MonoBehaviour
             regenRoutine = null;
         }
 
+        // Obnov pohyb
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rb.linearDamping = defaultLinearDrag;
+
         if (currentState != BossState.Dead)
         {
             Debug.Log("[HomelessBossAI] StopRegeneration - back to Fighting.");
+            canAttack = true;
+
+            // Prepni späť na NavMesh
+            UseNavMeshMovement(walkSpeed);
+            mover.StoppingDistance = attackRange * 0.9f;
+
+            // Spusti retreat cooldown – boss nemôže hneď znovu utekať
+            retreatOnCooldown = true;
+            retreatCooldownTimer = retreatCooldown;
+            Debug.Log($"[HomelessBossAI] Retreat cooldown started ({retreatCooldown}s)");
+
             SetState(BossState.Fighting);
         }
     }
+
+    // ──────────────────────────────────────────────
+    //  Hit / Death
+    // ──────────────────────────────────────────────
 
     public void OnHit()
     {
         Debug.Log($"[HomelessBossAI] OnHit in state {currentState}");
         if (currentState == BossState.Regenerating)
-            manager.InterruptBossRegeneration();
+        {
+            if (hitDuringRegen) return;
+            hitDuringRegen = true;
+
+            if (regenInterruptRoutine != null)
+                StopCoroutine(regenInterruptRoutine);
+            regenInterruptRoutine = StartCoroutine(RegenInterruptRoutine());
+        }
+    }
+
+    private IEnumerator RegenInterruptRoutine()
+    {
+        Debug.Log($"[HomelessBossAI] RegenInterruptRoutine – čakám {regenInterruptDelay}s");
+        yield return new WaitForSeconds(regenInterruptDelay);
+        regenInterruptRoutine = null;
+        manager.InterruptBossRegeneration();
     }
 
     public void PlayDeath()
     {
         Debug.Log("[HomelessBossAI] PlayDeath");
         SetState(BossState.Dead);
+        mover.Stop();
+        mover.SetEnabled(false);
         rb.linearVelocity = Vector2.zero;
         animator.SetTrigger("IsDead");
         animator.SetBool("IsMoving", false);
@@ -261,10 +490,21 @@ public class HomelessBossAI : MonoBehaviour
     {
         aiLocked = locked;
         if (locked)
+        {
+            mover.Stop();
+            mover.SetEnabled(false);
             rb.linearVelocity = Vector2.zero;
-
+            animator.SetBool("IsMoving", false);
+            StopAllCoroutines();
+            regenRoutine = null;
+            regenInterruptRoutine = null;
+        }
         Debug.Log($"[HomelessBossAI] LockAI({locked})");
     }
+
+    // ──────────────────────────────────────────────
+    //  Helpers
+    // ──────────────────────────────────────────────
 
     private void FacePlayer()
     {
@@ -277,7 +517,6 @@ public class HomelessBossAI : MonoBehaviour
     {
         directionX = Mathf.Clamp(x, -1f, 1f);
         animator.SetFloat("DirectionX", directionX);
-        //Debug.Log($"[HomelessBossAI] SetDirection {directionX}");
     }
 
     private void SetLocomotion(HomelessLocomotionState state)

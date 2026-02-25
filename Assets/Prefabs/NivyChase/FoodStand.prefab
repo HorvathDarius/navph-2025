@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4470192223621547811}
   - component: {fileID: 2006452778782600398}
-  - component: {fileID: 401465401193578793}
+  - component: {fileID: 6494494880959211214}
   m_Layer: 0
   m_Name: FoodStand
   m_TagString: Untagged
@@ -91,8 +91,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!68 &401465401193578793
-EdgeCollider2D:
+--- !u!60 &6494494880959211214
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -126,18 +126,19 @@ EdgeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.53840184, y: 0.31652594}
+    oldSize: {x: 6.36, y: 6.57}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.9942387, y: 2.153908}
-  - {x: -2.5387218, y: 1.2602471}
-  - {x: -2.4918723, y: -0.2880417}
-  - {x: 0.95141876, y: -2.1187415}
-  - {x: 2.5216079, y: -1.2347511}
-  - {x: 2.8209813, y: -1.0660406}
-  - {x: 2.8337512, y: 0.36410117}
-  - {x: -0.066823855, y: 1.6164066}
-  - {x: -0.94373953, y: 2.1042302}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+    m_Paths:
+    - - {x: -0.6582329, y: 0.43071783}
+      - {x: -2.473864, y: -0.31186974}
+      - {x: 0.9902545, y: -2.0850267}
+      - {x: 2.813356, y: -1.104123}
+  m_UseDelaunayMesh: 0

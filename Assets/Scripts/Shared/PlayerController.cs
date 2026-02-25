@@ -264,6 +264,13 @@ public class PlayerController : MonoBehaviour
 
             animator.SetTrigger("IsDead");
             controller.SetMovementLocked(true);
+
+            // Zmraz Rigidbody aby hráča nič neposúvalo po smrti
+            if (rb2d != null)
+            {
+                rb2d.linearVelocity = Vector2.zero;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
         }
     }
 
