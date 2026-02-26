@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     private bool m_WaitingForEndingContinue = false;
 
     // Game Over stats
+    private Label m_GameOverMessageLabel;
     private Label m_FinalScoreLabel;
     private Label m_LevelReachedLabel;
     private Button m_RetryButton;
@@ -139,11 +140,15 @@ public class GameManager : MonoBehaviour
         if (m_IsGameActive && !m_IsPaused)
         {
             m_TimeRemaining -= Time.deltaTime;
-            UpdateTimerUI();
-
             if (m_TimeRemaining <= 0)
             {
+                m_TimeRemaining = 0;
+                UpdateTimerUI();
                 TimeUp();
+            }
+            else
+            {
+                UpdateTimerUI();
             }
         }
 
@@ -448,7 +453,7 @@ public class GameManager : MonoBehaviour
 
     // ===== GAME OVER & VICTORY =====
 
-    public IEnumerator GameOver(string reason, float delaySeconds)
+    public IEnumerator GameOver(string reason, float delaySeconds, bool showRetry = true)
     {
         if (!m_IsGameActive)
             yield break;
@@ -461,11 +466,18 @@ public class GameManager : MonoBehaviour
         if (m_GameOverPanel != null)
             m_GameOverPanel.style.display = DisplayStyle.Flex;
 
+        if (m_GameOverMessageLabel != null)
+            m_GameOverMessageLabel.text = reason;
+
         if (m_FinalScoreLabel != null)
             m_FinalScoreLabel.text = $"Finálne skóre: {m_Score}";
 
         if (m_LevelReachedLabel != null)
-            m_LevelReachedLabel.text = $"Dosiahnutý level: {m_CurrentLevel + 1}";
+            m_LevelReachedLabel.text = $"Dosiahnutý level: {m_CurrentLevel}";
+
+        // Skryje tlačidlo "Skúsiť znova" ak nie je povolené (napr. pri vypršaní času)
+        if (m_RetryButton != null)
+            m_RetryButton.style.display = showRetry ? DisplayStyle.Flex : DisplayStyle.None;
         
         Debug.Log($"Game Over (delayed): {reason}");
     }
@@ -533,8 +545,9 @@ public class GameManager : MonoBehaviour
     private void TimeUp()
     {
         StartCoroutine(GameOver(
-            "Vypršal ti čas na obedovú pauzu, dnes robíš o hodinu dlhšie!",
-            0f));
+            "Nestihol si sa dostať na obed.\nDnes robíš nadčas zadarmo!\n\nŠéf ocenil tvoje nasadenie.",
+            0f,
+            false));
     }
 
     // ===== PLAYER STATE =====
@@ -547,7 +560,7 @@ public class GameManager : MonoBehaviour
         if (m_Health <= 0 && m_IsGameActive)
         {
             // Spusti delayed game over – animácia pádu hráča
-            StartCoroutine(GameOver("Zomrel si!", 3f));
+            StartCoroutine(GameOver("Nezomrel si, Ružinov bol za rohom.\n\nNabudúce si daj od práce voľno.", 3f));
         }
     }
 
@@ -621,6 +634,7 @@ public class GameManager : MonoBehaviour
         
         // Game Over panel
         m_GameOverPanel = root.Q<VisualElement>("GameOverPanel");
+        m_GameOverMessageLabel = m_GameOverPanel?.Q<Label>("GameOverMessage");
         m_FinalScoreLabel = m_GameOverPanel?.Q<Label>("FinalScoreLabel");
         m_LevelReachedLabel = m_GameOverPanel?.Q<Label>("LevelReachedLabel");
         m_RetryButton = m_GameOverPanel?.Q<Button>("RetryButton");
@@ -657,7 +671,9 @@ public class GameManager : MonoBehaviour
     private void OnRetryButtonClicked()
     {
         m_Health = startingHealth;
+        m_Score = 0;
         UpdateHealthUI();
+        UpdateScoreUI();
 
         m_IsGameActive = true;
         Time.timeScale = 1f;
@@ -751,6 +767,7 @@ public class GameManager : MonoBehaviour
 
     private string FormatTime(float seconds)
     {
+        seconds = Mathf.Max(seconds, 0f);
         int minutes = Mathf.FloorToInt(seconds / 60);
         int secs = Mathf.FloorToInt(seconds % 60);
         return $"{minutes:00}:{secs:00}";

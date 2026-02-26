@@ -263,13 +263,19 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player health <= 0, triggering death.");
 
             animator.SetTrigger("IsDead");
-            controller.SetMovementLocked(true);
+            SetMovementLocked(true);
 
-            // Zmraz Rigidbody aby hráča nič neposúvalo po smrti
+            // Vypni input úplne — hráč sa nesmie hýbať po smrti
+            moveAction.Disable();
+            interactAction.Disable();
+            runningAction.Disable();
+            pickUpAction.Disable();
+
+            // Zmraz Rigidbody — kinematic zabraňuje posúvaniu ale fyzika okolia pokračuje
             if (rb2d != null)
             {
                 rb2d.linearVelocity = Vector2.zero;
-                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                rb2d.bodyType = RigidbodyType2D.Kinematic;
             }
         }
     }

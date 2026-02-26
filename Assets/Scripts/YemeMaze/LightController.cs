@@ -56,6 +56,10 @@ public class LightController : MonoBehaviour
     {
         mobileLightAction = InputSystem.actions.FindAction("MobileLight");
 
+        // Zisti, či hráč zobral telefón v tutoriáli
+        playerHasMobile = GameManager.Instance != null && GameManager.Instance.HasItem("Phone");
+        Debug.Log($"[LightController] playerHasMobile = {playerHasMobile}");
+
         if (GameManager.Instance != null)
         {
             var uiDocument = GameManager.Instance.GameUI;

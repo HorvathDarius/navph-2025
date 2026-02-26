@@ -232,12 +232,15 @@ public class PlayerCombat : MonoBehaviour
         combatEnabled = false;
         animator.SetTrigger("IsDead");
 
+        // Úplne vypni PlayerController aby hráč nemohol vôbec hýbať postavou
+        controller.enabled = false;
+
         // Zmraz Rigidbody aby bossa ani fyzika neposúvala mŕtveho hráča
         var rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.bodyType = RigidbodyType2D.Kinematic;
         }
 
         yield return FinalBossFightManager.Instance.HandlePlayerDeath();
