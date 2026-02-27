@@ -6,6 +6,10 @@ public class CameraTrigger : MonoBehaviour
     [SerializeField] private CinemachineSwitcher cameraSwitcher;
     [SerializeField] private DialogueController dialogueController;
 
+    // Track which camera state this trigger already fired in, to prevent double-firing
+    // within the same state but still allow firing in a later state.
+    private string lastTriggeredInState = "";
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Player check
@@ -13,6 +17,15 @@ public class CameraTrigger : MonoBehaviour
         {
             return;
         }
+        
+        // Prevent re-triggering within the same camera state
+        string currentState = cameraSwitcher.CurrentCamera;
+        if (lastTriggeredInState == currentState)
+        {
+            return;
+        }
+        
+        lastTriggeredInState = currentState;
 
         // Move to next camera
         cameraSwitcher.SwitchState();

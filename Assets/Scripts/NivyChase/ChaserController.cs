@@ -6,6 +6,10 @@ public class ChaserController : MonoBehaviour
     [SerializeField] private GameObject chasedPlayer;
     [SerializeField] private float chaseSpeed = 1f;
     public bool isChasing = true;
+
+    [Header("Catch Audio")]
+    [SerializeField] private AudioSource catchAudioSource;
+    [SerializeField] private AudioClip[] catchClips;
     
     private Animator animator;
     private NavMeshMover2D mover;
@@ -77,9 +81,26 @@ public class ChaserController : MonoBehaviour
             animator.SetBool("IsMoving", false);
             animator.SetTrigger("Punch");
 
+            // Play random catch voice line
+            PlayRandomCatchSound();
+
             Debug.Log("Chaser caught the player!");
             Debug.Log("Start quick-time event");
             StartCoroutine(NivyChaseManager.Instance.StartQuickTimeEvent());
         }
+    }
+
+    private void PlayRandomCatchSound()
+    {
+        if (catchAudioSource == null || catchClips == null || catchClips.Length == 0)
+            return;
+
+        // If a catch sound is still playing, don't interrupt it
+        if (catchAudioSource.isPlaying)
+            return;
+
+        AudioClip clip = catchClips[Random.Range(0, catchClips.Length)];
+        catchAudioSource.clip = clip;
+        catchAudioSource.Play();
     }
 }

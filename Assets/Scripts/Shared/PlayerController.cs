@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isRunning;
     private bool isMovementLocked;
+    private bool isRightMovementBlocked;
     private PlayerController controller;
     private CapsuleCollider2D capsuleCollider;
     private bool isInteracting;
@@ -97,6 +98,13 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 input = moveAction.ReadValue<Vector2>();
+        
+        // Block rightward movement if flag is set
+        if (isRightMovementBlocked && input.x > 0f)
+        {
+            input.x = 0f;
+        }
+        
         moveDirection = input;
 
         bool isMoving = moveDirection.sqrMagnitude > 0.0001f;
@@ -217,6 +225,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"[PlayerController] SetMovementLocked({locked})");
     }
 
+    public void SetRightMovementBlocked(bool blocked)
+    {
+        isRightMovementBlocked = blocked;
+        Debug.Log($"[PlayerController] SetRightMovementBlocked({blocked})");
+    }
+
     // Interactions
     public void SetNearbyInteractable(IInteractable interactable) => nearbyInteractable = interactable;
     public void ClearNearbyInteractable() => nearbyInteractable = null;
@@ -237,6 +251,12 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        
+        // Skip damage during checkpoint invincibility
+        if (CrossyRoadCheckpoint.IsPlayerInvincible)
+        {
+            return;
+        }
 
         obstacleType = collision.gameObject.tag;
         switch (obstacleType)
@@ -244,16 +264,45 @@ public class PlayerController : MonoBehaviour
             case "BigVehicle":
                 Debug.Log("Collision detected with BIG VEHICLE");
                 GameManager.Instance.ChangeHealth(-100);
-                KillPlayer();
+                HandleDeath();
                 break;
             case "Scooter":
                 Debug.Log("Collision detected with SCOOTER");
                 GameManager.Instance.ChangeHealth(-50);
-                KillPlayer();
+                HandleDeath();
                 break;
         }
+    }
 
+    /// <summary>
+    /// Handles death logic - if a checkpoint is active, respawn there instead of full game over.
+    /// </summary>
+    private void HandleDeath()
+    {
+        if (GameManager.Instance.Health > 0)
+            return;
+            
+        // Check if a CrossyRoad checkpoint is active - respawn there instead of dying
+        if (CrossyRoadCheckpoint.TryRespawnPlayer(this))
+        {
+            Debug.Log("Player died but checkpoint active - respawning at checkpoint.");
+            // Play death animation briefly, checkpoint handles the rest
+            animator.SetTrigger("IsDead");
+            SetMovementLocked(true);
+            
+            if (rb2d != null)
+            {
+                rb2d.linearVelocity = Vector2.zero;
+                rb2d.bodyType = RigidbodyType2D.Kinematic;
+            }
+            
+            // Re-activate game (prevent GameOver from showing)
+            GameManager.Instance.CancelGameOver();
+            return;
+        }
 
+        // No checkpoint - original death behavior
+        KillPlayer();
     }
 
     public void KillPlayer()
