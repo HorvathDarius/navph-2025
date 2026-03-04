@@ -216,6 +216,13 @@ public class PlayerCombat : MonoBehaviour
         if (isDead) return;
         if (GameManager.Instance == null) return;
 
+        // Ak fight už skončil (boss zomrel skôr), hráč už neberie damage.
+        if (FinalBossFightManager.Instance != null && FinalBossFightManager.Instance.IsFightOver)
+        {
+            Debug.Log("[PlayerCombat] TakeDamage blocked – fight is already over.");
+            return;
+        }
+
         GameManager.Instance.ChangeHealth(-amount);
 
         if (GameManager.Instance.Health <= 0)

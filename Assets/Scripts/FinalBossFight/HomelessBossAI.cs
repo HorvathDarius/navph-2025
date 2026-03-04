@@ -369,6 +369,12 @@ public class HomelessBossAI : MonoBehaviour
 
         yield return new WaitForSeconds(clipLength);
 
+        // Ak fight medzitým skončil (boss zomrel), neaplikuj damage
+        if (currentState == BossState.Dead || (manager != null && manager.IsFightOver))
+        {
+            yield break;
+        }
+
         if (player != null)
         {
             Vector2 toPlayer = player.transform.position - transform.position;

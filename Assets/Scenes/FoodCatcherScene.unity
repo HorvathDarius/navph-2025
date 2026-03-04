@@ -131,18 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: bowl_0 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4242059850057283977, guid: 373ba33dc97fb0646a77c054ab8dbefe, type: 3}
-      propertyPath: m_Size.y
-      value: 2.5996282
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242059850057283977, guid: 373ba33dc97fb0646a77c054ab8dbefe, type: 3}
-      propertyPath: m_Offset.y
-      value: 1.6595727
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242059850057283977, guid: 373ba33dc97fb0646a77c054ab8dbefe, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8377889026222551741, guid: 373ba33dc97fb0646a77c054ab8dbefe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -183,66 +171,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4242059850057283977, guid: 373ba33dc97fb0646a77c054ab8dbefe, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 368074715438647694, guid: 373ba33dc97fb0646a77c054ab8dbefe, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 434853956}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 373ba33dc97fb0646a77c054ab8dbefe, type: 3}
---- !u!1 &434853955 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 368074715438647694, guid: 373ba33dc97fb0646a77c054ab8dbefe, type: 3}
-  m_PrefabInstance: {fileID: 434853954}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &434853956
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434853955}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.14, y: 7.28}
-    newSize: {x: 9.14, y: 7.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 9.14, y: 7.28}
-  m_EdgeRadius: 0
 --- !u!1 &829843142
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,8 +494,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -769.28, y: -499.5}
-  m_SizeDelta: {x: 329.45, y: 81}
+  m_AnchoredPosition: {x: -236.1, y: -108}
+  m_SizeDelta: {x: 77.884, y: 22.916}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &909808018
 MonoBehaviour:
@@ -586,8 +519,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0 / 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
-  m_sharedMaterial: {fileID: 7473230018274346873, guid: c2a2aa0c637c2f847af626b54723c744, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
+  m_sharedMaterial: {fileID: -172492987115859730, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -611,8 +544,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -649,7 +582,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -27.870117, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1535,10 +1468,6 @@ PrefabInstance:
     - target: {fileID: 1633532424817026613, guid: 8e066ced33bfbf34ab30d03e26f72425, type: 3}
       propertyPath: m_SortingLayer
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1633532424817026613, guid: 8e066ced33bfbf34ab30d03e26f72425, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1798129985
       objectReference: {fileID: 0}
     - target: {fileID: 1867104195201396617, guid: 8e066ced33bfbf34ab30d03e26f72425, type: 3}
       propertyPath: m_LocalPosition.x

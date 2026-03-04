@@ -29,6 +29,9 @@ public class FinalBossFightManager : MonoBehaviour
     /// <summary>HP bossa ako pomer 0–1 (používa HomelessBossAI na retreat trigger)</summary>
     public float BossHpRatio => bossMaxHealth > 0 ? (float)bossCurrentHealth / bossMaxHealth : 0f;
 
+    /// <summary>True ak fight skončil (boss alebo hráč zomrel) – blokuje ďalší damage.</summary>
+    public bool IsFightOver => fightEnded;
+
     // UI Toolkit
     private VisualElement bossHealthBarRoot;
     private VisualElement bossHealthFill;
@@ -100,13 +103,17 @@ public class FinalBossFightManager : MonoBehaviour
         Debug.Log($"[FBFM] Boss took {amount} dmg. HP={bossCurrentHealth}/{bossMaxHealth}");
         UpdateBossHealthUI();
 
-        boss.OnHit();
-
         if (bossCurrentHealth <= 0)
         {
+            // Okamžite označ fight ako ukončený – ak boss súčasne trafí hráča,
+            // damage sa už neaplikuje a hráč nevyzerá ako mŕtvy.
+            fightEnded = true;
             Debug.Log("[FBFM] Boss HP <= 0, starting HandleBossDeath.");
             StartCoroutine(HandleBossDeath());
+            return;
         }
+
+        boss.OnHit();
     }
 
     private void UpdateBossHealthUI()
@@ -135,9 +142,6 @@ public class FinalBossFightManager : MonoBehaviour
 
     private IEnumerator HandleBossDeath()
     {
-        if (fightEnded) yield break;
-        fightEnded = true;
-
         ShowBossHealthUI(false);
         boss.PlayDeath();
         player.LockInput(true);
