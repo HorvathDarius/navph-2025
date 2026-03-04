@@ -86,3 +86,19 @@ MonoBehaviour:
   - {fileID: 3692340349586261547, guid: dc14004c907ac12488d73a4c3658bbf8, type: 3}
   - {fileID: 3692340349586261547, guid: b925789f55d373043bfd0bda3d91e101, type: 3}
   endingPrefab: {fileID: 2494198254277953678, guid: 4c351678b6620dd498c2067757474329, type: 3}
+  hintAudioClips:
+  - {fileID: 8300000, guid: 88c6d93edba1702408b9f6eb0cf6dfc9, type: 3}
+  - {fileID: 8300000, guid: 0d9f7b828e56cfe41a1c9857291c7896, type: 3}
+  - {fileID: 8300000, guid: bf881e512db2890408fc98d86bd00151, type: 3}
+  - {fileID: 8300000, guid: 7019e00dd3d4dec41ae79f6fb04a4838, type: 3}
+  - {fileID: 8300000, guid: 2895ca6f524e9b74e808da7fa6c32674, type: 3}
+  loreAudioClips:
+  - {fileID: 8300000, guid: 498e27f474427f94b91255a2f5a83b7e, type: 3}
+  - {fileID: 8300000, guid: 67f26b83b3c953d41b1f0abe14fff0f9, type: 3}
+  - {fileID: 8300000, guid: 62ade95a9b3510f419ce97f861fc9baf, type: 3}
+  - {fileID: 8300000, guid: 0c9442ee354e23940816b2517448e6d8, type: 3}
+  - {fileID: 8300000, guid: 0f188b6ee70206d4eb82853a3084c38b, type: 3}
+  - {fileID: 8300000, guid: a1c73c5f66d1a5d4eb1d46a52e711e59, type: 3}
+  gameOverAudioClip: {fileID: 8300000, guid: 75500e5450a90c2439fd5c64a25404c8, type: 3}
+  timeUpAudioClip: {fileID: 8300000, guid: 130c24823225e9e44bb6544f4105d208, type: 3}
+  victoryAudioClip: {fileID: 8300000, guid: bf10d1ee7caecbf45b91a1380f38bb80, type: 3}

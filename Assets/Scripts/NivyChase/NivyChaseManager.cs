@@ -23,6 +23,10 @@ public class NivyChaseManager : MonoBehaviour
 
     public IEnumerator StartQuickTimeEvent()
     {
+        // Okamžite zamkni pohyb hráča aby sa nehýbal počas kamery
+        if (playerController != null)
+            playerController.SetMovementLocked(true);
+
         cinemachineSwitcher.SwitchCamera();
         yield return new WaitForSeconds(1.1f);
         Time.timeScale = 0f;
@@ -42,6 +46,12 @@ public class NivyChaseManager : MonoBehaviour
         {
             playerController.KillPlayer();
             homelessMan.GetComponent<ChaserController>().isChasing = false;
+        }
+        else
+        {
+            // Odomkni pohyb hráča ak prežil
+            if (playerController != null)
+                playerController.SetMovementLocked(false);
         }
 
         yield return new WaitForSeconds(1.1f);

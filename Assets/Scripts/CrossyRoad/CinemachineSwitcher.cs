@@ -7,13 +7,28 @@ public class CinemachineSwitcher : MonoBehaviour
 {
     [SerializeField] GameObject NpcTrigger;
     [SerializeField] private Image speechBubbleImage;
+    [SerializeField] private PlayerController playerController;
     private Animator animator;
     private string currentCamera = "FirstCamera";
     private Coroutine switchCoroutine;
 
+    /// <summary>
+    /// Current camera state name (e.g. "FirstCamera", "SecondCamera", "ThirdCamera", "FourthCamera").
+    /// </summary>
+    public string CurrentCamera => currentCamera;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+    
+    private void Start()
+    {
+        // If not assigned in inspector, try to find the player
+        if (playerController == null)
+        {
+            playerController = FindAnyObjectByType<PlayerController>();
+        }
     }
 
     // Function used to switch between camers
@@ -28,11 +43,22 @@ public class CinemachineSwitcher : MonoBehaviour
         switch (currentCamera)
         {
             case "FirstCamera":
-                // Switch to camera 2 after 2 second ddelay
+                // Lock movement during transition, block rightward movement
+                if (playerController != null)
+                {
+                    playerController.SetMovementLocked(true);
+                    playerController.SetRightMovementBlocked(true);
+                }
+                // Switch to camera 2 after 2 second delay
                 NpcTrigger.SetActive(true);
                 switchCoroutine = StartCoroutine(SwitchAfterDelay(2f, "SecondCamera"));
                 break;
             case "SecondCamera":
+                // Unblock right movement when proceeding to ThirdCamera
+                if (playerController != null)
+                {
+                    playerController.SetRightMovementBlocked(false);
+                }
                 animator.Play("ThirdCamera");
                 currentCamera = "ThirdCamera";
                 break;
@@ -69,9 +95,14 @@ public class CinemachineSwitcher : MonoBehaviour
         animator.Play(nextCamera);
         currentCamera = nextCamera;
 
-        // If switched to second camera, set another switch after 7 seconds
+        // If switched to second camera, unlock movement (but right is still blocked) and set another switch after 7 seconds
         if (currentCamera == "SecondCamera")
         {
+            if (playerController != null)
+            {
+                playerController.SetMovementLocked(false);
+                // Right movement stays blocked - player must go left
+            }
             switchCoroutine = StartCoroutine(SwitchAfterDelay(7f));
         }
     }

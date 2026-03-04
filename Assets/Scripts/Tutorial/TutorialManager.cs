@@ -14,6 +14,12 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private AudioClip doorCloseClip;
     [SerializeField] private AudioClip handDryerClip;
 
+    [Header("Manager Speech Audio")]
+    [SerializeField] private AudioSource managerSpeechSource;
+    [SerializeField] private AudioClip movementHintClip;
+    [SerializeField] private AudioClip pickupHintClip;
+    [SerializeField] private AudioClip hudInfoClip;
+
     [Header("Tutorial UI")] [SerializeField]
     private GameObject speechBubbleRoot;
 
@@ -23,9 +29,6 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private float walkFromToiletDuration = 1.2f;
     [SerializeField] private float handDryerDuration = 1.8f;
     [SerializeField] private float delayAfterControlsHint = 1f;
-    [SerializeField] private float delayBeforePickupHint = 2.0f;
-    [SerializeField] private float delayAfterLootInfo = 7f;
-    [SerializeField] private float delayHudInfo = 7f;
 
     private enum TutorialState
     {
@@ -33,6 +36,7 @@ public class TutorialManager : MonoBehaviour
         ShowMovementHint,
         WaitForMovement,
         ShowPickupHint,
+        WaitForPickup,
         ExplainHud,
         Finished
     }
@@ -94,14 +98,20 @@ public class TutorialManager : MonoBehaviour
 
         // 4) hint na pohyb
         currentState = TutorialState.ShowMovementHint;
-        ShowMovementHint();
+        StartCoroutine(MovementHintFlow());
 
         if (player != null)
             player.enabled = true;
     }
 
-    private void ShowMovementHint()
+    /// <summary>
+    /// Step 1: Show movement hint bubble + play audio, enable controls,
+    /// then wait for BOTH: player moved AND audio finished.
+    /// Then transition to pickup hint.
+    /// </summary>
+    private IEnumerator MovementHintFlow()
     {
+        // Show bubble
         if (speechBubbleRoot != null && speechText != null)
         {
             speechBubbleRoot.SetActive(true);
@@ -109,15 +119,81 @@ public class TutorialManager : MonoBehaviour
                 "Beží ti obedná pauza! Máš čas sa prechádzať po chodbe [↑←↓→ / WASD]? Šprintuj na obed [SHIFT]!";
         }
 
-        // počká malý moment a potom pustí vstup
-        StartCoroutine(EnableControlsAfterDelay());
-    }
+        PlayManagerSpeech(movementHintClip);
 
-    private IEnumerator EnableControlsAfterDelay()
-    {
+        // Enable controls after short delay
         yield return new WaitForSeconds(delayAfterControlsHint);
         EnablePlayerInput();
         currentState = TutorialState.WaitForMovement;
+
+        // Wait until player has moved (bubble stays visible)
+        yield return new WaitUntil(() => playerHasMoved);
+
+        // Player moved - now wait for audio to finish too (don't cut it)
+        yield return new WaitWhile(() => IsManagerSpeechPlaying());
+
+        // Both conditions met - proceed to pickup hint
+        StartCoroutine(PickupHintFlow());
+    }
+
+    /// <summary>
+    /// Step 2: Show pickup hint bubble + play audio,
+    /// bubble stays until player picks up wallet/phone.
+    /// Audio must finish playing even if player picks up early.
+    /// </summary>
+    private IEnumerator PickupHintFlow()
+    {
+        currentState = TutorialState.ShowPickupHint;
+
+        if (speechBubbleRoot != null && speechText != null)
+        {
+            speechBubbleRoot.SetActive(true);
+            speechText.text =
+                "Nezdržuj sa moc na chodbe, skoč do kanclu a zober si peňaženku [E], nechal si si ju na stole.";
+        }
+
+        PlayManagerSpeech(pickupHintClip);
+
+        currentState = TutorialState.WaitForPickup;
+
+        // Wait until player picks up the item (bubble stays visible)
+        yield return new WaitUntil(() => firstTutorialItemPicked);
+
+        // Player picked up - wait for audio to finish (don't cut it)
+        yield return new WaitWhile(() => IsManagerSpeechPlaying());
+
+        // Both conditions met - proceed to HUD explanation
+        StartCoroutine(HudInfoFlow());
+    }
+
+    /// <summary>
+    /// Step 3: Show HUD info bubble + play audio,
+    /// wait for audio to finish, then hide bubble and finish tutorial.
+    /// </summary>
+    private IEnumerator HudInfoFlow()
+    {
+        currentState = TutorialState.ExplainHud;
+
+        if (speechBubbleRoot != null && speechText != null)
+        {
+            speechBubbleRoot.SetActive(true);
+            speechText.text =
+                "Hore vidíš svoj zdravotný stav, čas a skóre. Tu sa ti nič nestane, ale vonku ti to neviem garantovať.";
+        }
+
+        PlayManagerSpeech(hudInfoClip);
+
+        // Wait for audio to finish playing completely
+        yield return new WaitWhile(() => IsManagerSpeechPlaying());
+
+        // Audio finished - hide bubble
+        if (speechBubbleRoot != null)
+        {
+            speechBubbleRoot.SetActive(false);
+            speechText.text = "";
+        }
+
+        currentState = TutorialState.Finished;
     }
 
     private void Update()
@@ -129,71 +205,31 @@ public class TutorialManager : MonoBehaviour
             if (moveAction != null && moveAction.ReadValue<Vector2>().sqrMagnitude > 0.01f)
             {
                 playerHasMoved = true;
-                StartCoroutine(OnPlayerStartedMoving());
             }
         }
-    }
-
-    private IEnumerator OnPlayerStartedMoving()
-    {
-        yield return new WaitForSeconds(delayBeforePickupHint);
-
-        if (speechBubbleRoot != null && speechText != null)
-        {
-            speechBubbleRoot.SetActive(true);
-            speechText.text =
-                "Nezdržuj sa moc na chodbe, skoč do kanclu a zober si peňaženku [E], nechal si si ju na stole.";
-        }
-
-        currentState = TutorialState.ShowPickupHint;
     }
 
     public void HandleItemPickedUp(CollectibleItem item)
     {
         // reaguj len v tutorial scéne a len raz
-        if (firstTutorialItemPicked || currentState != TutorialState.ShowPickupHint)
+        if (firstTutorialItemPicked || currentState != TutorialState.WaitForPickup)
             return;
 
         // skontroluj, či je to peňaženka alebo mobil
         if (item.itemName is "Wallet" or "Phone")
         {
             firstTutorialItemPicked = true;
-            StartCoroutine(ShowHudInfoSequence());
+            // coroutine in PickupHintFlow will detect this via WaitUntil
         }
     }
 
     public void OnFirstItemPickedUp()
     {
-        if (speechBubbleRoot == null || speechText == null)
-            return;
-
-        speechBubbleRoot.SetActive(true);
-        speechText.text =
-            "Všetko, čo zodvihneš [F], ti skončí v inventári [I] a môžno sa ti to neskôr zíde.";
-
-        currentState = TutorialState.ExplainHud;
-        StartCoroutine(ShowHudInfoSequence());
-    }
-
-    private IEnumerator ShowHudInfoSequence()
-    {
-        yield return new WaitForSeconds(delayAfterLootInfo);
-
-        if (speechBubbleRoot != null && speechText != null)
+        // Already handled by HandleItemPickedUp - kept for backward compatibility
+        if (!firstTutorialItemPicked)
         {
-            speechText.text =
-                "Hore vidíš svoj zdravotný stav, čas a skóre. Tu sa ti nič nestane, ale vonku ti to neviem garantovať.";
+            firstTutorialItemPicked = true;
         }
-
-        yield return new WaitForSeconds(delayHudInfo);
-
-        if (speechBubbleRoot != null)
-        {
-            speechBubbleRoot.SetActive(false);
-            speechText.text = "";
-        }
-
-        currentState = TutorialState.Finished;
     }
 
     private void DisablePlayerInput()
@@ -228,4 +264,24 @@ public class TutorialManager : MonoBehaviour
     }
     
     public bool IsFinished => currentState == TutorialState.Finished;
+
+    private bool IsManagerSpeechPlaying()
+    {
+        return managerSpeechSource != null && managerSpeechSource.isPlaying;
+    }
+
+    private void PlayManagerSpeech(AudioClip clip)
+    {
+        if (managerSpeechSource != null && managerSpeechSource.isPlaying)
+        {
+            managerSpeechSource.Stop();
+        }
+
+        if (managerSpeechSource != null && clip != null)
+        {
+            managerSpeechSource.clip = clip;
+            managerSpeechSource.Play();
+        }
+    }
 }
+

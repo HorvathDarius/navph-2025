@@ -644,7 +644,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Kone\u010Dne si sa dostal na obed. Pam\xE4taj ale na svoje alergie. Mal
-    by si si vybra\u0165 len 10ks nasleduj\xFAcich surov\xEDn : \n\n\n\n\n\n\n\n\t\tPohyb
+    by si si vybra\u0165 len 10ks nasleduj\xFAcich surov\xEDn: \n\n\n\n\n\n\n\n\t\tPohyb
     v tejto hre : [A, D / -, - ] "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f4b0b03ef04f4e4f8bfd27d5a9ad114, type: 2}

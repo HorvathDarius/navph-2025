@@ -30,8 +30,8 @@ public class YemeMazeManager : MonoBehaviour
         yield return new WaitForSeconds(spawnDrinkDelay);
 
         spawnedShelf = shelfTransforms[Random.Range(0, shelfTransforms.Count)];
-        spawnedDrink = Instantiate(drinkPrefab, spawnedShelf.position + new Vector3(1.5f, 1.5f, 0), Quaternion.identity);
-        Instantiate(drinkPrefabVoid, spawnedShelf.position + new Vector3(1.5f, 1.4f, 0), Quaternion.identity);
+        spawnedDrink = Instantiate(drinkPrefab, spawnedShelf.position + new Vector3(1.5f, 1.51f, 0), Quaternion.identity);
+        Instantiate(drinkPrefabVoid, spawnedShelf.position + new Vector3(1.5f, 1.51f, 0), Quaternion.identity);
     }
 
     public void TryHandleCheckout(PlayerController player)

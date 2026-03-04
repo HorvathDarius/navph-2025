@@ -41,6 +41,10 @@ public class LightController : MonoBehaviour
     [Tooltip("Simulating player inventory containing mobile")] [SerializeField]
     private bool playerHasMobile = true;
 
+    [Header("Outage Audio")]
+    [SerializeField] private AudioSource outageAudioSource;
+    [SerializeField] private AudioClip outageClip;
+
     [Header("Input")] [SerializeField] InputAction mobileLightAction;
 
     private VisualElement warningSign; // Warning sign UI element
@@ -55,6 +59,10 @@ public class LightController : MonoBehaviour
     void Start()
     {
         mobileLightAction = InputSystem.actions.FindAction("MobileLight");
+
+        // Zisti, či hráč zobral telefón v tutoriáli
+        playerHasMobile = GameManager.Instance != null && GameManager.Instance.HasItem("Phone");
+        Debug.Log($"[LightController] playerHasMobile = {playerHasMobile}");
 
         if (GameManager.Instance != null)
         {
@@ -106,6 +114,10 @@ public class LightController : MonoBehaviour
         if (lightMobile != null) lightMobile.enabled = false;
         m_mobileLightOn = false;
         m_isOutageInProgress = true;
+
+        // Play outage sound effect
+        if (outageAudioSource != null && outageClip != null)
+            outageAudioSource.PlayOneShot(outageClip);
     }
 
     private void StartOutageCycle()

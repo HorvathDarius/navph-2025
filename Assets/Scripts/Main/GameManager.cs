@@ -27,6 +27,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject endingPrefab;
     private GameObject CurrentEndingPrefab;
 
+    [Header("Hint Audio")]
+    [SerializeField] private AudioClip[] hintAudioClips;
+
+    [Header("Lore Audio")]
+    [SerializeField] private AudioClip[] loreAudioClips;
+
+    [Header("Game State Audio")]
+    [SerializeField] private AudioClip gameOverAudioClip;
+    [SerializeField] private AudioClip timeUpAudioClip;
+    [SerializeField] private AudioClip victoryAudioClip;
+
     // UI References
     private UIDocument m_UIDocument;
     private Label m_HealthLabel;
@@ -38,6 +49,7 @@ public class GameManager : MonoBehaviour
     private bool m_WaitingForEndingContinue = false;
 
     // Game Over stats
+    private Label m_GameOverMessageLabel;
     private Label m_FinalScoreLabel;
     private Label m_LevelReachedLabel;
     private Button m_RetryButton;
@@ -66,6 +78,7 @@ public class GameManager : MonoBehaviour
     private float m_TimeRemaining;
     private bool m_IsGameActive = false;
     private bool m_IsPaused = false;
+    private Coroutine m_GameOverCoroutine;
 
     // Transition State
     private GameObject m_CurrentLorePrefab;
@@ -74,6 +87,9 @@ public class GameManager : MonoBehaviour
     private bool m_ShowingHint = false;
     private bool m_WaitingForContinue = false;
     private int m_TransitionFromLevel = -1;
+    private AudioSource m_HintAudioSource;
+    private AudioSource m_LoreAudioSource;
+    private AudioSource m_GameStateAudioSource;
 
     [Header("Collected Items")]
     private System.Collections.Generic.List<string> m_CollectedItems = new();
@@ -139,11 +155,15 @@ public class GameManager : MonoBehaviour
         if (m_IsGameActive && !m_IsPaused)
         {
             m_TimeRemaining -= Time.deltaTime;
-            UpdateTimerUI();
-
             if (m_TimeRemaining <= 0)
             {
+                m_TimeRemaining = 0;
+                UpdateTimerUI();
                 TimeUp();
+            }
+            else
+            {
+                UpdateTimerUI();
             }
         }
 
@@ -211,6 +231,7 @@ public class GameManager : MonoBehaviour
         }
 
         m_CurrentLevel = levelIndex;
+        m_GameOverDelay = 3f; // Reset to default for each new level
         string sceneName = SCENE_NAMES[levelIndex];
 
         Debug.Log($"Loading scene: {sceneName}");
@@ -221,6 +242,9 @@ public class GameManager : MonoBehaviour
     public void OnMinigameComplete()
     {
         Debug.Log($"Minigame {m_CurrentLevel} completed!");
+
+        // Stop all scene audio so it doesn't bleed into lore/hint transitions
+        StopAllSceneAudio();
 
         // Check if all levels completed
         if (m_CurrentLevel >= SCENE_NAMES.Length - 1)
@@ -307,6 +331,9 @@ public class GameManager : MonoBehaviour
         m_WaitingForContinue = true;
 
         DontDestroyOnLoad(m_CurrentLorePrefab);
+
+        // Play lore audio if available
+        PlayLoreAudio(levelIndex);
     }
 
     private void ShowHintPrefab(int levelIndex)
@@ -357,9 +384,123 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(m_CurrentHintPrefab);
 
+        // Play hint audio if available
+        PlayHintAudio(levelIndex);
+
         Debug.Log($"Hint prefab displayed: {m_CurrentHintPrefab.name}");
     }
 
+
+    private void PlayHintAudio(int levelIndex)
+    {
+        StopHintAudio();
+
+        if (hintAudioClips == null || levelIndex >= hintAudioClips.Length || hintAudioClips[levelIndex] == null)
+        {
+            Debug.Log($"No hint audio clip for level {levelIndex}");
+            return;
+        }
+
+        if (m_HintAudioSource == null)
+        {
+            m_HintAudioSource = gameObject.AddComponent<AudioSource>();
+            m_HintAudioSource.playOnAwake = false;
+        }
+
+        m_HintAudioSource.clip = hintAudioClips[levelIndex];
+        m_HintAudioSource.Play();
+        Debug.Log($"Playing hint audio for level {levelIndex}");
+    }
+
+    private void StopHintAudio()
+    {
+        if (m_HintAudioSource != null && m_HintAudioSource.isPlaying)
+        {
+            m_HintAudioSource.Stop();
+            Debug.Log("Hint audio stopped");
+        }
+    }
+
+    private void PlayLoreAudio(int levelIndex)
+    {
+        StopLoreAudio();
+
+        if (loreAudioClips == null || levelIndex >= loreAudioClips.Length || loreAudioClips[levelIndex] == null)
+        {
+            Debug.Log($"No lore audio clip for level {levelIndex}");
+            return;
+        }
+
+        if (m_LoreAudioSource == null)
+        {
+            m_LoreAudioSource = gameObject.AddComponent<AudioSource>();
+            m_LoreAudioSource.playOnAwake = false;
+        }
+
+        m_LoreAudioSource.clip = loreAudioClips[levelIndex];
+        m_LoreAudioSource.Play();
+        Debug.Log($"Playing lore audio for level {levelIndex}");
+    }
+
+    private void StopLoreAudio()
+    {
+        if (m_LoreAudioSource != null && m_LoreAudioSource.isPlaying)
+        {
+            m_LoreAudioSource.Stop();
+            Debug.Log("Lore audio stopped");
+        }
+    }
+
+    private void PlayGameStateAudio(AudioClip clip)
+    {
+        StopGameStateAudio();
+
+        if (clip == null)
+        {
+            Debug.Log("No game state audio clip provided");
+            return;
+        }
+
+        if (m_GameStateAudioSource == null)
+        {
+            m_GameStateAudioSource = gameObject.AddComponent<AudioSource>();
+            m_GameStateAudioSource.playOnAwake = false;
+        }
+
+        m_GameStateAudioSource.clip = clip;
+        m_GameStateAudioSource.Play();
+        Debug.Log($"Playing game state audio: {clip.name}");
+    }
+
+    private void StopGameStateAudio()
+    {
+        if (m_GameStateAudioSource != null && m_GameStateAudioSource.isPlaying)
+        {
+            m_GameStateAudioSource.Stop();
+            Debug.Log("Game state audio stopped");
+        }
+    }
+
+    /// <summary>
+    /// Stops all AudioSources in the current scene (background music, SFX, etc.).
+    /// Does NOT stop AudioSources on DontDestroyOnLoad objects (like GameManager itself).
+    /// </summary>
+    private void StopAllSceneAudio()
+    {
+        AudioSource[] allSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (var source in allSources)
+        {
+            // Skip our own audio sources (on GameManager / DontDestroyOnLoad objects)
+            if (source.gameObject == gameObject)
+                continue;
+
+            if (source.isPlaying)
+            {
+                source.Stop();
+            }
+        }
+        Debug.Log("All scene audio stopped");
+    }
 
     private void HandleTransitionContinue()
     {
@@ -368,6 +509,7 @@ public class GameManager : MonoBehaviour
         if (m_ShowingLore)
         {
             Debug.Log($"Space pressed - switching from lore to hint for level {m_TransitionFromLevel}");
+            StopLoreAudio();
             ShowHintPrefab(m_TransitionFromLevel);
         }
         else if (m_ShowingHint)
@@ -375,6 +517,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Space pressed on hint - preparing to load next level");
             Debug.Log($"Before: m_WaitingForContinue = {m_WaitingForContinue}");
 
+            StopHintAudio();
             m_WaitingForContinue = false;
 
             Debug.Log($"After: m_WaitingForContinue = {m_WaitingForContinue}");
@@ -388,6 +531,9 @@ public class GameManager : MonoBehaviour
     private void HideTransitionPrefabs()
     {
         Debug.Log("HideTransitionPrefabs called");
+
+        StopHintAudio();
+        StopLoreAudio();
 
         if (m_CurrentLorePrefab != null)
         {
@@ -430,6 +576,7 @@ public class GameManager : MonoBehaviour
         m_IsGameActive = false;
 
         HideTransitionPrefabs();
+        StopGameStateAudio();
 
         // Vyčisti UI
         if (m_UIDocument != null && m_UIDocument.gameObject != null)
@@ -448,12 +595,15 @@ public class GameManager : MonoBehaviour
 
     // ===== GAME OVER & VICTORY =====
 
-    public IEnumerator GameOver(string reason, float delaySeconds)
+    public IEnumerator GameOver(string reason, float delaySeconds, bool showRetry = true, AudioClip audioOverride = null)
     {
         if (!m_IsGameActive)
             yield break;
 
         m_IsGameActive = false;
+
+        // Stop all scene audio (background music, etc.)
+        StopAllSceneAudio();
 
         yield return new WaitForSeconds(delaySeconds);
 
@@ -461,11 +611,20 @@ public class GameManager : MonoBehaviour
         if (m_GameOverPanel != null)
             m_GameOverPanel.style.display = DisplayStyle.Flex;
 
+        PlayGameStateAudio(audioOverride != null ? audioOverride : gameOverAudioClip);
+        
+        if (m_GameOverMessageLabel != null)
+            m_GameOverMessageLabel.text = reason;
+
         if (m_FinalScoreLabel != null)
             m_FinalScoreLabel.text = $"Finálne skóre: {m_Score}";
 
         if (m_LevelReachedLabel != null)
-            m_LevelReachedLabel.text = $"Dosiahnutý level: {m_CurrentLevel + 1}";
+            m_LevelReachedLabel.text = $"Dosiahnutý level: {m_CurrentLevel}";
+
+        // Skryje tlačidlo "Skúsiť znova" ak nie je povolené (napr. pri vypršaní času)
+        if (m_RetryButton != null)
+            m_RetryButton.style.display = showRetry ? DisplayStyle.Flex : DisplayStyle.None;
         
         Debug.Log($"Game Over (delayed): {reason}");
     }
@@ -504,6 +663,8 @@ public class GameManager : MonoBehaviour
         m_IsGameActive = false;
         Time.timeScale = 0;
 
+        PlayGameStateAudio(victoryAudioClip);
+
         // Show ending prefab first
         if (endingPrefab != null)
         {
@@ -533,11 +694,25 @@ public class GameManager : MonoBehaviour
     private void TimeUp()
     {
         StartCoroutine(GameOver(
-            "Vypršal ti čas na obedovú pauzu, dnes robíš o hodinu dlhšie!",
-            0f));
+            "Nestihol si sa dostať na obed.\nDnes robíš nadčas zadarmo!\n\nŠéf ocenil tvoje nasadenie.",
+            0f,
+            false,
+            timeUpAudioClip));
     }
 
     // ===== PLAYER STATE =====
+
+    /// <summary>
+    /// Delay before showing game over screen on health death. 
+    /// Set to 0 for scenes without death animation (e.g. FoodCatcher).
+    /// Default 3s allows player death animation to play.
+    /// </summary>
+    private float m_GameOverDelay = 3f;
+
+    public void SetGameOverDelay(float delay)
+    {
+        m_GameOverDelay = Mathf.Max(0f, delay);
+    }
 
     public void ChangeHealth(int amount)
     {
@@ -546,9 +721,30 @@ public class GameManager : MonoBehaviour
 
         if (m_Health <= 0 && m_IsGameActive)
         {
-            // Spusti delayed game over – animácia pádu hráča
-            StartCoroutine(GameOver("Zomrel si!", 3f));
+            m_GameOverCoroutine = StartCoroutine(GameOver("Nezomrel si, Ružinov bol za rohom.\n\nNabudúce si daj od práce voľno.", m_GameOverDelay));
         }
+    }
+
+    /// <summary>
+    /// Cancels an in-progress GameOver sequence (e.g. when a checkpoint respawn is triggered).
+    /// Restores game to active state.
+    /// </summary>
+    public void CancelGameOver()
+    {
+        if (m_GameOverCoroutine != null)
+        {
+            StopCoroutine(m_GameOverCoroutine);
+            m_GameOverCoroutine = null;
+        }
+
+        m_IsGameActive = true;
+        Time.timeScale = 1f;
+        
+        // Hide game over panel if it was shown
+        if (m_GameOverPanel != null)
+            m_GameOverPanel.style.display = DisplayStyle.None;
+
+        Debug.Log("[GameManager] GameOver cancelled (checkpoint respawn).");
     }
 
 
@@ -621,6 +817,7 @@ public class GameManager : MonoBehaviour
         
         // Game Over panel
         m_GameOverPanel = root.Q<VisualElement>("GameOverPanel");
+        m_GameOverMessageLabel = m_GameOverPanel?.Q<Label>("GameOverMessage");
         m_FinalScoreLabel = m_GameOverPanel?.Q<Label>("FinalScoreLabel");
         m_LevelReachedLabel = m_GameOverPanel?.Q<Label>("LevelReachedLabel");
         m_RetryButton = m_GameOverPanel?.Q<Button>("RetryButton");
@@ -656,8 +853,11 @@ public class GameManager : MonoBehaviour
     
     private void OnRetryButtonClicked()
     {
+        StopGameStateAudio();
         m_Health = startingHealth;
+        m_Score = 0;
         UpdateHealthUI();
+        UpdateScoreUI();
 
         m_IsGameActive = true;
         Time.timeScale = 1f;
@@ -751,6 +951,7 @@ public class GameManager : MonoBehaviour
 
     private string FormatTime(float seconds)
     {
+        seconds = Mathf.Max(seconds, 0f);
         int minutes = Mathf.FloorToInt(seconds / 60);
         int secs = Mathf.FloorToInt(seconds % 60);
         return $"{minutes:00}:{secs:00}";

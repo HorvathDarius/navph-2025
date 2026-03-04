@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4035537607211098985}
   - component: {fileID: 445548895733351192}
-  - component: {fileID: 2022233942416262286}
+  - component: {fileID: 8409249948071298954}
   m_Layer: 0
   m_Name: VendingMachine
   m_TagString: Untagged
@@ -91,8 +91,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!68 &2022233942416262286
-EdgeCollider2D:
+--- !u!60 &8409249948071298954
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -126,17 +126,19 @@ EdgeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.48968762, y: 0.15688075}
+    oldSize: {x: 3.82, y: 6.59}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.16635254, y: 0.5844245}
-  - {x: -0.4093228, y: 0.7059089}
-  - {x: -1.9058728, y: -0.042998284}
-  - {x: -1.7720437, y: -0.31950256}
-  - {x: 0.56439245, y: -1.0564673}
-  - {x: 1.8551061, y: -0.287359}
-  - {x: 1.9209678, y: 0.03287697}
-  - {x: -0.28819692, y: 0.6461618}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+    m_Paths:
+    - - {x: -0.37763616, y: 0.47283965}
+      - {x: -1.7943366, y: -0.18709892}
+      - {x: 0.5770758, y: -1.0389618}
+      - {x: 1.8621826, y: -0.18430834}
+  m_UseDelaunayMesh: 0

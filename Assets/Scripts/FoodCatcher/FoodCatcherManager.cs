@@ -11,6 +11,10 @@ public class FoodCatcherManager : MonoBehaviour
     [SerializeField] private GameObject foodSpawner;
     [SerializeField] private TextMeshProUGUI foodCounter;
 
+    [Header("Price Audio")]
+    [SerializeField] private AudioSource priceAudioSource;
+    [SerializeField] private AudioClip priceAudioClip;
+
     private int goodFoodCount = 0;
     private int badFoodCount = 0;
     private bool gameOver = false;
@@ -24,6 +28,13 @@ public class FoodCatcherManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        // FoodCatcher has no death animation - game over should be instant
+        if (GameManager.Instance != null)
+            GameManager.Instance.SetGameOverDelay(0f);
     }
 
     public void AddGoodFood()
@@ -73,6 +84,12 @@ public class FoodCatcherManager : MonoBehaviour
             bubble.gameObject.SetActive(true);
             winText.gameObject.SetActive(true);
             winText.text = "12,90 poplosím!";
+        }
+
+        // Play price audio
+        if (priceAudioSource != null && priceAudioClip != null)
+        {
+            priceAudioSource.PlayOneShot(priceAudioClip);
         }
 
         Debug.Log("🎉 You caught 10 good foods! Game Over!");

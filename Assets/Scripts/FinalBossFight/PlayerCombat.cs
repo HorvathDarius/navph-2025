@@ -22,6 +22,7 @@ public class PlayerCombat : MonoBehaviour
     private bool combatEnabled;
     private bool inputLocked;
     private bool isAttacking;
+    private bool isDead;
     private float lastDirectionX = 1f;
 
     void OnEnable()
@@ -71,6 +72,7 @@ public class PlayerCombat : MonoBehaviour
         combatEnabled = false;
         inputLocked = false;
         isAttacking = false;
+        isDead = false;
 
         // animator.SetFloat("DirectionX", lastDirectionX);
         animator.SetBool("InCombat", false);
@@ -211,12 +213,21 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (isDead) return;
         if (GameManager.Instance == null) return;
+
+        // Ak fight už skončil (boss zomrel skôr), hráč už neberie damage.
+        if (FinalBossFightManager.Instance != null && FinalBossFightManager.Instance.IsFightOver)
+        {
+            Debug.Log("[PlayerCombat] TakeDamage blocked – fight is already over.");
+            return;
+        }
 
         GameManager.Instance.ChangeHealth(-amount);
 
         if (GameManager.Instance.Health <= 0)
         {
+            isDead = true;
             Debug.Log("[PlayerCombat] Player died, starting death routine.");
             StartCoroutine(PlayerDeathRoutine());
         }
@@ -225,7 +236,20 @@ public class PlayerCombat : MonoBehaviour
     public IEnumerator PlayerDeathRoutine()
     {
         LockInput(true);
+        combatEnabled = false;
         animator.SetTrigger("IsDead");
+
+        // Úplne vypni PlayerController aby hráč nemohol vôbec hýbať postavou
+        controller.enabled = false;
+
+        // Zmraz Rigidbody aby bossa ani fyzika neposúvala mŕtveho hráča
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+
         yield return FinalBossFightManager.Instance.HandlePlayerDeath();
     }
 }
